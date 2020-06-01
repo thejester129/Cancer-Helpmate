@@ -13,8 +13,50 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="App.TextAppearance.Description" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+    <style name="App.TextAppearance.Small" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+    <style name="App.TextAppearance.Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+    <style name="App.TextAppearance.Large" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+    <style name="App.TextAppearance.Title_Small" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title_small</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="App.TextAppearance.Title_Medium" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title_medium</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="App.TextAppearance.Title_Large" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title_large</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="App.TextAppearance.Title_Toolbar" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title_medium</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FullscreenDialogTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+    </style>
+
+    <style name="AppTheme.Button1" parent="Widget.AppCompat.Button.Colored">
+        <item name="background">@color/colorButtonPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
 </resources>
