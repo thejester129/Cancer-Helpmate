@@ -19,9 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.common.DateManager;
+import com.example.cancerhelpmate.ui.settings.SettingsViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,12 +50,11 @@ public class ProfileEditDialog extends DialogFragment {
     private TextView dialogHeader;
 
 
-    public ProfileEditDialog(ProfileViewModel profileViewModel) {
-        this.profileViewModel = profileViewModel;
+    public ProfileEditDialog() {
     }
 
-    public static ProfileEditDialog newInstance(ProfileViewModel profileViewModel) {
-        return new ProfileEditDialog(profileViewModel);
+    public static ProfileEditDialog newInstance() {
+        return new ProfileEditDialog();
     }
 
     @Override
@@ -67,6 +68,7 @@ public class ProfileEditDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile_edit_dialog, container, false);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         getControlReferences(view);
         createBindings();
         return view;
@@ -99,18 +101,23 @@ public class ProfileEditDialog extends DialogFragment {
                 dismiss();
             }
         });
+        if(!profileViewModel.getProfile().isInitialised()){
+            closeButton.setVisibility(View.INVISIBLE);
+        }
         dialogHeader.setText(R.string.setup_profile);
 
         if(profileViewModel.getProfile().isInitialised()){
-            nameEditText.setText(profileViewModel.getName());
+            nameEditText.setText(profileViewModel.getProfile().getName());
             startDateButton.setText(profileViewModel.getProfile().getStart_date());
             endDateButton.setText(profileViewModel.getProfile().getEnd_date());
         }
     }
 
     private void setupDates(){
-        startDateButton.setText(DateManager.getTodayAsString());
-        endDateButton.setText(DateManager.getTodayAsString());
+        startDate = profileViewModel.getProfile().getStart_date();
+        endDate = profileViewModel.getProfile().getEnd_date();
+        startDateButton.setText(startDate);
+        endDateButton.setText(endDate);
 
         startDateButton.setOnClickListener(startDateButtonListener);
         endDateButton.setOnClickListener(endDateButtonListener);
@@ -127,6 +134,25 @@ public class ProfileEditDialog extends DialogFragment {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diagnosisSpinner.setAdapter(dataAdapter);
+        if(profileViewModel.getProfile().isInitialised()){
+            switch (profileViewModel.getProfile().getDiagnosis()){
+                case "Brain and CNS Tumour":
+                    diagnosisSpinner.setSelection(0);
+                    break;
+                case "Germ Cell Tumour":
+                    diagnosisSpinner.setSelection(1);
+                    break;
+                case "Lymphoma":
+                    diagnosisSpinner.setSelection(2);
+                    break;
+                case "Sarcoma":
+                    diagnosisSpinner.setSelection(3);
+                    break;
+                case "Other":
+                    diagnosisSpinner.setSelection(4);
+                    break;
+            }
+        }
     }
 
 
@@ -157,7 +183,15 @@ public class ProfileEditDialog extends DialogFragment {
     private DatePickerDialog.OnDateSetListener startDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            startDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+            String dayString = Integer.toString(dayOfMonth);
+            String monthString = Integer.toString(month + 1);
+            if(dayOfMonth < 10){
+                dayString = "0" + dayString;
+            }
+            if(month < 10){
+                monthString = "0" + monthString;
+            }
+            startDate = dayString + "/" + monthString + "/" + year;
             startDateButton.setText(startDate);
         }
     };
@@ -165,7 +199,15 @@ public class ProfileEditDialog extends DialogFragment {
     private DatePickerDialog.OnDateSetListener endDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            endDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+            String dayString = Integer.toString(dayOfMonth);
+            String monthString = Integer.toString(month + 1);
+            if(dayOfMonth < 10){
+                dayString = "0" + dayString;
+            }
+            if(month < 10){
+                monthString = "0" + monthString;
+            }
+            endDate = dayString + "/" + monthString + "/" + year;
             endDateButton.setText(endDate);
         }
     };
@@ -181,6 +223,7 @@ public class ProfileEditDialog extends DialogFragment {
             Toast toast = Toast.makeText(getContext(),"Please select a diagnosis", Toast.LENGTH_SHORT);
             toast.show();
         }
+        //TODO date checks
         else if(!chemotherapyCheckbox.isChecked() && !radiotherapyCheckbox.isChecked() && !surgeryCheckbox.isChecked() && !boneMarrowCheckbox.isChecked() && !otherTreatmentCheckbox.isChecked()){
             Toast toast = Toast.makeText(getContext(),"Please select a treatment", Toast.LENGTH_SHORT);
             toast.show();
@@ -194,14 +237,10 @@ public class ProfileEditDialog extends DialogFragment {
 
     private void updateProfile(){
         profileViewModel.setName(nameEditText.getText().toString());
-        //TODO dates
-        //TODO date checks
+        profileViewModel.setStartTreatmentDate(startDate);
+        profileViewModel.setEndTreatmentDate(endDate);
         profileViewModel.setDiagnosis(diagnosisSpinner.getSelectedItem().toString());
-        profileViewModel.setChemotherapyTreatment(chemotherapyCheckbox.isChecked());
-        profileViewModel.setRadiotherapyTreatment(radiotherapyCheckbox.isChecked());
-        profileViewModel.setSurgeryTreatment(surgeryCheckbox.isChecked());
-        profileViewModel.setBoneMarrowTreatment(boneMarrowCheckbox.isChecked());
-        profileViewModel.setOtherTreatment(otherTreatmentCheckbox.isChecked());
+        profileViewModel.updateTreatment(chemotherapyCheckbox.isChecked(), radiotherapyCheckbox.isChecked(),surgeryCheckbox.isChecked(),boneMarrowCheckbox.isChecked(),otherTreatmentCheckbox.isChecked());
         profileViewModel.setInitialised();
     }
 

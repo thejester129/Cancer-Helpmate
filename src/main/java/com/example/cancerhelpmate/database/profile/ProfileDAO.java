@@ -2,6 +2,7 @@ package com.example.cancerhelpmate.database.profile;
 
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -48,8 +49,17 @@ public interface ProfileDAO {
     @Query("update profile set profile_diagnosis = :diagnosis where profile_id == 0")
     public void setDiagnosis(String diagnosis);
 
+    @Query("update profile set profile_start_date = :date where profile_id == 0")
+    public void setStartTreatmentDate(String date);
+
+    @Query("update profile set profile_end_date = :date where profile_id == 0")
+    public void setEndTreatmentDate(String date);
+
     @Query("update profile set profile_initialised = :initialised where profile_id == 0")
     public void setInitialised(boolean initialised);
+
+    @Query("select profile_diagnosis from profile where profile_id == 0")
+    public LiveData<String> getDiagnosis();
 
     @Query("DELETE FROM profile")
     public void deleteTable();

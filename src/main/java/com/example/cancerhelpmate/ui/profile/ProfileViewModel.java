@@ -3,112 +3,108 @@ package com.example.cancerhelpmate.ui.profile;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
+import com.example.cancerhelpmate.common.DateManager;
 import com.example.cancerhelpmate.database.profile.ProfileDAO;
 import com.example.cancerhelpmate.database.profile.ProfileDatabase;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Observable;
+
 public class ProfileViewModel extends AndroidViewModel {
     private ProfileDAO profileDAO;
+    public MutableLiveData<String> name = new MutableLiveData<>();
+    public MutableLiveData<String> diagnosis = new MutableLiveData<>();
+    public MutableLiveData<String> welcomeText = new MutableLiveData<>();
+    public MutableLiveData<Integer> currentDay = new MutableLiveData<>();
+    public MutableLiveData<Integer> totalDays = new MutableLiveData<>();
 
     public ProfileViewModel(@NotNull Application application) {
         super(application);
         profileDAO = ProfileDatabase.getDatabase(application).getDAO();
+        profileDAO.getProfile();
+    }
+
+    public void refresh(){
+        name.setValue(getProfile().getName());
+        diagnosis.setValue(getProfile().getDiagnosis());
+        welcomeText.setValue(getWelcomeText());
+        currentDay.setValue(getCurrentDay());
+        totalDays.setValue(getTotalDays());
     }
 
     public LiveData<ProfileEntry> getLiveProfile() {
         return profileDAO.getLiveProfile();
     }
 
-
     public ProfileEntry getProfile() {
         return profileDAO.getProfile();
     }
 
-
-    public void updateProfile(ProfileEntry profileItem) {
-        new updateAsyncTask(profileDAO).execute(profileItem);
-    }
-
-    public String getName() {
-        return getProfile().getName();
-    }
-
     public void setName(String name) {
         profileDAO.setName(name);
-        updateProfile(getProfile());
     }
 
     public void setInitialised() {
         profileDAO.setInitialised(true);
-        updateProfile(getProfile());
     }
 
-    public void setChemotherapyTreatment(boolean treatment){
-        ProfileEntry profile = getProfile();
-        profileDAO.setChemotherapyTreatment(treatment);
-        updateProfile(profile);
-    }
-
-    public void setRadiotherapyTreatment(boolean treatment){
-        ProfileEntry profile = getProfile();
-        profileDAO.setRadiotherapyTreatment(treatment);
-        updateProfile(profile);
-    }
-
-    public void setSurgeryTreatment(boolean treatment){
-        ProfileEntry profile = getProfile();
-        profileDAO.setSurgeryTreatment(treatment);
-        updateProfile(profile);
-    }
-
-    public void setBoneMarrowTreatment(boolean treatment){
-        ProfileEntry profile = getProfile();
-        profileDAO.setBoneMarrowTreatment(treatment);
-        updateProfile(profile);
-    }
-
-    public void setOtherTreatment(boolean treatment){
-        ProfileEntry profile = getProfile();
-        profileDAO.setOtherTreatment(treatment);
-        updateProfile(profile);
+    public void updateTreatment(boolean chemotherapy, boolean radiotherapy, boolean surgery, boolean boneMarrow, boolean other){
+        profileDAO.setChemotherapyTreatment(chemotherapy);
+        profileDAO.setRadiotherapyTreatment(radiotherapy);
+        profileDAO.setSurgeryTreatment(surgery);
+        profileDAO.setBoneMarrowTreatment(boneMarrow);
+        profileDAO.setOtherTreatment(other);
     }
 
     public void setDiagnosis(String diagnosis){
-        ProfileEntry profile = getProfile();
         profileDAO.setDiagnosis(diagnosis);
-        updateProfile(profile);
     }
 
-    public String getStartTreatmentDate(){
-        return getProfile().getStart_date();
+    public void setStartTreatmentDate(String date){
+        profileDAO.setStartTreatmentDate(date);
     }
 
-    public String getEndTreatmentDate(){
-        return getProfile().getEnd_date();
+    public void setEndTreatmentDate(String date){
+        profileDAO.setEndTreatmentDate(date);
     }
 
-    public void reset() {
+    public int getCurrentDay(){
+        return DateManager.noOfDaysBetween(getProfile().getStart_date(), DateManager.getTodayAsString()) + 1;
+    }
+
+    public int getTotalDays(){
+        return DateManager.noOfDaysBetween(getProfile().getStart_date(), getProfile().getEnd_date()) + 1;
+    }
+
+    public int getDaysLeft(){
+        return DateManager.noOfDaysBetween(DateManager.getTodayAsString(), getProfile().getEnd_date()) + 1;
+    }
+
+    public String getProgressText(){
+        if(getDaysLeft() > 0){
+            return getDaysLeft() + " days left until end of treatment";
+        }
+        else{
+            //Recovering
+            return ((getDaysLeft() * -1) + 1) + " days in recovery";
+        }
+    }
+
+    public String getWelcomeText(){
+        return "Welcome " + getProfile().getName();
+    }
+
+
+    public void resetDatabase() {
         ProfileDatabase.resetDatabase();
     }
 
-
-    private static class updateAsyncTask extends AsyncTask<ProfileEntry, Void, Void> {
-
-        private ProfileDAO mAsyncTaskDao;
-
-        updateAsyncTask(ProfileDAO dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final ProfileEntry... params) {
-            mAsyncTaskDao.updateEntry(params[0]);
-            return null;
-        }
-    }
 }

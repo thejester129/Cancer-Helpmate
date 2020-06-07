@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="profileViewModel"
+            type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
+            />
+    </data>
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/profile_gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/profile_settings_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_settings_black_48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_user_image"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@color/colorAccentDark"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            app:civ_circle_background_color="@color/colorPrimaryDark"
+            app:civ_border_width="3dp"
+            app:civ_border_color="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            style="@style/App.TextAppearance.Title_Medium"
+            android:layout_below="@id/profile_user_image"
+            android:layout_centerHorizontal="true"
+            android:text="@{profileViewModel.name}"/>
+
+        <ProgressBar
+            android:id="@+id/profile_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:progressTint="@color/colorSecondary"
+            android:layout_below="@id/profile_name"
+            android:max="@{profileViewModel.totalDays}"
+            android:progress="@{profileViewModel.currentDay}"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+        <TextView
+            android:id="@+id/profile_progress_text"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            style="@style/App.TextAppearance.Medium"
+            android:layout_below="@id/profile_progress_bar"
+            android:layout_marginLeft="16dp"
+            android:text="@{profileViewModel.progressText}"
+            />
+
+        <TextView
+            android:id="@+id/profile_diagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@{profileViewModel.diagnosis}"
+            style="@style/App.TextAppearance.Medium"
+            android:layout_below="@id/profile_progress_text"
+            android:layout_marginLeft="16dp"
+            />
+
+    </RelativeLayout>
+</layout>

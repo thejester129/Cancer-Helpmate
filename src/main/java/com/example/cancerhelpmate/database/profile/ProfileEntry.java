@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.cancerhelpmate.common.DateManager;
+
 import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "profile")
@@ -35,6 +37,7 @@ public class ProfileEntry {
     @ColumnInfo(name="profile_initialised")
     private boolean initialised;
 
+
     @Ignore
     public ProfileEntry(){
 
@@ -44,6 +47,8 @@ public class ProfileEntry {
         this.id = id;
         this.name = "";
         this.initialised = false;
+        this.start_date = DateManager.getTodayAsString();
+        this.end_date = DateManager.getTodayAsString();
     }
 
     public int getId() {
