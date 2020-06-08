@@ -30,6 +30,21 @@ public class JournalViewModel extends AndroidViewModel {
         return journalDAO.getLiveJournals();
     }
 
+    public List<JournalEntry> getJournals(){
+        return journalDAO.getJournals();
+    }
+
+    public void addEntry(JournalEntry plannerEntry){
+        journalDAO.addEntry(plannerEntry);
+    }
+
+    public void updateEntry(JournalEntry plannerEntry){
+        journalDAO.updateEntry(plannerEntry);
+    }
+
+    public void deleteEntry(JournalEntry plannerEntry){
+        journalDAO.deleteEntry(plannerEntry);
+    }
 
     public void refresh(){
 

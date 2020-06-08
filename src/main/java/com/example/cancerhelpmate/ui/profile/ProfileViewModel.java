@@ -3,6 +3,8 @@ package com.example.cancerhelpmate.ui.profile;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;

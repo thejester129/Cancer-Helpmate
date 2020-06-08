@@ -27,7 +27,7 @@ public class ProfileFragment extends Fragment {
         binding.setProfileViewModel(viewModel);
         binding.setLifecycleOwner(this);
         setupBindings(binding);
-        setupObserver();
+        setupObserver(binding);
         return binding.getRoot();
     }
 
@@ -41,11 +41,12 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void setupObserver( ){
+    private void setupObserver(final FragmentProfileBinding binding ){
         viewModel.getLiveProfile().observe(getViewLifecycleOwner(), new Observer<ProfileEntry>() {
             @Override
             public void onChanged(@NotNull ProfileEntry profile) {
                 viewModel.refresh();
+
             }
         });
     }

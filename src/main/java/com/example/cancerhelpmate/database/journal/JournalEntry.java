@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 @Entity(tableName = "journals")
 public class JournalEntry {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NotNull
     @ColumnInfo(name = "journal_id")
     private int id;
@@ -23,13 +23,9 @@ public class JournalEntry {
     @ColumnInfo(name = "journal_date")
     private String date;
 
-    @Ignore
+
     public JournalEntry() {
-
-    }
-
-    public JournalEntry(@NotNull int id) {
-        this.id = id;
+        this.date = DateManager.getTodayAsString();
     }
 
     public int getId() {

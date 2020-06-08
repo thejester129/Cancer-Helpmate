@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupOnboarding(){
         ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        profileViewModel.getProfile();
         if(!profileViewModel.getProfile().isInitialised()){
             //TODO finish onboarding
             DialogFragment dialog = ProfileEditDialog.newInstance();

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.journal.JournalEntry" />
+
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/colorDiaryLight"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorDiary"
+            android:id="@+id/planner_entry_dialog_toolbar">
+
+            <ImageButton
+                android:id="@+id/journal_dialog_close_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_journal"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/journal_dialog_save_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_done_white"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/diary_add_dialog_date"
+            android:layout_width="match_parent"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:textAlignment="center"
+            android:text="@{entry.date}"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Title"
+            android:inputType="textCapWords"
+            android:text="@={entry.title}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Description:"/>
+
+        <EditText
+            android:id="@+id/diary_add_dialog_comment"
+            android:layout_width="match_parent"
+            android:layout_height="142dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:inputType="textMultiLine"
+            android:capitalize="sentences"
+            android:minLines="5"
+            android:text="@={entry.body}"
+            android:hint="Write about your day"/>
+
+    </LinearLayout>
+</layout>
