@@ -33,7 +33,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
     @NonNull
     @Override
-    public JournalRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.journal_recycler_item, parent, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +44,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
             }
 
         });
-        JournalRecyclerAdapter.ViewHolder holder = new JournalRecyclerAdapter.ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
@@ -61,7 +61,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JournalRecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bindEntry(items.get(position));
     }
 

@@ -1,52 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="profileViewModel"
-            type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
-            />
-        <variable
-            name="homeViewModel"
-            type="com.example.cancerhelpmate.ui.home.HomeViewModel"
-            />
-    </data>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.home.HomeFragment">
+        android:background="@color/colorGreyLight"
+        android:orientation="vertical">
 
-        <TextView
+        <include
+            layout="@layout/home_welcome_layout"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@{profileViewModel.welcomeText}"
-            style="@style/App.TextAppearance.Title_Small"
+            android:layout_height="160dp"
             />
 
-        <ProgressBar
+        <include
+            android:id="@+id/day_tracker_popup_layout"
+            layout="@layout/home_day_tracker_layout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:progressTint="@color/colorSecondary"
-            android:max="@{profileViewModel.totalDays}"
-            android:progress="@{profileViewModel.currentDay}"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="144dp"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@{profileViewModel.progressText}"
-            style="@style/App.TextAppearance.Medium"
             />
 
     </LinearLayout>

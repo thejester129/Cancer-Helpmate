@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry"
+        />
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
+
+    </data>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/day_tracker_dialog_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorAccent"
+            >
+
+            <ImageButton
+                android:id="@+id/day_tracker_dialog_toolbar_close_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_tracker"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/day_tracker_dialog_toolbar_save_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_done_white"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/day_tracker_dialog_pain_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pain_level"
+            style="@style/App.TextAppearance.Large"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/day_tracker_dialog_toolbar"
+            />
+
+        <TextView
+            android:id="@+id/day_tracker_dialog_pain_level_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.sliderPainLevel}"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/day_tracker_dialog_toolbar"
+            android:layout_centerHorizontal="true"
+            style="@style/App.TextAppearance.Large"
+            />
+
+        <SeekBar
+            android:id="@+id/day_tracker_dialog_pain_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:min="0"
+            android:max="10"
+            android:thumbTint="@android:color/white"
+            android:progressDrawable="@drawable/pain_slider_gradient_background"
+            android:layout_below="@+id/day_tracker_dialog_pain_text"
+            />
+
+        <Button
+            android:id="@+id/day_tracker_dialog_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="@string/save"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+</layout>

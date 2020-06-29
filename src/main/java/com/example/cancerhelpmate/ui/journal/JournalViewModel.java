@@ -5,48 +5,47 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.cancerhelpmate.database.journal.JournalDAO;
 import com.example.cancerhelpmate.database.journal.JournalDatabase;
 import com.example.cancerhelpmate.database.journal.JournalEntry;
-import com.example.cancerhelpmate.database.profile.ProfileDAO;
-import com.example.cancerhelpmate.database.profile.ProfileDatabase;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class JournalViewModel extends AndroidViewModel {
-    private JournalDAO journalDAO;
+    private JournalDAO dao;
 
     public JournalViewModel(@NonNull Application application) {
         super(application);
-        journalDAO = JournalDatabase.getDatabase(application).getDAO();
-        journalDAO.getJournals();
+        dao = JournalDatabase.getDatabase(application).getDAO();
+        dao.getJournals();
     }
 
     public LiveData<List<JournalEntry>> getLiveJournals(){
-        return journalDAO.getLiveJournals();
+        return dao.getLiveJournals();
     }
 
     public List<JournalEntry> getJournals(){
-        return journalDAO.getJournals();
+        return dao.getJournals();
     }
 
     public void addEntry(JournalEntry plannerEntry){
-        journalDAO.addEntry(plannerEntry);
+        dao.addEntry(plannerEntry);
     }
 
     public void updateEntry(JournalEntry plannerEntry){
-        journalDAO.updateEntry(plannerEntry);
+        dao.updateEntry(plannerEntry);
     }
 
     public void deleteEntry(JournalEntry plannerEntry){
-        journalDAO.deleteEntry(plannerEntry);
+        dao.deleteEntry(plannerEntry);
     }
 
     public void refresh(){
 
+    }
+
+    public void resetDatabase(){
+        dao.deleteTable();
     }
 }

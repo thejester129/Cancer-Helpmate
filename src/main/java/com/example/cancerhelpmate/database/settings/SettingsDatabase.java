@@ -36,15 +36,15 @@ public abstract class SettingsDatabase extends RoomDatabase {
 
     public static void resetDatabase() {
         INSTANCE.getDAO().deleteTable();
-        new SettingsDatabase.PopulateDbAsync(INSTANCE.getDAO()).execute(new SettingsEntry(0));
+        new PopulateDbAsync(INSTANCE.getDAO()).execute(new SettingsEntry(0));
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback() {
+    private static Callback sRoomDatabaseCallback =
+            new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
-                    new SettingsDatabase.PopulateDbAsync(INSTANCE.getDAO()).execute(new SettingsEntry(0));
+                    new PopulateDbAsync(INSTANCE.getDAO()).execute(new SettingsEntry(0));
                 }
             };
 

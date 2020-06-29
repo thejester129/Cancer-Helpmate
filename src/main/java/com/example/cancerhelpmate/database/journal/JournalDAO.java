@@ -15,13 +15,13 @@ import java.util.List;
 public interface JournalDAO {
 
     @Insert
-    public long addEntry(JournalEntry journalEntry);
+    public long addEntry(JournalEntry entry);
 
     @Update
-    public void updateEntry(JournalEntry journalEntry);
+    public void updateEntry(JournalEntry entry);
 
     @Delete
-    public void deleteEntry(JournalEntry journalEntry);
+    public void deleteEntry(JournalEntry entry);
 
     @Query("select * from journals")
     public List<JournalEntry> getJournals();

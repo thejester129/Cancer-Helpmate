@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="dayTrackerViewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="144dp">
+
+
+        <TextView
+            android:id="@+id/day_tracker_popup_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tap_day_enter"
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:layout_centerInParent="true"
+            android:visibility="@{dayTrackerViewModel.todaysEntryFilled ? View.GONE : View.VISIBLE}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/day_tracker"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/day_tracker_popup_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+    </RelativeLayout>
+</layout>

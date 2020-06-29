@@ -39,8 +39,8 @@ public abstract class ProfileDatabase extends RoomDatabase {
         //new PopulateDbAsync(INSTANCE.getDAO()).execute(new ProfileEntry(0));
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback() {
+    private static Callback sRoomDatabaseCallback =
+            new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);

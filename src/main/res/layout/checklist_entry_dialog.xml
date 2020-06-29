@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.checklist.ChecklistEntry" />
+
+    </data>
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:minWidth="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/tip_dialog_toolbar">
+
+            <TextView
+                android:id="@+id/checklist_dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:text="@string/menu_checklist"
+                style="@style/App.TextAppearance.Title_Toolbar"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/checklist_dialog_close_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:src="@drawable/ic_close_white"
+                app:civ_border_color="@android:color/darker_gray"
+                app:civ_border_width="4dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/title"
+            android:inputType="textCapWords"
+            android:text="@={entry.title}"
+            />
+
+        <Button
+            android:id="@+id/checklist_dialog_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+                />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
+    </LinearLayout>
+
+</layout>

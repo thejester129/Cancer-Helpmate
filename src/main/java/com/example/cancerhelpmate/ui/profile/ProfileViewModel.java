@@ -1,15 +1,10 @@
 package com.example.cancerhelpmate.ui.profile;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.cancerhelpmate.common.DateManager;
 import com.example.cancerhelpmate.database.profile.ProfileDAO;
@@ -18,10 +13,9 @@ import com.example.cancerhelpmate.database.profile.ProfileEntry;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Observable;
-
 public class ProfileViewModel extends AndroidViewModel {
-    private ProfileDAO profileDAO;
+    private ProfileDAO dao;
+    private ProfileEntry editProfile;
     public MutableLiveData<String> name = new MutableLiveData<>();
     public MutableLiveData<String> diagnosis = new MutableLiveData<>();
     public MutableLiveData<String> welcomeText = new MutableLiveData<>();
@@ -30,8 +24,13 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public ProfileViewModel(@NotNull Application application) {
         super(application);
-        profileDAO = ProfileDatabase.getDatabase(application).getDAO();
-        profileDAO.getProfile();
+        dao = ProfileDatabase.getDatabase(application).getDAO();
+        dao.getProfile();
+        refresh();
+    }
+
+    public boolean isInRecovery(){
+        return (getDaysLeft() <= 0);
     }
 
     public void refresh(){
@@ -42,40 +41,66 @@ public class ProfileViewModel extends AndroidViewModel {
         totalDays.setValue(getTotalDays());
     }
 
+    public ProfileEntry getEditProfile() {
+        return editProfile;
+    }
+
+    public void setEditProfile(ProfileEntry editProfile) {
+        this.editProfile = editProfile;
+    }
+
+    public void updateEditProfile(){
+        updateProfile(editProfile);
+        setInitialised();
+    }
+
+    public boolean editProfileComplete(){
+        //TODO checks
+        return true;
+    }
+
     public LiveData<ProfileEntry> getLiveProfile() {
-        return profileDAO.getLiveProfile();
+        return dao.getLiveProfile();
     }
 
     public ProfileEntry getProfile() {
-        return profileDAO.getProfile();
+        return dao.getProfile();
     }
 
     public void setName(String name) {
-        profileDAO.setName(name);
+        dao.setName(name);
     }
 
     public void setInitialised() {
-        profileDAO.setInitialised(true);
+        dao.setInitialised(true);
+    }
+
+    public void saveCurrentProfile(){
+        updateProfile(editProfile);
+    }
+
+    public void updateProfile(ProfileEntry entry){
+        dao.updateEntry(entry);
     }
 
     public void updateTreatment(boolean chemotherapy, boolean radiotherapy, boolean surgery, boolean boneMarrow, boolean other){
-        profileDAO.setChemotherapyTreatment(chemotherapy);
-        profileDAO.setRadiotherapyTreatment(radiotherapy);
-        profileDAO.setSurgeryTreatment(surgery);
-        profileDAO.setBoneMarrowTreatment(boneMarrow);
-        profileDAO.setOtherTreatment(other);
+        dao.setChemotherapyTreatment(chemotherapy);
+        dao.setRadiotherapyTreatment(radiotherapy);
+        dao.setSurgeryTreatment(surgery);
+        dao.setBoneMarrowTreatment(boneMarrow);
+        dao.setOtherTreatment(other);
     }
 
     public void setDiagnosis(String diagnosis){
-        profileDAO.setDiagnosis(diagnosis);
+        dao.setDiagnosis(diagnosis);
     }
 
     public void setStartTreatmentDate(String date){
-        profileDAO.setStartTreatmentDate(date);
+        dao.setStartTreatmentDate(date);
     }
 
     public void setEndTreatmentDate(String date){
-        profileDAO.setEndTreatmentDate(date);
+        dao.setEndTreatmentDate(date);
     }
 
     public int getCurrentDay(){
@@ -91,17 +116,33 @@ public class ProfileViewModel extends AndroidViewModel {
     }
 
     public String getProgressText(){
-        if(getDaysLeft() > 0){
+        if(!isInRecovery()){
             return getDaysLeft() + " days left until end of treatment";
         }
         else{
-            //Recovering
             return ((getDaysLeft() * -1) + 1) + " days in recovery";
         }
     }
 
     public String getWelcomeText(){
-        return "Welcome " + getProfile().getName();
+        return getWelcomePrefix() + ", " + getProfile().getName();
+    }
+
+    private String getWelcomePrefix(){
+        long time = System.currentTimeMillis();
+        long HOUR = 1000 * 60 * 60;
+        long MORNING = 12 * HOUR;
+        long DAY = 18 * HOUR;
+        String prefix;
+        //TODO time periods
+        if(time < MORNING){
+            return "Good morning";
+        }
+        else if(time < DAY){
+            return"Good afternoon";
+        }
+
+        return "Good evening";
     }
 
 

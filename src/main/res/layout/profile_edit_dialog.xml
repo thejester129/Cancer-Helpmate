@@ -1,148 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <include
-        layout="@layout/toolbar_close"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
-
-    <ScrollView
-        android:id="@+id/fragment_home"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
+            />
+    </data>
+    <LinearLayout android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:background="@drawable/profile_gradient_background">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/profile_edit_dialog_name"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:inputType="textCapWords"
-                android:hint="@string/your_name"/>
+            android:layout_height="56dp"
+            android:background="@color/colorAccent">
 
             <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:id="@+id/toolbar_close_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/start_of_treatment"/>
-
-            <Button
-                android:id="@+id/profile_edit_dialog_start_date_button"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                style="@style/AppTheme.Button1"
+                style="@style/App.TextAppearance.Title_Toolbar"
                 />
 
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/end_of_treatment"/>
+            <ImageButton
+                android:id="@+id/toolbar_close_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:visibility="@{viewModel.profile.initialised ? View.VISIBLE : View.GONE}"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_close_white"/>
 
-            <Button
-                android:id="@+id/profile_edit_dialog_end_date_button"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                style="@style/AppTheme.Button1"
-                />
+        </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/diagnosis"/>
+        <ScrollView
+            android:id="@+id/fragment_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:background="@drawable/profile_gradient_background">
 
-            <Spinner
-                android:id="@+id/profile_edit_dialog_diagnosis_spinner"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/treatment"/>
+                <EditText
+                    android:id="@+id/profile_edit_dialog_name"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:inputType="textCapWords"
+                    android:text="@={viewModel.editProfile.name}"
+                    android:hint="@string/your_name"/>
 
-            <CheckBox
-                android:id="@+id/profile_edit_dialog_treatment_chemotherapy"
-                android:text="@string/chemotherapy"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"/>
+                <TextView
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_of_treatment"/>
 
-            <CheckBox
-                android:id="@+id/profile_edit_dialog_treatment_radiotherapy"
-                android:text="@string/radiotherapy"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"/>
+                <Button
+                    android:id="@+id/profile_edit_dialog_start_date_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@{viewModel.editProfile.start_date}"
+                    style="@style/AppTheme.Button1"
+                    />
 
-            <CheckBox
-                android:id="@+id/profile_edit_dialog_treatment_surgery"
-                android:text="@string/surgery"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"/>
+                <TextView
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/end_of_treatment"/>
 
-            <CheckBox
-                android:id="@+id/profile_edit_dialog_treatment_bone_marrow"
-                android:text="@string/bone_marrow"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"/>
+                <Button
+                    android:id="@+id/profile_edit_dialog_end_date_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@{viewModel.editProfile.end_date}"
+                    style="@style/AppTheme.Button1"
+                    />
 
-            <CheckBox
-                android:id="@+id/profile_edit_dialog_treatment_other"
-                android:text="@string/other"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"/>
+                <TextView
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diagnosis"/>
 
-            <Button
-                android:id="@+id/profile_edit_dialog_save_button"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                style="@style/AppTheme.Button1"
-                android:text="@string/save"/>
+                <Spinner
+                    android:id="@+id/profile_edit_dialog_diagnosis_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp" />
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                <TextView
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment"/>
+
+                <CheckBox
+                    android:id="@+id/profile_edit_dialog_treatment_chemotherapy"
+                    android:text="@string/chemotherapy"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:checked="@={viewModel.editProfile.treatment_chemotherapy}"
+                    android:layout_height="56dp"/>
+
+                <CheckBox
+                    android:id="@+id/profile_edit_dialog_treatment_radiotherapy"
+                    android:text="@string/radiotherapy"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:checked="@={viewModel.editProfile.treatment_radiotherapy}"
+                    android:layout_height="56dp"/>
+
+                <CheckBox
+                    android:id="@+id/profile_edit_dialog_treatment_surgery"
+                    android:text="@string/surgery"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:checked="@={viewModel.editProfile.treatment_surgery}"
+                    android:layout_height="56dp"/>
+
+                <CheckBox
+                    android:id="@+id/profile_edit_dialog_treatment_bone_marrow"
+                    android:text="@string/bone_marrow"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:checked="@={viewModel.editProfile.treatment_bone_marrow}"
+                    android:layout_height="56dp"/>
+
+                <CheckBox
+                    android:id="@+id/profile_edit_dialog_treatment_other"
+                    android:text="@string/other"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:checked="@={viewModel.editProfile.treatment_other}"
+                    android:layout_height="56dp"/>
+
+                <Button
+                    android:id="@+id/profile_edit_dialog_save_button"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    style="@style/AppTheme.Button1"
+                    android:text="@string/save"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

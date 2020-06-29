@@ -18,6 +18,10 @@ import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.databinding.FragmentProfileBinding;
 import com.example.cancerhelpmate.databinding.FragmentSettingsBinding;
+import com.example.cancerhelpmate.ui.checklist.ChecklistViewModel;
+import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
+import com.example.cancerhelpmate.ui.home.HomeViewModel;
+import com.example.cancerhelpmate.ui.journal.JournalViewModel;
 import com.example.cancerhelpmate.ui.profile.ProfileEditDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 
@@ -50,10 +54,19 @@ public class SettingsFragment extends Fragment {
     }
 
     private void resetApp(){
+        ChecklistViewModel checklistViewModel = new ViewModelProvider(this).get(ChecklistViewModel.class);
+        checklistViewModel.resetDatabase();
+
+        DayTrackerViewModel dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
+        dayTrackerViewModel.resetDatabase();
+
+        JournalViewModel journalViewModel = new ViewModelProvider(this).get(JournalViewModel.class);
+        journalViewModel.resetDatabase();
+
         ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        profileViewModel.resetDatabase();
 
         viewModel.resetDatabase();
-        profileViewModel.resetDatabase();
 
         Toast toast = Toast.makeText(getContext(),"App Reset", Toast.LENGTH_SHORT);
         toast.show();

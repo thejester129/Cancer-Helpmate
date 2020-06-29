@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="128dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/today"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/day_tracker_popup_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Pain level: ` + entry.painLevel}"
+            android:textAlignment="center"
+            style="@style/App.TextAppearance.Title_Medium"
+            />
+
+    </LinearLayout>
+</layout>

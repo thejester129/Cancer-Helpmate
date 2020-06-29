@@ -13,10 +13,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cancerhelpmate.R;
+import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.databinding.FragmentProfileBinding;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
     private ProfileViewModel viewModel;
@@ -24,30 +27,32 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false);
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        View view = binding.getRoot();
         binding.setProfileViewModel(viewModel);
         binding.setLifecycleOwner(this);
         setupBindings(binding);
         setupObserver(binding);
-        return binding.getRoot();
+        return view;
     }
 
     private void setupBindings(FragmentProfileBinding binding){
         binding.profileSettingsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DialogFragment dialog = ProfileEditDialog.newInstance();
+                DialogFragment dialog = ProfileEditDialog.newInstance(viewModel);
                 dialog.show(getParentFragmentManager(), "tag");
             }
         });
     }
 
-    private void setupObserver(final FragmentProfileBinding binding ){
+    private void setupObserver(final FragmentProfileBinding binding){
         viewModel.getLiveProfile().observe(getViewLifecycleOwner(), new Observer<ProfileEntry>() {
             @Override
-            public void onChanged(@NotNull ProfileEntry profile) {
+            public void onChanged(@NotNull ProfileEntry entry) {
                 viewModel.refresh();
-
+                binding.invalidateAll();
             }
         });
     }
+
 }

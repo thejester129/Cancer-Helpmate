@@ -12,4 +12,7 @@
     <color name="colorDiary">#ffb566</color>
     <color name="colorDiaryLight">#ffdab3</color>
     <color name="colorDiaryDark">#ffa64d</color>
+    <color name="colorGrey">#a6a6a6</color>
+    <color name="colorGreyLight">#e6e6e6</color>
+    <color name="colorGreyDark">#595959</color>
 </resources>

@@ -24,35 +24,34 @@ import java.util.List;
 
 public class JournalFragment extends Fragment {
 
-    private JournalViewModel journalViewModel;
+    private JournalViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         FragmentJournalBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_journal,container,false);
-        journalViewModel = new ViewModelProvider(this).get(JournalViewModel.class);
-        binding.setJournalViewModel(journalViewModel);
-        binding.setLifecycleOwner(this);
+        viewModel = new ViewModelProvider(this).get(JournalViewModel.class);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
         setupObserver();
         setupRecycler(binding.getRoot());
-        setupBindings(binding);
+        createBindings(binding);
         return binding.getRoot();
     }
 
     private void setupObserver( ){
-        journalViewModel.getLiveJournals().observe(getViewLifecycleOwner(), new Observer<List<JournalEntry>>() {
+        viewModel.getLiveJournals().observe(getViewLifecycleOwner(), new Observer<List<JournalEntry>>() {
             @Override
             public void onChanged(@NotNull List<JournalEntry> profile) {
-                journalViewModel.refresh();
+                viewModel.refresh();
             }
         });
     }
 
     private void setupRecycler(View view){
         RecyclerView recyclerView = view.findViewById(R.id.journal_recycler_view);
-        final JournalRecyclerAdapter adapter = new JournalRecyclerAdapter(getParentFragmentManager(), recyclerView, journalViewModel, view);
+        final JournalRecyclerAdapter adapter = new JournalRecyclerAdapter(getParentFragmentManager(), recyclerView, viewModel, view);
         recyclerView.setAdapter(adapter);
-        adapter.setItems(journalViewModel.getJournals());
-        journalViewModel.getLiveJournals().observe(getViewLifecycleOwner(), new Observer<List<JournalEntry>>() {
+        adapter.setItems(viewModel.getJournals());
+        viewModel.getLiveJournals().observe(getViewLifecycleOwner(), new Observer<List<JournalEntry>>() {
             @Override
             public void onChanged(@Nullable final List<JournalEntry> entries) {
                 adapter.setItems(entries);
@@ -60,11 +59,11 @@ public class JournalFragment extends Fragment {
         });
     }
 
-    private void setupBindings(FragmentJournalBinding binding){
+    private void createBindings(FragmentJournalBinding binding){
         binding.journalAddButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DialogFragment dialog = JournalEntryDialog.newInstance(journalViewModel);
+                DialogFragment dialog = JournalEntryDialog.newInstance(viewModel);
                 dialog.show(getParentFragmentManager(), "tag");
             }
         });

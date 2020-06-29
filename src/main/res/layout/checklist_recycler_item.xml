@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.checklist.ChecklistEntry" />
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:elevation="4dp"
+        android:background="@android:color/white"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/checklist_recycler_item_title"
+            android:text="@{entry.title}"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            style="@style/App.TextAppearance.Large"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+           />
+
+        <ImageView
+            android:id="@+id/checklist_recycler_item_tick"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:tint="@color/colorPrimaryDark"
+            android:visibility="@{entry.checked ? View.VISIBLE : View.INVISIBLE }"
+            android:src="@drawable/ic_checkbox" />
+
+        <ImageView
+            android:id="@+id/checklist_recycler_item_tick_background"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_square" />
+
+    </RelativeLayout>
+</layout>

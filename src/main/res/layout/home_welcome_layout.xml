@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="profileViewModel"
+            type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
+            />
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <TextView
+            android:id="@+id/home_welcome_layout_welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{profileViewModel.welcomeText}"
+            style="@style/App.TextAppearance.Title_Small"
+            />
+
+        <ProgressBar
+            android:id="@+id/home_welcome_layout_progress_bar"
+            android:layout_below="@+id/home_welcome_layout_welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:progressTint="@{profileViewModel.inRecovery ? @color/colorPrimary : @color/colorSecondary}"
+            android:max="@{profileViewModel.totalDays}"
+            android:progress="@{profileViewModel.currentDay}"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+        <TextView
+            android:id="@+id/home_welcome_layout_progress_text"
+            android:layout_below="@+id/home_welcome_layout_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@{profileViewModel.progressText}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+    </RelativeLayout>
+</layout>

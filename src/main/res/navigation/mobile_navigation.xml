@@ -20,10 +20,24 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_day_tracker"
+        android:name="com.example.cancerhelpmate.ui.daytracker.DayTrackerFragment"
+        android:label="@string/menu_day_tracker"
+        tools:layout="@layout/fragment_daytracker">
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_journal"
         android:name="com.example.cancerhelpmate.ui.journal.JournalFragment"
         android:label="@string/menu_journal"
         tools:layout="@layout/fragment_journal">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_checklist"
+        android:name="com.example.cancerhelpmate.ui.checklist.ChecklistFragment"
+        android:label="@string/menu_checklist"
+        tools:layout="@layout/fragment_checklist">
     </fragment>
 
     <fragment

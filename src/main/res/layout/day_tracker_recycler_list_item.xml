@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entry"
+            type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry" />
+
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:elevation="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@android:color/white"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/journal_recycler_item_date"
+            android:text="@{entry.date}"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            style="@style/App.TextAppearance.Large"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="72dp" />
+
+    </RelativeLayout>
+</layout>
