@@ -1,31 +1,37 @@
 package com.example.cancerhelpmate.ui.profile;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.cancerhelpmate.common.DateManager;
+import com.example.cancerhelpmate.common.ImageManager;
 import com.example.cancerhelpmate.database.profile.ProfileDAO;
 import com.example.cancerhelpmate.database.profile.ProfileDatabase;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class ProfileViewModel extends AndroidViewModel {
     private ProfileDAO dao;
     private ProfileEntry editProfile;
     public MutableLiveData<String> name = new MutableLiveData<>();
     public MutableLiveData<String> diagnosis = new MutableLiveData<>();
-    public MutableLiveData<String> welcomeText = new MutableLiveData<>();
     public MutableLiveData<Integer> currentDay = new MutableLiveData<>();
     public MutableLiveData<Integer> totalDays = new MutableLiveData<>();
 
     public ProfileViewModel(@NotNull Application application) {
         super(application);
         dao = ProfileDatabase.getDatabase(application).getDAO();
-        dao.getProfile();
+        editProfile = dao.getProfile();
         refresh();
     }
 
@@ -36,7 +42,6 @@ public class ProfileViewModel extends AndroidViewModel {
     public void refresh(){
         name.setValue(getProfile().getName());
         diagnosis.setValue(getProfile().getDiagnosis());
-        welcomeText.setValue(getWelcomeText());
         currentDay.setValue(getCurrentDay());
         totalDays.setValue(getTotalDays());
     }
@@ -54,6 +59,18 @@ public class ProfileViewModel extends AndroidViewModel {
         setInitialised();
     }
 
+    public void setProfilePicture(byte[] image){
+        dao.setImage(image);
+    }
+
+    public Bitmap getPictureBitmap(){
+        return ImageManager.byteArrayToBitmap(getProfile().getPicture());
+    }
+
+    public LiveData<byte []> getLivePicture(){
+        return dao.getLivePicture();
+    }
+
     public boolean editProfileComplete(){
         //TODO checks
         return true;
@@ -61,6 +78,10 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public LiveData<ProfileEntry> getLiveProfile() {
         return dao.getLiveProfile();
+    }
+
+    public LiveData<Boolean>getLiveIsInitialised(){
+        return dao.getLiveInitialised();
     }
 
     public ProfileEntry getProfile() {
@@ -75,76 +96,47 @@ public class ProfileViewModel extends AndroidViewModel {
         dao.setInitialised(true);
     }
 
-    public void saveCurrentProfile(){
-        updateProfile(editProfile);
+    public void setEditProfileDiagnosis(String diagnosis){
+        editProfile.setDiagnosis(diagnosis);
     }
 
     public void updateProfile(ProfileEntry entry){
         dao.updateEntry(entry);
     }
 
-    public void updateTreatment(boolean chemotherapy, boolean radiotherapy, boolean surgery, boolean boneMarrow, boolean other){
-        dao.setChemotherapyTreatment(chemotherapy);
-        dao.setRadiotherapyTreatment(radiotherapy);
-        dao.setSurgeryTreatment(surgery);
-        dao.setBoneMarrowTreatment(boneMarrow);
-        dao.setOtherTreatment(other);
-    }
-
-    public void setDiagnosis(String diagnosis){
-        dao.setDiagnosis(diagnosis);
-    }
-
-    public void setStartTreatmentDate(String date){
-        dao.setStartTreatmentDate(date);
-    }
-
-    public void setEndTreatmentDate(String date){
-        dao.setEndTreatmentDate(date);
-    }
 
     public int getCurrentDay(){
-        return DateManager.noOfDaysBetween(getProfile().getStart_date(), DateManager.getTodayAsString()) + 1;
+        return DateManager.noOfDaysBetween(getProfile().getStart_date(), DateManager.getTodayAsString());
     }
 
     public int getTotalDays(){
-        return DateManager.noOfDaysBetween(getProfile().getStart_date(), getProfile().getEnd_date()) + 1;
+        return DateManager.noOfDaysBetween(getProfile().getStart_date(), getProfile().getEnd_date()) ;
     }
 
     public int getDaysLeft(){
-        return DateManager.noOfDaysBetween(DateManager.getTodayAsString(), getProfile().getEnd_date()) + 1;
+        return DateManager.noOfDaysBetween(DateManager.getTodayAsString(), getProfile().getEnd_date());
     }
 
     public String getProgressText(){
         if(!isInRecovery()){
-            return getDaysLeft() + " days left until end of treatment";
+            if(getDaysLeft() > 1){
+                return getDaysLeft() + " days left until end of treatment";
+            }
+            else {
+                return getDaysLeft() + " day left until end of treatment";
+            }
+
         }
         else{
-            return ((getDaysLeft() * -1) + 1) + " days in recovery";
+            int daysInRecovery = (getDaysLeft() * -1) + 1;
+            if(daysInRecovery > 1){
+                return ((getDaysLeft() * -1) + 1) + " days in recovery";
+            }
+            else{
+                return ((getDaysLeft() * -1) + 1) + " day in recovery";
+            }
         }
     }
-
-    public String getWelcomeText(){
-        return getWelcomePrefix() + ", " + getProfile().getName();
-    }
-
-    private String getWelcomePrefix(){
-        long time = System.currentTimeMillis();
-        long HOUR = 1000 * 60 * 60;
-        long MORNING = 12 * HOUR;
-        long DAY = 18 * HOUR;
-        String prefix;
-        //TODO time periods
-        if(time < MORNING){
-            return "Good morning";
-        }
-        else if(time < DAY){
-            return"Good afternoon";
-        }
-
-        return "Good evening";
-    }
-
 
     public void resetDatabase() {
         ProfileDatabase.resetDatabase();

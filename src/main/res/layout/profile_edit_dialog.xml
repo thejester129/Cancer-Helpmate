@@ -20,6 +20,7 @@
                 android:id="@+id/toolbar_close_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/setup_profile"
                 style="@style/App.TextAppearance.Title_Toolbar"
                 />
 
@@ -73,6 +74,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/colorSecondary"
                     android:text="@{viewModel.editProfile.start_date}"
                     style="@style/AppTheme.Button1"
                     />
@@ -90,6 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorSecondary"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@{viewModel.editProfile.end_date}"
@@ -174,6 +177,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
+                    android:backgroundTint="@color/colorAccent"
                     style="@style/AppTheme.Button1"
                     android:text="@string/save"/>
 

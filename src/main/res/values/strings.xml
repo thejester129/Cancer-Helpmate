@@ -37,4 +37,10 @@
     <string name="more_detail">Write more detail about the item if needed</string>
     <string name="title">Title</string>
     <string name="tap_day_enter">Tap here to enter a record for today</string>
+    <string name="menu_wellbeing">Wellbeing</string>
+    <string name="advanced_filter">Advanced Filter</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="tap_breakfast">Tap here to enter today\'s breakfast</string>
+    <string name="recipe_browser">Recipe Browser</string>
+    <string name="select">Select</string>
 </resources>

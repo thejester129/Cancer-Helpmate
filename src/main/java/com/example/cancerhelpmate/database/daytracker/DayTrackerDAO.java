@@ -26,6 +26,9 @@ public interface DayTrackerDAO {
     @Query("select * from day_trackers where day_tracker_date == :date")
     public DayTrackerEntry getDayTracker(String date);
 
+    @Query("select * from day_trackers where day_tracker_date == :date")
+    public LiveData<DayTrackerEntry> getLiveDayTracker(String date);
+
     @Query("select * from day_trackers")
     public List<DayTrackerEntry> getDayTrackers();
 

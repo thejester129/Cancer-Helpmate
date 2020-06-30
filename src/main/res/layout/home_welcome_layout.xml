@@ -2,6 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
+            name="homeViewModel"
+            type="com.example.cancerhelpmate.ui.home.HomeViewModel"
+            />
+        <variable
             name="profileViewModel"
             type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
             />
@@ -18,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@{profileViewModel.welcomeText}"
+            android:text="@{homeViewModel.welcomeText}"
             style="@style/App.TextAppearance.Title_Small"
             />
 
@@ -39,14 +43,15 @@
             android:layout_below="@+id/home_welcome_layout_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:textAlignment="center"
             android:text="@{profileViewModel.progressText}"
             style="@style/App.TextAppearance.Medium"
             />
 
         <Button
+            android:id="@+id/home_welcome_layout_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@android:color/transparent"

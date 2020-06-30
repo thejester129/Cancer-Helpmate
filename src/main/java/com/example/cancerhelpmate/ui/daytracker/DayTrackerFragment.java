@@ -30,6 +30,7 @@ import java.util.List;
 public class DayTrackerFragment extends Fragment {
     private DayTrackerViewModel viewModel;
     private DayTrackerRecyclerAdapter adapter;
+    private RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentDaytrackerBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_daytracker,container,false);
@@ -50,11 +51,22 @@ public class DayTrackerFragment extends Fragment {
                 adapter.setItems(entries);
             }
         });
+
+        viewModel.getTodaysLiveEntry().observe(getViewLifecycleOwner(), new Observer<DayTrackerEntry>() {
+            @Override
+            public void onChanged(@NotNull DayTrackerEntry entry) {
+                refreshRecyclerView();
+            }
+        });
+    }
+
+    private void refreshRecyclerView(){
+        recyclerView.setAdapter(adapter);
     }
 
 
     private void setupRecycler(View view){
-        RecyclerView recyclerView = view.findViewById(R.id.day_tracker_recycler_view);
+        recyclerView = view.findViewById(R.id.day_tracker_recycler_view);
         adapter = new DayTrackerRecyclerAdapter(getParentFragmentManager(), recyclerView, viewModel, view);
         recyclerView.setAdapter(adapter);
         adapter.setItems(viewModel.getDayTrackerEntries());

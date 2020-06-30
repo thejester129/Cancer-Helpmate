@@ -36,38 +36,13 @@ public abstract class ProfileDatabase extends RoomDatabase {
 
     public static void resetDatabase() {
         INSTANCE.getDAO().deleteTable();
-        //new PopulateDbAsync(INSTANCE.getDAO()).execute(new ProfileEntry(0));
+        populateDatabase();
     }
-
-    private static Callback sRoomDatabaseCallback =
-            new Callback() {
-                @Override
-                public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                    super.onOpen(db);
-                    populateDatabase();
-                    //new PopulateDbAsync(INSTANCE.getDAO()).execute(new ProfileEntry(0));
-                }
-            };
 
     public static void populateDatabase(){
         if (INSTANCE.getDAO().getProfile() == null) {
             INSTANCE.getDAO().addEntry(new ProfileEntry(0));
         }
     }
-//    private static class PopulateDbAsync extends AsyncTask<ProfileEntry, Void, Void> {
-//
-//        private ProfileDAO mAsyncTaskDao;
-//
-//        PopulateDbAsync(ProfileDAO dao) {
-//            mAsyncTaskDao = dao;
-//        }
-//
-//        @Override
-//        protected Void doInBackground(final ProfileEntry... params) {
-//            if (mAsyncTaskDao.getProfile() == null) {
-//                mAsyncTaskDao.addEntry(params[0]);
-//            }
-//            return null;
-//        }
-//    }
+
 }

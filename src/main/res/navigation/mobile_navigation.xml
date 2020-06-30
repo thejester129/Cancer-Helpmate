@@ -20,6 +20,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_wellbeing"
+        android:name="com.example.cancerhelpmate.ui.wellbeing.WellbeingFragment"
+        android:label="@string/menu_wellbeing"
+        tools:layout="@layout/fragment_wellbeing">
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_day_tracker"
         android:name="com.example.cancerhelpmate.ui.daytracker.DayTrackerFragment"
         android:label="@string/menu_day_tracker"

@@ -8,6 +8,7 @@
         android:orientation="vertical">
 
         <include
+            android:id="@+id/home_welcome_layout"
             layout="@layout/home_welcome_layout"
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
@@ -15,7 +16,7 @@
             />
 
         <include
-            android:id="@+id/day_tracker_popup_layout"
+            android:id="@+id/home_day_tracker_layout"
             layout="@layout/home_day_tracker_layout"
             android:layout_width="match_parent"
             android:layout_height="144dp"

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Tap here to enter a record for today"
         android:textAlignment="center"
-        style="@style/App.TextAppearance.Title_Medium"
+        style="@style/App.TextAppearance.Medium"
         />
 
 </LinearLayout>

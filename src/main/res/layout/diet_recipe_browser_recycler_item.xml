@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:layout_width="164dp"
+    android:layout_height="164dp">
+
+    <ImageView
+        android:id="@+id/diet_recipe_browser_recycler_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        />
+
+    <TextView
+        android:id="@+id/diet_recipe_browser_recycler_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/App.TextAppearance.White_Recycler_Shadow_Text"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="8dp"
+        android:textAlignment="center"
+        android:layout_marginRight="8dp"
+        />
+
+</RelativeLayout>

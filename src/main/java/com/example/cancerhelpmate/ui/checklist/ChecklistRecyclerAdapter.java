@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -61,7 +63,8 @@ public class ChecklistRecyclerAdapter extends RecyclerView.Adapter<ChecklistRecy
 
     @Override
     public void onBindViewHolder(@NonNull ChecklistRecyclerAdapter.ViewHolder holder, int position) {
-        holder.bindEntry(items.get(position));
+        holder.title.setText(items.get(position).getTitle());
+        holder.checkbox.setVisibility(items.get(position).isChecked() ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -80,16 +83,14 @@ public class ChecklistRecyclerAdapter extends RecyclerView.Adapter<ChecklistRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private ChecklistRecyclerItemBinding binding;
-
+        private TextView title;
+        private ImageView checkbox;
         private ViewHolder(View itemView) {
             super(itemView);
-            binding = DataBindingUtil.bind(itemView);
+            title = itemView.findViewById(R.id.checklist_recycler_item_title);
+            checkbox = itemView.findViewById(R.id.checklist_recycler_item_tick);
         }
 
-        public void bindEntry(ChecklistEntry entry){
-            binding.setEntry(entry);
-        }
     }
 
 }

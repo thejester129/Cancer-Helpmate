@@ -67,6 +67,10 @@ public class DayTrackerViewModel extends AndroidViewModel {
         return dao.getDayTracker(DateManager.getTodayAsString());
     }
 
+    public LiveData<DayTrackerEntry> getTodaysLiveEntry(){
+        return dao.getLiveDayTracker(DateManager.getTodayAsString());
+    }
+
     public void addEntry(DayTrackerEntry dayTrackerEntry){
         dao.addEntry(dayTrackerEntry);
     }

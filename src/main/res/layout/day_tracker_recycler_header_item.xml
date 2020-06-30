@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="entry"
@@ -29,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{`Pain level: ` + entry.painLevel}"
-            android:textAlignment="center"
-            style="@style/App.TextAppearance.Title_Medium"
+            android:layout_marginStart="16dp"
+            style="@style/App.TextAppearance.Medium"
             />
 
     </LinearLayout>

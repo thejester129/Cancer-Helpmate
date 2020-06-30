@@ -47,10 +47,10 @@ public class ChecklistFragment extends Fragment {
         touchHelper.attachToRecyclerView(recyclerView);
 
         adapter.setItems(viewModel.getItems());
-        viewModel.getLiveItemCount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        viewModel.getLiveItems().observe(getViewLifecycleOwner(), new Observer<List<ChecklistEntry>>() {
             @Override
-            public void onChanged(@Nullable final Integer count) {
-                adapter.setItems(viewModel.getItems());
+            public void onChanged(@Nullable final List<ChecklistEntry> items) {
+                adapter.setItems(items);
             }
         });
     }

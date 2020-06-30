@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <import type="android.view.View"/>
+    <variable
+        name="recipe"
+        type="com.example.cancerhelpmate.database.recipes.RecipeEntry"
+        />
+
+    <variable
+        name="viewModel"
+        type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
+        />
+</data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/diet_recipe_information_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/diet_recipe_information_close_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{recipe.name}"
+                android:layout_gravity="center"
+                style="@style/App.TextAppearance.Title_Toolbar"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diet_recipe_information_toolbar"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/diet_recipe_information_image"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Energy : ` + recipe.calories + `kcal`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Protein : ` + recipe.protein + `g`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Total fat : ` + recipe.fat + `g (of which saturates ` + recipe.saturates + `)`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Carbohydrates : ` + recipe.carbohydrates + `g`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Fibre : ` + recipe.fibre + `g`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Preparation time : ` + recipe.preparation_time + ` minutes`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{`Cooking time : ` + recipe.cooking_time + ` minutes`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/diet_recipe_information_select_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</layout>

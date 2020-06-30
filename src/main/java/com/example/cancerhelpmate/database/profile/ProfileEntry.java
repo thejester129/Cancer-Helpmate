@@ -18,6 +18,8 @@ public class ProfileEntry {
     private int id;
     @ColumnInfo(name="profile_name")
     private String name;
+    @ColumnInfo(name="profile_picture", typeAffinity = ColumnInfo.BLOB)
+    private byte[] picture;
     @ColumnInfo(name="profile_start_date")
     private String start_date;
     @ColumnInfo(name="profile_end_date")
@@ -37,7 +39,6 @@ public class ProfileEntry {
     @ColumnInfo(name="profile_initialised")
     private boolean initialised;
 
-
     @Ignore
     public ProfileEntry(){
 
@@ -49,6 +50,14 @@ public class ProfileEntry {
         this.initialised = false;
         this.start_date = DateManager.getTodayAsString();
         this.end_date = DateManager.getTodayAsString();
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
     public int getId() {

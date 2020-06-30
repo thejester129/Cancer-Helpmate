@@ -27,14 +27,14 @@ public class JournalFragment extends Fragment {
     private JournalViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         FragmentJournalBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_journal,container,false);
+        View view = binding.getRoot();
         viewModel = new ViewModelProvider(this).get(JournalViewModel.class);
         binding.setLifecycleOwner(getViewLifecycleOwner());
         setupObserver();
-        setupRecycler(binding.getRoot());
+        setupRecycler(view);
         createBindings(binding);
-        return binding.getRoot();
+        return view;
     }
 
     private void setupObserver( ){

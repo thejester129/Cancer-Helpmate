@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<data>
+    <import type="android.view.View"/>
+    <variable
+        name="viewModel"
+        type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
+        />
+</data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/diet_recipe_browser_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/diet_recipe_browser_dialog_toolbar_close_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:id="@+id/toolbar_close_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_browser"
+                android:layout_gravity="center"
+                style="@style/App.TextAppearance.Title_Toolbar"
+                />
+
+            <ImageButton
+                android:id="@+id/diet_recipe_browser_dialog_toolbar_filter_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_more"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/diet_recipe_browser_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diet_recipe_browser_toolbar"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/checklist_add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/ic_add_circle_48dp"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_marginEnd="16dp"/>
+
+    </RelativeLayout>
+
+</layout>

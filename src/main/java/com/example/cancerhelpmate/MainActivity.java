@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_day_tracker, R.id.nav_checklist, R.id.nav_journal, R.id.nav_settings)
+                R.id.nav_home, R.id.nav_wellbeing, R.id.nav_day_tracker, R.id.nav_checklist, R.id.nav_journal, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_profile:
-                //TODO stop multiple presses
                 navigateToFrag(R.id.nav_profile);
                 return true;
 
@@ -84,13 +83,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupOnboarding(){
-        ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.getProfile();
-        if(!profileViewModel.getProfile().isInitialised()){
-            //TODO finish onboarding
-            DialogFragment dialog = ProfileEditDialog.newInstance(profileViewModel);
-            dialog.show(getSupportFragmentManager(), "tag");
-        }
+        profileViewModel.getLiveIsInitialised().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@NotNull Boolean initialised) {
+                if(!initialised){
+                    showWelcomeDialog();
+                }
+            }
+        });
+    }
 
+    private void showWelcomeDialog(){
+        //TODO finish onboarding
+        DialogFragment dialog = ProfileEditDialog.newInstance(profileViewModel);
+        dialog.show(getSupportFragmentManager(), "tag");
     }
 }
