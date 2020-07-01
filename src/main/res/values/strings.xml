@@ -43,4 +43,9 @@
     <string name="tap_breakfast">Tap here to enter today\'s breakfast</string>
     <string name="recipe_browser">Recipe Browser</string>
     <string name="select">Select</string>
+    <string name="change">Change</string>
+    <string name="select_meal">Choose a meal to begin tracking your statistics</string>
+    <string name="daily_stats">Today\'s Nutrion</string>
+    <string name="lunch">Lunch</string>
+    <string name="tap_lunch">Tap here to enter a record for lunch</string>
 </resources>

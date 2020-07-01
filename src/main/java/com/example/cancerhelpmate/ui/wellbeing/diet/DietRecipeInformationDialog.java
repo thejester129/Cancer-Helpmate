@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,15 +27,17 @@ public  class DietRecipeInformationDialog extends DialogFragment {
     private RecipeEntry recipeEntry;
     private ImageButton closeButton;
     private Button selectButton;
-    private ImageView image;
+    private Button changeButton;
+    private boolean browserMode;
 
-    public DietRecipeInformationDialog(RecipeEntry recipeEntry, DietViewModel viewModel) {
+    public DietRecipeInformationDialog(RecipeEntry recipeEntry, DietViewModel viewModel, boolean browserMode) {
         this.viewModel = viewModel;
         this.recipeEntry = recipeEntry;
+        this.browserMode = browserMode;
     }
 
-    public static DietRecipeInformationDialog newInstance(RecipeEntry recipeEntry, DietViewModel viewModel) {
-        return new DietRecipeInformationDialog(recipeEntry,viewModel);
+    public static DietRecipeInformationDialog newInstance(RecipeEntry recipeEntry, DietViewModel viewModel, boolean browserMode) {
+        return new DietRecipeInformationDialog(recipeEntry,viewModel,browserMode);
     }
 
     @Override
@@ -60,24 +63,42 @@ public  class DietRecipeInformationDialog extends DialogFragment {
     private void getReferences(View view) {
         closeButton = view.findViewById(R.id.diet_recipe_information_close_button);
         selectButton = view.findViewById(R.id.diet_recipe_information_select_button);
-        image = view.findViewById(R.id.diet_recipe_information_image);
+        changeButton = view.findViewById(R.id.diet_recipe_information_change_button);
     }
 
     public void createBindings() {
-        image.setImageResource(recipeEntry.getImageLink());
-        //close
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         });
-        //save
-        selectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+
+        if(browserMode){
+            changeButton.setVisibility(View.GONE);
+
+            selectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    viewModel.setBrowsingRecipe(recipeEntry);
+                    viewModel.exitRecipeBrowser.setValue(true);
+                    dismiss();
+                }
+            });
+        }
+        else{
+            selectButton.setVisibility(View.GONE);
+
+            changeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogFragment dialog = DietRecipeBrowserDialog.newInstance(viewModel);
+                    dialog.show(getParentFragmentManager(), "tag");
+                    dismiss();
+
+                }
+            });
+        }
+
     }
 }

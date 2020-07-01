@@ -39,7 +39,7 @@ public class DietRecipeBrowserRecyclerAdapter extends RecyclerView.Adapter<DietR
             @Override
             public void onClick(View v) {
                 int pos = recyclerView.getChildAdapterPosition(v);
-                DialogFragment dialog = DietRecipeInformationDialog.newInstance(items.get(pos), viewModel);
+                DialogFragment dialog = DietRecipeInformationDialog.newInstance(items.get(pos), viewModel,true);
                 dialog.show(fragmentManager, "tag");
             }
 

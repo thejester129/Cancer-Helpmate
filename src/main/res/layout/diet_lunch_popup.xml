@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/breakfast"
+            android:text="@string/lunch"
             style="@style/App.TextAppearance.Large"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -24,52 +24,49 @@
             />
 
         <ImageView
-            android:id="@+id/breakfast_popup_add_icon"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_breakfast"
+            android:src="@drawable/ic_lunch"
             android:tint="@color/colorPrimary"
-            android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.todaysLunchRecipe == null ? View.VISIBLE : View.GONE}"
             android:layout_centerInParent="true"
             />
 
         <ImageView
-            android:id="@+id/breakfast_popup_image"
+            android:id="@+id/lunch_popup_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.todaysLunchRecipe == null ? View.GONE : View.VISIBLE}"
             android:layout_centerInParent="true"
-            android:src="@{viewModel.todaysBreakfastRecipe.imageLink}"
+            android:src="@{viewModel.todaysLunchRecipe.imageLink}"
             />
 
         <TextView
-            android:id="@+id/breakfast_popup_empty_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tap_breakfast"
+            android:text="@string/tap_lunch"
             android:gravity="bottom|center_horizontal"
             android:paddingBottom="16dp"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.todaysLunchRecipe == null ? View.VISIBLE : View.GONE}"
             style="@style/App.TextAppearance.Medium"
             />
 
         <TextView
-            android:id="@+id/breakfast_popup_recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.todaysBreakfastRecipe.name}"
+            android:text="@{viewModel.todaysLunchRecipe.name}"
             android:gravity="bottom|center_horizontal"
             android:paddingBottom="16dp"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.todaysLunchRecipe == null ? View.GONE : View.VISIBLE}"
             style="@style/App.TextAppearance.Medium"
             />
 
         <Button
-            android:id="@+id/breakfast_popup_button"
+            android:id="@+id/lunch_popup_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@android:color/transparent"

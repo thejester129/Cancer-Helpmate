@@ -50,10 +50,11 @@
 
             <ImageView
                 android:id="@+id/diet_recipe_information_image"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
+                android:layout_width="144dp"
+                android:layout_height="144dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
+                android:src="@{recipe.imageLink}"
                 />
 
             <TextView
@@ -127,6 +128,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/select"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            />
+
+        <Button
+            android:id="@+id/diet_recipe_information_change_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
             android:backgroundTint="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             />

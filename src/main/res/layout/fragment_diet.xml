@@ -11,12 +11,32 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
+        android:background="@color/colorGreyLight"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include
+            android:id="@+id/diet_stats_popup_layout"
+            layout="@layout/diet_stats_popup"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <include
             android:id="@+id/diet_breakfast_popup_layout"
             layout="@layout/diet_breakfast_popup"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <include
+            android:id="@+id/diet_lunch_popup_layout"
+            layout="@layout/diet_lunch_popup"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginBottom="8dp"
             />
 
 

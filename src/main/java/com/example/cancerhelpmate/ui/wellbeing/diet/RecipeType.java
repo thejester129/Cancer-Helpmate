@@ -1,5 +1,5 @@
 package com.example.cancerhelpmate.ui.wellbeing.diet;
 
-public enum DietRecipeType {
+public enum RecipeType {
     BREAKFAST, LUNCH, DINNER, SUPPER, EXTRA
 }

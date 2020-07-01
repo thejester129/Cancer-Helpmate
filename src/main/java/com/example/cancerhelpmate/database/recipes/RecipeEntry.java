@@ -7,11 +7,15 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "recipes")
-public class RecipeEntry {
+import java.io.Serializable;
 
-    @PrimaryKey()
+@Entity(tableName = "recipes")
+public class RecipeEntry implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
     @NotNull
+    @ColumnInfo(name = "recipe_id")
+    private int id;
     @ColumnInfo(name = "recipe_name")
     private String name;
     @ColumnInfo(name = "recipe_calories")
@@ -38,6 +42,10 @@ public class RecipeEntry {
     private String videoLink;
 
     @Ignore
+    public RecipeEntry( ){
+    }
+
+    @Ignore
     public RecipeEntry(String name){
         this.name = name;
     }
@@ -48,7 +56,7 @@ public class RecipeEntry {
         this.imageLink = imageLink;
     }
 
-    public RecipeEntry(@NotNull String name, double calories, double protein, double fat,double saturates, double carbohydrates, double fibre,  int preparation_time, int cooking_time, int imageLink, String videoLink,String instructions) {
+    public RecipeEntry( String name, double calories, double protein, double fat,double saturates, double carbohydrates, double fibre,  int preparation_time, int cooking_time, int imageLink, String videoLink,String instructions) {
         this.name = name;
         this.calories = calories;
         this.protein = protein;
@@ -61,6 +69,14 @@ public class RecipeEntry {
         this.cooking_time = cooking_time;
         this.imageLink = imageLink;
         this.videoLink = videoLink;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

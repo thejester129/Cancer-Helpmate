@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.database.recipes.RecipeEntry;
+import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
 import com.example.cancerhelpmate.databinding.DietRecipeBrowserDialogBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,16 +31,13 @@ import java.util.List;
 public class DietRecipeBrowserDialog extends DialogFragment {
 
     private DietViewModel viewModel;
-    private DietRecipeType dietRecipeType;
-    private ImageButton backButton;
 
-    public DietRecipeBrowserDialog(DietViewModel viewModel, DietRecipeType dietRecipeType) {
+    public DietRecipeBrowserDialog(DietViewModel viewModel) {
         this.viewModel = viewModel;
-        this.dietRecipeType = dietRecipeType;
     }
 
-    public static DietRecipeBrowserDialog newInstance(DietViewModel viewModel,DietRecipeType dietRecipeType) {
-        return new DietRecipeBrowserDialog(viewModel,dietRecipeType);
+    public static DietRecipeBrowserDialog newInstance(DietViewModel viewModel) {
+        return new DietRecipeBrowserDialog(viewModel);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class DietRecipeBrowserDialog extends DialogFragment {
         View view = binding.getRoot();
         setupRecycler(view);
         setupObserver();
-        backButton = view.findViewById(R.id.diet_recipe_browser_dialog_toolbar_close_button);
+        ImageButton backButton = view.findViewById(R.id.diet_recipe_browser_dialog_toolbar_close_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +81,15 @@ public class DietRecipeBrowserDialog extends DialogFragment {
     }
 
     private void setupObserver(){
-        //TODO observer recipe change = dimiss()
+        viewModel.exitRecipeBrowser.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean exit) {
+                if(exit){
+                    dismiss();
+                    viewModel.exitRecipeBrowser.setValue(false);
+                }
+            }
+        });
     }
 
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
+            />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="144dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diet_stats_popup_header"
+            android:layout_marginLeft="16dp"
+            android:text="@{`Calories : ` + viewModel.dailyCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/select_meal"
+            android:background="@android:color/white"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            style="@style/App.TextAppearance.Medium"
+            android:visibility="@{viewModel.dayStatisticsVisible ? View.GONE : View.VISIBLE}"
+            />
+
+        <TextView
+            android:id="@+id/diet_stats_popup_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_stats"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/diet_stats_popup_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+    </RelativeLayout>
+</layout>
+

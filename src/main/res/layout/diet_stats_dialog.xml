@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
+            />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/diet_recipe_information_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/diet_stats_dialog_back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/App.TextAppearance.Title_Toolbar"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_margin="16dp"
+                android:text="@{`Calories : ` + viewModel.dailyCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
+                style="@style/App.TextAppearance.Medium"
+                />
+
+    </LinearLayout>
+</layout>

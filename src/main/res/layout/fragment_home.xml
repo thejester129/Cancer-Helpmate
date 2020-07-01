@@ -20,7 +20,15 @@
             layout="@layout/home_day_tracker_layout"
             android:layout_width="match_parent"
             android:layout_height="144dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <include
+            android:id="@+id/home_diet_stats_popup"
+            layout="@layout/diet_stats_popup"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginTop="8dp"
             />
 
     </LinearLayout>

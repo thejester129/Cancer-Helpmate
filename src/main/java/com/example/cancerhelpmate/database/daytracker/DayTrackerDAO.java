@@ -15,13 +15,13 @@ import java.util.List;
 public interface DayTrackerDAO {
 
     @Insert
-    public long addEntry(DayTrackerEntry dayTrackerEntry);
+    public long addEntry(DayTrackerEntry entry);
 
     @Update
-    public void updateEntry(DayTrackerEntry dayTrackerEntry);
+    public void updateEntry(DayTrackerEntry entry);
 
     @Delete
-    public void deleteEntry(DayTrackerEntry dayTrackerEntry);
+    public void deleteEntry(DayTrackerEntry entry);
 
     @Query("select * from day_trackers where day_tracker_date == :date")
     public DayTrackerEntry getDayTracker(String date);

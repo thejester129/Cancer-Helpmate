@@ -16,28 +16,35 @@ import com.example.cancerhelpmate.MainActivity;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
+import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
+import com.example.cancerhelpmate.databinding.DietStatsPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentHomeBinding;
 import com.example.cancerhelpmate.databinding.HomeDayTrackerLayoutBinding;
 import com.example.cancerhelpmate.databinding.HomeWelcomeLayoutBinding;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerEntryEditDialog;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
+import com.example.cancerhelpmate.ui.wellbeing.diet.DietStatsDialog;
+import com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel;
+
 import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel viewModel;
     private ProfileViewModel profileViewModel;
     private DayTrackerViewModel dayTrackerViewModel;
+    private DietViewModel dietViewModel;
+    private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        FragmentHomeBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
         getViewModels();
         viewModel.setProfileViewModel(profileViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
         View view = binding.getRoot();
-        setupWelcomeLayout(binding);
-        setupDayTrackerLayout(binding);
+        setupWelcomeLayout();
+        setupDayTrackerLayout();
+        setupStatsLayout();
         setupObservers(binding);
         return view;
     }
@@ -59,7 +66,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void setupWelcomeLayout(FragmentHomeBinding binding) {
+    private void setupWelcomeLayout() {
         HomeWelcomeLayoutBinding homeWelcomeLayoutBinding = binding.homeWelcomeLayout;
         homeWelcomeLayoutBinding.setHomeViewModel(viewModel);
         homeWelcomeLayoutBinding.setProfileViewModel(profileViewModel);
@@ -75,8 +82,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-    private void setupDayTrackerLayout(FragmentHomeBinding binding){
+    private void setupDayTrackerLayout(){
         HomeDayTrackerLayoutBinding homeDayTrackerLayoutBinding = binding.homeDayTrackerLayout;
         homeDayTrackerLayoutBinding.setDayTrackerViewModel(dayTrackerViewModel);
         homeDayTrackerLayoutBinding.setLifecycleOwner(getViewLifecycleOwner());
@@ -96,10 +102,31 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void setupStatsLayout(){
+        final DietStatsPopupBinding statsPopupBinding = binding.homeDietStatsPopup;
+        statsPopupBinding.setViewModel(dietViewModel);
+        statsPopupBinding.setLifecycleOwner(getViewLifecycleOwner());
+        statsPopupBinding.dietStatsPopupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) requireActivity();
+                activity.navigateToFrag(R.id.nav_wellbeing);
+            }
+        });
+        dietViewModel.getTodaysLiveWellbeingEntry().observe(getViewLifecycleOwner(), new Observer<WellbeingEntry>() {
+            @Override
+            public void onChanged(WellbeingEntry entry) {
+                dietViewModel.refresh();
+                statsPopupBinding.invalidateAll();
+            }
+        });
+    }
+
     private void getViewModels(){
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
+        dietViewModel = new ViewModelProvider(this).get(DietViewModel.class);
     }
 
 }

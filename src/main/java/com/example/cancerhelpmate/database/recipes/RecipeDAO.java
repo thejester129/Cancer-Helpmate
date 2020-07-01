@@ -21,6 +21,12 @@ public interface RecipeDAO {
     @Delete
     public void deleteEntry(RecipeEntry entry);
 
+    @Query("select * from recipes where recipe_id == :id")
+    public RecipeEntry getItem(int id);
+
+    @Query("select * from recipes where recipe_id == :id")
+    public LiveData<RecipeEntry> getLiveItem(int id);
+
     @Query("select * from recipes")
     public List<RecipeEntry> getAllItems();
 

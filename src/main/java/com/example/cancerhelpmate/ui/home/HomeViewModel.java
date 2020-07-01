@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 
 public class HomeViewModel extends AndroidViewModel {
     private ProfileViewModel profileViewModel;
+    private enum TimePeriod { MORNING, AFTERNOON, DAY, EVENING }
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -34,20 +35,35 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private String getWelcomePrefix(){
+        switch (getTimePeriod()){
+            case MORNING:
+                return "Good Morning";
+            case AFTERNOON:
+            case DAY:
+                return "Good Afternoon";
+            case EVENING:
+                return "Good Evening";
+            default:
+                return "";
+        }
+    }
+
+    private TimePeriod getTimePeriod(){
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
-
         if(hour < 12){
-            return "Good morning";
+            return TimePeriod.MORNING;
+        }
+        else if(hour < 15){
+            return TimePeriod.AFTERNOON;
         }
         else if(hour < 18){
-            return"Good afternoon";
+            return TimePeriod.DAY;
         }
-
-        return "Good evening";
+        return TimePeriod.EVENING;
     }
 
 
