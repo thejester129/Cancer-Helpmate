@@ -25,10 +25,9 @@
 
         <ImageView
             android:id="@+id/breakfast_popup_add_icon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_breakfast"
-            android:tint="@color/colorPrimary"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_drink_default"
             android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.VISIBLE : View.GONE}"
             android:layout_centerInParent="true"
             />

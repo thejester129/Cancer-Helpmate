@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:layout_margin="16dp"
-                android:text="@{`Calories : ` + viewModel.dailyCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
+                android:text="@{`Calories : ` + viewModel.todaysCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
                 style="@style/App.TextAppearance.Medium"
                 />
 

@@ -37,12 +37,12 @@ public class HomeViewModel extends AndroidViewModel {
     private String getWelcomePrefix(){
         switch (getTimePeriod()){
             case MORNING:
-                return "Good Morning";
+                return "Good morning";
             case AFTERNOON:
             case DAY:
-                return "Good Afternoon";
+                return "Good afternoon";
             case EVENING:
-                return "Good Evening";
+                return "Good evening";
             default:
                 return "";
         }

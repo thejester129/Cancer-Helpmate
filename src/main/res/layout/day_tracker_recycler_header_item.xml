@@ -6,31 +6,52 @@
             type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@android:color/white"
         android:layout_height="128dp">
 
         <TextView
+            android:id="@+id/day_tracker_recycler_header_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/today"
             style="@style/App.TextAppearance.Large"
             android:textStyle="bold"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:textAlignment="center"
             />
 
         <TextView
-            android:id="@+id/day_tracker_popup_empty"
+            android:id="@+id/day_tracker_recycler_emotion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/App.TextAppearance.Medium"
+            android:text="@string/emotion"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@+id/day_tracker_recycler_header_text"
+            />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/day_tracker_recycler_emotion_text"
+            android:src="@{entry.emotion.picture}"
+            />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{`Pain level: ` + entry.painLevel}"
             android:layout_marginStart="16dp"
+            android:layout_below="@+id/day_tracker_recycler_emotion_text"
             style="@style/App.TextAppearance.Medium"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

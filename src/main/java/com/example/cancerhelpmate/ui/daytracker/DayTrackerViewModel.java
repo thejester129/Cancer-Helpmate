@@ -16,20 +16,18 @@ import java.util.List;
 
 public class DayTrackerViewModel extends AndroidViewModel {
     private DayTrackerDAO dao;
-    private boolean todaysEntryFilled;
     public MutableLiveData<String> sliderPainLevel = new MutableLiveData<>("0");
 
     public DayTrackerViewModel(@NonNull Application application) {
         super(application);
         dao = DayTrackerDatabase.getDatabase(application).getDAO();
         dao.getDayTrackers();
-        refresh();
         initTodaysValues();
         addTestData();
     }
 
     private void initTodaysValues(){
-        if(todaysEntryFilled){
+        if(getTodaysEntryFilled()){
            sliderPainLevel.setValue(getTodaysEntry().getPainLevel() + "");
         }
     }
@@ -47,12 +45,8 @@ public class DayTrackerViewModel extends AndroidViewModel {
         }
     }
 
-    public void refresh(){
-        todaysEntryFilled = (getTodaysEntry() != null);
-    }
-
     public boolean getTodaysEntryFilled(){
-        return todaysEntryFilled;
+        return getTodaysEntry() != null;
     }
 
     public List<DayTrackerEntry>getDayTrackerEntries(){
@@ -86,5 +80,6 @@ public class DayTrackerViewModel extends AndroidViewModel {
     public void resetDatabase(){
         dao.deleteTable();
     }
+
 
 }

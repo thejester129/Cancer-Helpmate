@@ -26,6 +26,7 @@ import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 import com.example.cancerhelpmate.ui.wellbeing.diet.DietStatsDialog;
 import com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel;
+import com.example.cancerhelpmate.ui.wellbeing.exercise.ExerciseViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private DayTrackerViewModel dayTrackerViewModel;
     private DietViewModel dietViewModel;
+    private ExerciseViewModel exerciseViewModel;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment {
         getViewModels();
         viewModel.setProfileViewModel(profileViewModel);
         binding.setLifecycleOwner(getViewLifecycleOwner());
+        binding.setExerciseViewModel(exerciseViewModel);
         View view = binding.getRoot();
         setupWelcomeLayout();
         setupDayTrackerLayout();
@@ -54,13 +57,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(@NotNull ProfileEntry profile) {
                 profileViewModel.refresh();
-                binding.invalidateAll();
-            }
-        });
-        dayTrackerViewModel.getTodaysLiveEntry().observe(getViewLifecycleOwner(), new Observer<DayTrackerEntry>() {
-            @Override
-            public void onChanged(@NotNull DayTrackerEntry entry) {
-                dayTrackerViewModel.refresh();
                 binding.invalidateAll();
             }
         });
@@ -83,21 +79,28 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupDayTrackerLayout(){
-        HomeDayTrackerLayoutBinding homeDayTrackerLayoutBinding = binding.homeDayTrackerLayout;
-        homeDayTrackerLayoutBinding.setDayTrackerViewModel(dayTrackerViewModel);
+        final HomeDayTrackerLayoutBinding homeDayTrackerLayoutBinding = binding.homeDayTrackerLayout;
+        homeDayTrackerLayoutBinding.setViewModel(dayTrackerViewModel);
         homeDayTrackerLayoutBinding.setLifecycleOwner(getViewLifecycleOwner());
 
         homeDayTrackerLayoutBinding.dayTrackerPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(dayTrackerViewModel.getTodaysEntryFilled()){
-                    DialogFragment dialog = DayTrackerEntryEditDialog.newInstance(dayTrackerViewModel, dayTrackerViewModel.getTodaysEntry());
-                    dialog.show(getChildFragmentManager(), "tag");
+                    MainActivity activity = (MainActivity) requireActivity();
+                    activity.navigateToFrag(R.id.nav_day_tracker);
                 }
                 else{
                     DialogFragment dialog = DayTrackerEntryEditDialog.newInstance(dayTrackerViewModel);
                     dialog.show(getChildFragmentManager(), "tag");
                 }
+            }
+        });
+
+        dayTrackerViewModel.getTodaysLiveEntry().observe(getViewLifecycleOwner(), new Observer<DayTrackerEntry>() {
+            @Override
+            public void onChanged(@NotNull DayTrackerEntry entry) {
+                homeDayTrackerLayoutBinding.invalidateAll();
             }
         });
     }
@@ -116,7 +119,6 @@ public class HomeFragment extends Fragment {
         dietViewModel.getTodaysLiveWellbeingEntry().observe(getViewLifecycleOwner(), new Observer<WellbeingEntry>() {
             @Override
             public void onChanged(WellbeingEntry entry) {
-                dietViewModel.refresh();
                 statsPopupBinding.invalidateAll();
             }
         });
@@ -127,6 +129,7 @@ public class HomeFragment extends Fragment {
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
         dietViewModel = new ViewModelProvider(this).get(DietViewModel.class);
+        exerciseViewModel = new ViewModelProvider(this).get(ExerciseViewModel.class);
     }
 
 }

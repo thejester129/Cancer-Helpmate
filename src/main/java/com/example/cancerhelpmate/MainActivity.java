@@ -1,18 +1,13 @@
 package com.example.cancerhelpmate;
 
+
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
-
-import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.ui.profile.ProfileEditDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,7 +18,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
     private ProfileViewModel profileViewModel;
+    private WellbeingViewModel wellbeingViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_wellbeing, R.id.nav_day_tracker, R.id.nav_checklist, R.id.nav_journal, R.id.nav_settings)
+                R.id.nav_home, R.id.nav_wellbeing, R.id.nav_day_tracker, R.id.nav_checklist, R.id.nav_journal,R.id.nav_resources, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        getViewModels();
         setupOnboarding();
     }
 
@@ -82,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    private void getViewModels(){
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        wellbeingViewModel = new ViewModelProvider(this).get(WellbeingViewModel.class);
+    }
+
     private void setupOnboarding(){
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.getProfile();
@@ -100,4 +101,5 @@ public class MainActivity extends AppCompatActivity {
         DialogFragment dialog = ProfileEditDialog.newInstance(profileViewModel);
         dialog.show(getSupportFragmentManager(), "tag");
     }
+
 }

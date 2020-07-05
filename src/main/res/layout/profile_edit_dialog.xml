@@ -7,32 +7,33 @@
             type="com.example.cancerhelpmate.ui.profile.ProfileViewModel"
             />
     </data>
-    <LinearLayout android:orientation="vertical"
+    <RelativeLayout android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/profile_edit_toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/colorAccent">
 
-            <TextView
-                android:id="@+id/toolbar_close_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/setup_profile"
-                style="@style/App.TextAppearance.Title_Toolbar"
-                />
-
             <ImageButton
                 android:id="@+id/toolbar_close_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="@{viewModel.profile.initialised ? View.VISIBLE : View.GONE}"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_close_white"/>
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:id="@+id/toolbar_close_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setup_profile"
+                android:layout_gravity="center"
+                style="@style/App.TextAppearance.Title_Toolbar"
+                />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
+            android:layout_below="@+id/profile_edit_toolbar"
             android:background="@drawable/profile_gradient_background">
 
             <LinearLayout
@@ -171,10 +173,7 @@
 
                 <Button
                     android:id="@+id/profile_edit_dialog_save_button"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:backgroundTint="@color/colorAccent"
@@ -183,5 +182,5 @@
 
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

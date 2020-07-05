@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 
 
 @Database(entities = {WellbeingEntry.class}, version = 1, exportSchema = false)
-@TypeConverters({WellbeingRecipeConvertors.class})
+@TypeConverters({WellbeingRecipeConverter.class})
 public abstract class WellbeingDatabase extends RoomDatabase {
 
     public abstract WellbeingDAO getDAO();

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_height="96dp">
+
+    <ImageView
+        android:id="@+id/day_tracker_emotion_spinner_item_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/day_tracker_emotion_spinner_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>

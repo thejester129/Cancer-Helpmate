@@ -2,6 +2,9 @@ package com.example.cancerhelpmate.ui.wellbeing.diet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,10 +19,15 @@ import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.recipes.RecipeEntry;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
 import com.example.cancerhelpmate.databinding.DietBreakfastPopupBinding;
+import com.example.cancerhelpmate.databinding.DietDinnerPopupBinding;
+import com.example.cancerhelpmate.databinding.DietExtraPopupBinding;
 import com.example.cancerhelpmate.databinding.DietLunchPopupBinding;
 import com.example.cancerhelpmate.databinding.DietStatsPopupBinding;
+import com.example.cancerhelpmate.databinding.DietSupperPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentDietBinding;
 import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
+
+import java.util.List;
 
 public class DietFragment extends Fragment {
     private FragmentDietBinding binding;
@@ -33,6 +41,9 @@ public class DietFragment extends Fragment {
         setupStatsLayout();
         setupBreakfastLayout();
         setupLunchLayout();
+        setupDinnerLayout();
+        setupSupperLayout();
+        setupExtraLayout();
         setupObserver();
         return view;
     }
@@ -41,7 +52,6 @@ public class DietFragment extends Fragment {
         viewModel.getTodaysLiveWellbeingEntry().observe(getViewLifecycleOwner(), new Observer<WellbeingEntry>() {
             @Override
             public void onChanged(WellbeingEntry entry) {
-                viewModel.refresh();
                 binding.invalidateAll();
             }
         });
@@ -96,6 +106,51 @@ public class DietFragment extends Fragment {
         });
     }
 
+    private void setupDinnerLayout(){
+        final DietDinnerPopupBinding dietDinnerPopupBinding = binding.dietDinnerPopupLayout;
+        dietDinnerPopupBinding.setViewModel(viewModel);
+        dietDinnerPopupBinding.setLifecycleOwner(getViewLifecycleOwner());
+        dietDinnerPopupBinding.lunchPopupButton.setOnClickListener(dinnerPopupListener);
+        viewModel.getTodaysLiveDinnerRecipe().observe(getViewLifecycleOwner(), new Observer<RecipeEntry>() {
+            @Override
+            public void onChanged(RecipeEntry recipeEntry){
+                if(recipeEntry != null){
+                    dietDinnerPopupBinding.invalidateAll();
+                }
+            }
+        });
+    }
+
+    private void setupSupperLayout(){
+        final DietSupperPopupBinding dietSupperPopupBinding = binding.dietSupperPopupLayout;
+        dietSupperPopupBinding.setViewModel(viewModel);
+        dietSupperPopupBinding.setLifecycleOwner(getViewLifecycleOwner());
+        dietSupperPopupBinding.lunchPopupButton.setOnClickListener(supperPopupListener);
+        viewModel.getTodaysLiveSupperRecipe().observe(getViewLifecycleOwner(), new Observer<RecipeEntry>() {
+            @Override
+            public void onChanged(RecipeEntry recipeEntry){
+                if(recipeEntry != null){
+                    dietSupperPopupBinding.invalidateAll();
+                }
+            }
+        });
+    }
+
+    private void setupExtraLayout(){
+        final DietExtraPopupBinding dietExtraPopupBinding = binding.dietExtraPopupLayout;
+        dietExtraPopupBinding.setViewModel(viewModel);
+        dietExtraPopupBinding.setLifecycleOwner(getViewLifecycleOwner());
+        dietExtraPopupBinding.lunchPopupButton.setOnClickListener(extraPopupListener);
+        viewModel.getTodaysLiveExtraRecipe().observe(getViewLifecycleOwner(), new Observer<RecipeEntry>() {
+            @Override
+            public void onChanged(RecipeEntry recipeEntry){
+                if(recipeEntry != null){
+                    dietExtraPopupBinding.invalidateAll();
+                }
+            }
+        });
+    }
+
     private View.OnClickListener breakfastPopupListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -104,11 +159,9 @@ public class DietFragment extends Fragment {
                 dialog.show(getChildFragmentManager(), "tag");
             }
             else{
-                DialogFragment dialog = DietRecipeBrowserDialog.newInstance(viewModel);
-                dialog.show(getChildFragmentManager(), "tag");
+                openRecipeBrowserDialog();
             }
             viewModel.browsingRecipeType.setValue(RecipeType.BREAKFAST);
-
         }
     };
 
@@ -120,12 +173,58 @@ public class DietFragment extends Fragment {
                 dialog.show(getChildFragmentManager(), "tag");
             }
             else{
-                DialogFragment dialog = DietRecipeBrowserDialog.newInstance(viewModel);
-                dialog.show(getChildFragmentManager(), "tag");
+                openRecipeBrowserDialog();
             }
             viewModel.browsingRecipeType.setValue(RecipeType.LUNCH);
-
         }
     };
+
+    private View.OnClickListener dinnerPopupListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(viewModel.getTodaysDinnerRecipe() != null){
+                DialogFragment dialog = DietRecipeInformationDialog.newInstance(viewModel.getTodaysDinnerRecipe(),viewModel,false);
+                dialog.show(getChildFragmentManager(), "tag");
+            }
+            else{
+                openRecipeBrowserDialog();
+            }
+            viewModel.browsingRecipeType.setValue(RecipeType.DINNER);
+        }
+    };
+
+    private View.OnClickListener supperPopupListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(viewModel.getTodaysSupperRecipe() != null){
+                DialogFragment dialog = DietRecipeInformationDialog.newInstance(viewModel.getTodaysSupperRecipe(),viewModel,false);
+                dialog.show(getChildFragmentManager(), "tag");
+            }
+            else{
+                openRecipeBrowserDialog();
+            }
+            viewModel.browsingRecipeType.setValue(RecipeType.SUPPER);
+        }
+    };
+
+    private View.OnClickListener extraPopupListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(viewModel.getTodaysExtraRecipe() != null){
+                DialogFragment dialog = DietRecipeInformationDialog.newInstance(viewModel.getTodaysExtraRecipe(),viewModel,false);
+                dialog.show(getChildFragmentManager(), "tag");
+            }
+            else{
+                openRecipeBrowserDialog();
+            }
+            viewModel.browsingRecipeType.setValue(RecipeType.EXTRA);
+        }
+    };
+
+    private void openRecipeBrowserDialog(){
+        DialogFragment dialog = DietRecipeBrowserDialog.newInstance(viewModel);
+        dialog.show(getChildFragmentManager(), "tag");
+    }
+
 
 }

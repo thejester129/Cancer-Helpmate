@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="@android:color/white"
+    android:layout_margin="4dp">
+
+    <TextView
+        android:id="@+id/exercise_recycler_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        style="@style/App.TextAppearance.Large"
+        android:layout_marginTop="8dp"
+    />
+
+    <TextView
+        android:id="@+id/exercise_recycler_item_benefits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="72dp"
+        style="@style/App.TextAppearance.Medium"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/exercise_recycler_item_title"
+        />
+
+    <Button
+        android:id="@+id/exercise_recycler_item_expand_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:backgroundTint="@android:color/transparent"
+        />
+
+    <ImageView
+        android:id="@+id/exercise_recycler_item_dropdown"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        />
+
+    <ImageView
+        android:id="@+id/exercise_recycler_item_video_button"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_below="@+id/exercise_recycler_item_expand_button"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

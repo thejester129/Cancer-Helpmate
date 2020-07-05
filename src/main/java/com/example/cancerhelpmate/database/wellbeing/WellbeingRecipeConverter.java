@@ -4,7 +4,7 @@ import androidx.room.TypeConverter;
 
 import com.example.cancerhelpmate.database.recipes.RecipeEntry;
 
-public class WellbeingRecipeConvertors {
+public class WellbeingRecipeConverter {
     @TypeConverter
     public static String recipeToString(RecipeEntry recipeEntry) {
         if(recipeEntry != null){

@@ -5,12 +5,12 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.cancerhelpmate.R;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
-
 @Entity(tableName = "recipes")
-public class RecipeEntry implements Serializable {
+public class RecipeEntry {
 
     @PrimaryKey(autoGenerate = true)
     @NotNull
@@ -18,6 +18,16 @@ public class RecipeEntry implements Serializable {
     private int id;
     @ColumnInfo(name = "recipe_name")
     private String name;
+    @ColumnInfo(name = "recipe_breakfast_type")
+    private boolean breakfastType;
+    @ColumnInfo(name = "recipe_lunch_type")
+    private boolean lunchType;
+    @ColumnInfo(name = "recipe_dinner_type")
+    private boolean dinnerType;
+    @ColumnInfo(name = "recipe_supper_type")
+    private boolean supperType;
+    @ColumnInfo(name = "recipe_extra_type")
+    private boolean extraType;
     @ColumnInfo(name = "recipe_calories")
     private double calories;
     @ColumnInfo(name = "recipe_protein")
@@ -40,9 +50,15 @@ public class RecipeEntry implements Serializable {
     private int imageLink;
     @ColumnInfo(name = "recipe_video_link")
     private String videoLink;
+    @ColumnInfo(name = "recipe_vegetarian")
+    private boolean vegetarian;
+    @ColumnInfo(name = "recipe_vegan")
+    private boolean vegan;
+
 
     @Ignore
     public RecipeEntry( ){
+        this.imageLink = R.drawable.ic_meal_default;
     }
 
     @Ignore
@@ -56,7 +72,7 @@ public class RecipeEntry implements Serializable {
         this.imageLink = imageLink;
     }
 
-    public RecipeEntry( String name, double calories, double protein, double fat,double saturates, double carbohydrates, double fibre,  int preparation_time, int cooking_time, int imageLink, String videoLink,String instructions) {
+    public RecipeEntry( String name,double calories, double protein, double fat,double saturates, double carbohydrates, double fibre,  int preparation_time, int cooking_time, int imageLink, String videoLink,String instructions) {
         this.name = name;
         this.calories = calories;
         this.protein = protein;
@@ -173,5 +189,61 @@ public class RecipeEntry implements Serializable {
 
     public void setVideoLink(String videoLink) {
         this.videoLink = videoLink;
+    }
+
+    public boolean isBreakfastType() {
+        return breakfastType;
+    }
+
+    public void setBreakfastType(boolean breakfastType) {
+        this.breakfastType = breakfastType;
+    }
+
+    public boolean isLunchType() {
+        return lunchType;
+    }
+
+    public void setLunchType(boolean lunchType) {
+        this.lunchType = lunchType;
+    }
+
+    public boolean isDinnerType() {
+        return dinnerType;
+    }
+
+    public void setDinnerType(boolean dinnerType) {
+        this.dinnerType = dinnerType;
+    }
+
+    public boolean isSupperType() {
+        return supperType;
+    }
+
+    public void setSupperType(boolean supperType) {
+        this.supperType = supperType;
+    }
+
+    public boolean isExtraType() {
+        return extraType;
+    }
+
+    public void setExtraType(boolean extraType) {
+        this.extraType = extraType;
+    }
+
+    public boolean isVegetarian() {
+        return vegetarian;
+    }
+
+    public void setVegetarian(boolean vegetarian) {
+        this.vegetarian = vegetarian;
+    }
+
+    public boolean isVegan() {
+        return vegan;
+    }
+
+    public void setVegan(boolean vegan) {
+        this.vegan = vegan;
     }
 }

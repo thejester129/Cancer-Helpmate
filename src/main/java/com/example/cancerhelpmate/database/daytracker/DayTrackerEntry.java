@@ -6,6 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.cancerhelpmate.common.DateManager;
+import com.example.cancerhelpmate.ui.daytracker.DayTrackerEmotionItem;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,7 @@ public class DayTrackerEntry {
     @ColumnInfo(name = "day_tracker_date")
     private String date;
     @ColumnInfo(name = "day_tracker_emotion")
-    private int emotion;
+    private DayTrackerEmotionItem emotion;
     @ColumnInfo(name = "day_tracker_pain_level")
     private int painLevel;
 
@@ -41,11 +42,11 @@ public class DayTrackerEntry {
         this.date = date;
     }
 
-    public int getEmotion() {
+    public DayTrackerEmotionItem getEmotion() {
         return emotion;
     }
 
-    public void setEmotion(int emotion) {
+    public void setEmotion(DayTrackerEmotionItem emotion) {
         this.emotion = emotion;
     }
 

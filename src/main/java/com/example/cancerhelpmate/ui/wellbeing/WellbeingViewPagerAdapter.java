@@ -52,7 +52,7 @@ public class WellbeingViewPagerAdapter extends FragmentPagerAdapter {
             case 1 :
                 return "Exercise";
             case 2 :
-                return "Mental";
+                return "Mind";
             default:
                 throw new RuntimeException("Not enough tabs in wellbeing viewpager");
         }

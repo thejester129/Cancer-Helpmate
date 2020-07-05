@@ -43,11 +43,10 @@ public class DayTrackerFragment extends Fragment {
         return view;
     }
 
-    private void setupObserver( ){
+    private void setupObserver(){
         viewModel.getLiveDayTrackerEntries().observe(getViewLifecycleOwner(), new Observer<List<DayTrackerEntry>>() {
             @Override
             public void onChanged(@NotNull List<DayTrackerEntry> entries) {
-                viewModel.refresh();
                 adapter.setItems(entries);
             }
         });
@@ -63,7 +62,6 @@ public class DayTrackerFragment extends Fragment {
     private void refreshRecyclerView(){
         recyclerView.setAdapter(adapter);
     }
-
 
     private void setupRecycler(View view){
         recyclerView = view.findViewById(R.id.day_tracker_recycler_view);

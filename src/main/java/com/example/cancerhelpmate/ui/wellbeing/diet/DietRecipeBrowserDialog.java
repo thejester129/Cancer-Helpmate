@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,9 +30,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 
-public class DietRecipeBrowserDialog extends DialogFragment {
+public class DietRecipeBrowserDialog extends DialogFragment implements PopupMenu.OnMenuItemClickListener{
 
     private DietViewModel viewModel;
+    private DietRecipeBrowserRecyclerAdapter adapter;
 
     public DietRecipeBrowserDialog(DietViewModel viewModel) {
         this.viewModel = viewModel;
@@ -56,11 +59,27 @@ public class DietRecipeBrowserDialog extends DialogFragment {
         View view = binding.getRoot();
         setupRecycler(view);
         setupObserver();
-        ImageButton backButton = view.findViewById(R.id.diet_recipe_browser_dialog_toolbar_close_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        binding.dietRecipeBrowserDialogToolbarCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+        binding.dietRecipeBrowserAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new DietRecipeAddDialog(viewModel);
+                dialogFragment.show(getParentFragmentManager(),"tag");
+            }
+        });
+
+        binding.dietRecipeBrowserDialogToolbarFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(getContext(), v);
+                popup.setOnMenuItemClickListener(DietRecipeBrowserDialog.this);
+                popup.inflate(R.menu.diet_menu);
+                popup.show();
             }
         });
         return view;
@@ -69,7 +88,7 @@ public class DietRecipeBrowserDialog extends DialogFragment {
     private void setupRecycler(View view){
         RecyclerView recyclerView = view.findViewById(R.id.diet_recipe_browser_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        final DietRecipeBrowserRecyclerAdapter adapter = new DietRecipeBrowserRecyclerAdapter(recyclerView, viewModel, getChildFragmentManager());
+        adapter = new DietRecipeBrowserRecyclerAdapter(recyclerView, viewModel, getChildFragmentManager());
         recyclerView.setAdapter(adapter);
         adapter.setItems(viewModel.getRecipes());
         viewModel.getLiveRecipes().observe(getViewLifecycleOwner(), new Observer<List<RecipeEntry>>() {
@@ -90,6 +109,27 @@ public class DietRecipeBrowserDialog extends DialogFragment {
                 }
             }
         });
+        viewModel.browserFilter.observe(getViewLifecycleOwner(), new Observer<DietFilterItem>() {
+            @Override
+            public void onChanged(DietFilterItem filterItem) {
+                adapter.setItems(viewModel.getFilteredRecipes());
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                //TODO dialog
+                DialogFragment dialogFragment = new DietBrowserSortDialog(viewModel);
+                dialogFragment.show(getParentFragmentManager(),"tag");
+                return true;
+
+            default:
+                return false;
+        }
     }
 
 }

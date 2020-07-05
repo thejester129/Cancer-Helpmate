@@ -24,10 +24,9 @@
             />
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_lunch"
-            android:tint="@color/colorPrimary"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_meal_default"
             android:visibility="@{viewModel.todaysLunchRecipe == null ? View.VISIBLE : View.GONE}"
             android:layout_centerInParent="true"
             />

@@ -59,6 +59,12 @@ public interface WellbeingDAO {
     @Query("update wellbeing set wellbeing_extra_recipe = :recipe where wellbeing_date == :date")
     public void setExtraRecipe(RecipeEntry recipe, String date);
 
+    @Query("update wellbeing set wellbeing_steps_done = :steps where wellbeing_date == :date")
+    public void setSteps(int steps, String date);
+
+    @Query("select wellbeing_steps_done from wellbeing where wellbeing_date == :date")
+    public LiveData<Integer> getSteps(String date);
+
     @Query("select * from wellbeing")
     public List<WellbeingEntry> getItems();
 

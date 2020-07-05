@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +25,8 @@ public  class DayTrackerEntryEditDialog extends DialogFragment {
     private DayTrackerEntry entry;
     private ImageButton toolbarCloseButton;
     private ImageButton toolbarSaveButton;
-    private Button saveButton;
     private SeekBar painSeekBar;
+    private Spinner emotionSpinner;
     private boolean addingEntry;
 
     public DayTrackerEntryEditDialog(DayTrackerViewModel viewModel) {
@@ -68,8 +70,8 @@ public  class DayTrackerEntryEditDialog extends DialogFragment {
     private void getReferences(View view){
         toolbarCloseButton = view.findViewById(R.id.day_tracker_dialog_toolbar_close_button);
         toolbarSaveButton = view.findViewById(R.id.day_tracker_dialog_toolbar_save_button);
-        saveButton = view.findViewById(R.id.day_tracker_dialog_save_button);
         painSeekBar = view.findViewById(R.id.day_tracker_dialog_pain_seek_bar);
+        emotionSpinner = view.findViewById(R.id.day_tracker_dialog_emotion_spinner);
     }
 
 
@@ -86,13 +88,27 @@ public  class DayTrackerEntryEditDialog extends DialogFragment {
         });
         //save
         toolbarSaveButton.setOnClickListener(saveButtonListener);
-        saveButton.setOnClickListener(saveButtonListener);
         setupPainSeekView();
+        setupSpinner();
+    }
+
+    private void setupSpinner(){
+        emotionSpinner.setAdapter(new DayTrackerEmotionSpinnerAdapter(getContext(), DayTrackerEmotions.getAllEmotions()));
+        emotionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                entry.setEmotion(DayTrackerEmotions.getAllEmotions().get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void setEntryValues(){
         painSeekBar.setProgress(entry.getPainLevel());
-
     }
 
     private void setupPainSeekView(){

@@ -30,10 +30,13 @@ public class WellbeingEntry {
     private RecipeEntry supper_recipe;
     @ColumnInfo(name = "wellbeing_extra_recipe")
     private RecipeEntry extra_recipe;
+    @ColumnInfo(name = "wellbeing_steps_done")
+    private int steps_done;
 
 
     public WellbeingEntry(){
         this.date = DateManager.getTodayAsString();
+        steps_done = 0;
     }
 
     public RecipeEntry getBreakfast_recipe() {
@@ -83,5 +86,13 @@ public class WellbeingEntry {
 
     public void setExtra_recipe(RecipeEntry extra_recipe) {
         this.extra_recipe = extra_recipe;
+    }
+
+    public int getSteps_done() {
+        return steps_done;
+    }
+
+    public void setSteps_done(int steps_done) {
+        this.steps_done = steps_done;
     }
 }

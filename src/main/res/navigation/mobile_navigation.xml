@@ -48,6 +48,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_resources"
+        android:name="com.example.cancerhelpmate.ui.resources.ResourcesFragment"
+        android:label="@string/menu_resources"
+        tools:layout="@layout/fragment_resources">
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.cancerhelpmate.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"

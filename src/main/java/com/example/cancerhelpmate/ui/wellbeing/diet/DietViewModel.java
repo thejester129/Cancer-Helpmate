@@ -1,10 +1,8 @@
 package com.example.cancerhelpmate.ui.wellbeing.diet;
 
 import android.app.Application;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,6 +15,7 @@ import com.example.cancerhelpmate.database.wellbeing.WellbeingDAO;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingDatabase;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,20 +23,15 @@ public class DietViewModel extends AndroidViewModel {
 
     private RecipeDAO dao;
     private WellbeingDAO wellbeingDAO;
-    public MutableLiveData<Boolean>dayStatisticsVisible = new MutableLiveData<>(false);
     public MutableLiveData<Boolean>exitRecipeBrowser = new MutableLiveData<>(false);
-    public MutableLiveData<Double>dailyCalories = new MutableLiveData<>();
     public MutableLiveData<RecipeType>browsingRecipeType = new MutableLiveData<>();
+    public MutableLiveData<DietFilterItem> browserFilter = new MutableLiveData<>(new DietFilterItem());
+
 
     public DietViewModel(@NonNull Application application) {
         super(application);
         dao = RecipeDatabase.getDatabase(application).getDAO();
         wellbeingDAO = WellbeingDatabase.getDatabase(application).getDAO();
-    }
-
-    public void refresh(){
-        dayStatisticsVisible.setValue(getDayStatisticsVisible());
-        dailyCalories.setValue(getTodaysCalories());
     }
 
     public List<RecipeEntry> getRecipes(){
@@ -71,6 +65,18 @@ public class DietViewModel extends AndroidViewModel {
                 wellbeingDAO.setExtraRecipe(recipe,todayString);
                 break;
         }
+    }
+
+    public void resetBrowserFilter(){
+        browserFilter.setValue(new DietFilterItem());
+    }
+
+
+    public List<RecipeEntry> getFilteredRecipes(){
+        List<RecipeEntry> filteredRecipes = new ArrayList<>();
+        filteredRecipes.add(getRecipes().get(0));
+
+        return filteredRecipes;
     }
 
 
@@ -122,12 +128,12 @@ public class DietViewModel extends AndroidViewModel {
         wellbeingDAO.setBreakfastRecipe(recipe, DateManager.getTodayAsString());
     }
 
-    private boolean getDayStatisticsVisible(){
+    public boolean getDayStatisticsVisible(){
         return (getTodaysBreakfastRecipe() != null) || (getTodaysLunchRecipe() != null) || (getTodaysBreakfastRecipe() != null) || (getTodaysDinnerRecipe() != null)
                 || (getTodaysSupperRecipe() != null) || (getTodaysExtraRecipe() != null);
     }
 
-    private double getTodaysCalories(){
+    public double getTodaysCalories(){
         double calories = 0;
         if(getTodaysBreakfastRecipe()!=null){
             calories += getTodaysBreakfastRecipe().getCalories();
@@ -148,14 +154,35 @@ public class DietViewModel extends AndroidViewModel {
         return calories;
     }
 
+    public double getTodaysProtein(){
+        double protein = 0;
+        if(getTodaysBreakfastRecipe()!=null){
+            protein += getTodaysBreakfastRecipe().getProtein();
+        }
+        if(getTodaysLunchRecipe()!=null){
+            protein += getTodaysLunchRecipe().getProtein();
+        }
+        if(getTodaysDinnerRecipe()!=null){
+            protein += getTodaysDinnerRecipe().getProtein();
+        }
+        if(getTodaysSupperRecipe()!=null){
+            protein += getTodaysSupperRecipe().getProtein();
+        }
+        if(getTodaysExtraRecipe()!=null){
+            protein += getTodaysExtraRecipe().getProtein();
+        }
+
+        return protein;
+    }
+
     public double getRecommendedCalories(){
         //TODO recommended
         return 1800;
     }
 
-    @BindingAdapter({"android:src"})
-    public static void setImageViewResource(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
+    public double getRecommendedProtein(){
+        //TODO recommended
+        return 50;
     }
 
 }

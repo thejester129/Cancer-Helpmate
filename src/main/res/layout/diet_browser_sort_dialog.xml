@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
+            />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/diet_recipe_browser_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/colorAccent">
+
+                <TextView
+                    android:id="@+id/toolbar_close_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sort"
+                    android:layout_gravity="center"
+                    style="@style/App.TextAppearance.Title_Toolbar"
+                    />
+
+                <ImageButton
+                    android:id="@+id/diet_recipe_browser_dialog_toolbar_close_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_cancel_white"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <Spinner
+                android:id="@+id/diet_browser_sort_dialog_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/vegetarian"
+                android:checked="@={viewModel.browserFilter.vegetarian}"
+                />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/vegan"
+                android:checked="@={viewModel.browserFilter.vegan}"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/diet_browser_sort_dialog_apply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/apply"
+            />
+
+    </RelativeLayout>
+
+</layout>

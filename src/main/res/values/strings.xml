@@ -45,7 +45,22 @@
     <string name="select">Select</string>
     <string name="change">Change</string>
     <string name="select_meal">Choose a meal to begin tracking your statistics</string>
-    <string name="daily_stats">Today\'s Nutrion</string>
+    <string name="daily_stats">Today\'s Nutrition</string>
     <string name="lunch">Lunch</string>
-    <string name="tap_lunch">Tap here to enter a record for lunch</string>
+    <string name="tap_lunch">Tap here to enter today\'s lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="tap_dinner">Tap here to enter today\'s dinner</string>
+    <string name="tap_supper">Tap here to enter today\'s supper</string>
+    <string name="tap_extra">Tap to enter any additional meals</string>
+    <string name="supper">Supper</string>
+    <string name="extra">Extra</string>
+    <string name="meals_text">Today\'s Meals :</string>
+    <string name="add">Add</string>
+    <string name="sort">Sort</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="filter">Filter</string>
+    <string name="apply">Apply</string>
+    <string name="menu_resources">Resources</string>
+    <string name="emotion">Emotion:</string>
 </resources>
