@@ -6,7 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.cancerhelpmate.common.DateManager;
-import com.example.cancerhelpmate.ui.daytracker.DayTrackerEmotionItem;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotionItem;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,9 +28,10 @@ public class DayTrackerEntry {
     }
 
     @Ignore
-    public DayTrackerEntry(@NotNull String date, int painLevel) {
+    public DayTrackerEntry(@NotNull String date, int painLevel, DayTrackerEmotionItem emotion) {
         this.date = date;
         this.painLevel = painLevel;
+        this.emotion = emotion;
     }
 
     @NotNull
@@ -57,4 +58,5 @@ public class DayTrackerEntry {
     public void setPainLevel(int painLevel) {
         this.painLevel = painLevel;
     }
+
 }

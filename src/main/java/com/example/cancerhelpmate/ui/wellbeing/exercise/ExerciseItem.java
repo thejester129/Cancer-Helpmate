@@ -4,21 +4,24 @@ public class ExerciseItem {
     private String title;
     private String benefits;
     private int imageResource;
+    private int icon;
     private String videoLink;
     private boolean expanded;
     private String description;
 
-    public ExerciseItem(String title, String benefits, int imageResource, String videoLink) {
+    public ExerciseItem(String title, String benefits, int imageResource, String videoLink, int icon) {
         this.title = title;
         this.benefits = benefits;
         this.imageResource = imageResource;
         this.videoLink = videoLink;
         this.expanded = false;
+        this.icon = icon;
     }
 
-    public ExerciseItem(String title, String description){
+    public ExerciseItem(String title, String description, int icon){
         this.title = title;
         this.description = description;
+        this.icon = icon;
     }
 
     public String getTitle() {
@@ -71,5 +74,13 @@ public class ExerciseItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

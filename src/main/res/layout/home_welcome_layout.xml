@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="homeViewModel"
@@ -15,7 +16,7 @@
         android:orientation="vertical"
         android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="176dp">
 
         <TextView
             android:id="@+id/home_welcome_layout_welcome_text"
@@ -26,13 +27,25 @@
             style="@style/App.TextAppearance.Title_Small"
             />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_welcome_layout_profile_picture"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/home_welcome_layout_welcome_text"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_profile_color"
+            app:civ_border_width="3dp"
+            app:civ_border_color="@android:color/black"
+            />
+
         <ProgressBar
             android:id="@+id/home_welcome_layout_progress_bar"
-            android:layout_below="@+id/home_welcome_layout_welcome_text"
+            android:layout_above="@+id/home_welcome_layout_progress_text"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
             android:progressTint="@{profileViewModel.inRecovery ? @color/colorPrimary : @color/colorSecondary}"
             android:max="@{profileViewModel.totalDays}"
             android:progress="@{profileViewModel.currentDay}"
@@ -40,9 +53,10 @@
 
         <TextView
             android:id="@+id/home_welcome_layout_progress_text"
-            android:layout_below="@+id/home_welcome_layout_progress_bar"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAlignment="center"

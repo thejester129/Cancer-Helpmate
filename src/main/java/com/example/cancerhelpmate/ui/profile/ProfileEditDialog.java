@@ -1,6 +1,7 @@
 package com.example.cancerhelpmate.ui.profile;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -55,6 +56,20 @@ public class ProfileEditDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.FullscreenDialogTheme);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new Dialog(requireActivity(), getTheme()){
+            @Override
+            public void onBackPressed() {
+                if (viewModel.getProfile().isInitialised()) {
+                    dismiss();
+                }
+                else{
+                }
+            }
+        };
     }
 
     @Nullable
@@ -198,5 +213,6 @@ public class ProfileEditDialog extends DialogFragment {
         }
         }
     };
+
 
 }

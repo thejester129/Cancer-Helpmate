@@ -31,10 +31,9 @@
             android:id="@+id/profile_user_image"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:src="@color/colorAccentDark"
+            android:src="@drawable/ic_profile_color"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
-            app:civ_circle_background_color="@color/colorPrimaryDark"
             app:civ_border_width="3dp"
             app:civ_border_color="@android:color/black"/>
 

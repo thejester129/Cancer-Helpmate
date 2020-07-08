@@ -63,4 +63,11 @@
     <string name="apply">Apply</string>
     <string name="menu_resources">Resources</string>
     <string name="emotion">Emotion:</string>
+    <string name="breathing_exercise">Breathing Exercise</string>
+    <string name="start">Start</string>
+    <string name="breathe_out">Breathe out ...</string>
+    <string name="breathe_in">Breathe in ...</string>
+    <string name="stop">Stop</string>
+    <string name="menu_activities">Activities</string>
+    <string name="sleep_aid">SleepAid</string>
 </resources>

@@ -27,6 +27,14 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_activities"
+        android:name="com.example.cancerhelpmate.ui.activities.ActivitiesFragment"
+        android:label="@string/menu_activities"
+        tools:layout="@layout/fragment_activities">
+    </fragment>
+
+
+    <fragment
         android:id="@+id/nav_day_tracker"
         android:name="com.example.cancerhelpmate.ui.daytracker.DayTrackerFragment"
         android:label="@string/menu_day_tracker"
@@ -59,6 +67,20 @@
         android:name="com.example.cancerhelpmate.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_breathing_exercise"
+        android:name="com.example.cancerhelpmate.ui.activities.breathing_activity.BreathingActivityFragment"
+        android:label="@string/breathing_exercise"
+        tools:layout="@layout/fragment_breathing_activity">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_sleep_aid"
+        android:name="com.example.cancerhelpmate.ui.activities.sleep_aid.SleepAidFragment"
+        android:label="@string/sleep_aid"
+        tools:layout="@layout/fragment_sleep_aid">
     </fragment>
 
 </navigation>

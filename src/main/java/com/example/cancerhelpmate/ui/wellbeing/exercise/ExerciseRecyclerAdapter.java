@@ -97,7 +97,7 @@ public class ExerciseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 exerciseItem.videoImage.setVisibility(View.VISIBLE);
             }
             else{
-                exerciseItem.dropdownImage.setImageResource(R.drawable.ic_arrow_down_black);
+                exerciseItem.dropdownImage.setImageResource(item.getIcon());
                 exerciseItem.videoImage.setVisibility(View.GONE);
             }
         }
@@ -118,7 +118,7 @@ public class ExerciseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 headerItem.description.setVisibility(View.VISIBLE);
             }
             else{
-                headerItem.dropdownImage.setImageResource(R.drawable.ic_arrow_down_black);
+                headerItem.dropdownImage.setImageResource(item.getIcon());
                 headerItem.description.setVisibility(View.GONE);
             }
 

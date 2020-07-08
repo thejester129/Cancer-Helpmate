@@ -19,12 +19,12 @@
             layout="@layout/home_welcome_layout"
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
-            android:layout_height="160dp"
+            android:layout_height="176dp"
             />
 
         <include
             android:id="@+id/home_day_tracker_layout"
-            layout="@layout/home_day_tracker_layout"
+            layout="@layout/day_tracker_today_popup"
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:layout_marginTop="8dp"
@@ -37,7 +37,6 @@
             android:layout_height="144dp"
             android:layout_marginTop="8dp"
             />
-
 
     </LinearLayout>
 </layout>

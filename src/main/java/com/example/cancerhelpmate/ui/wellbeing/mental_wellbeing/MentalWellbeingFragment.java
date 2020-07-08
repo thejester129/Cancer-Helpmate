@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cancerhelpmate.MainActivity;
 import com.example.cancerhelpmate.R;
-import com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel;
+import com.example.cancerhelpmate.ui.activities.ActivityRecyclerAdapter;
 
 public class MentalWellbeingFragment extends Fragment {
     private MentalWellbeingViewModel viewModel;
@@ -18,7 +20,15 @@ public class MentalWellbeingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mental_wellbeing, container, false);
         viewModel = new ViewModelProvider(this).get(MentalWellbeingViewModel.class);
-
+        setupRecycler(view);
         return view;
+    }
+
+    private void setupRecycler(View view){
+        RecyclerView recyclerView = view.findViewById(R.id.mental_wellbeing_activities_recycler_view);
+        final ActivityRecyclerAdapter adapter = new ActivityRecyclerAdapter((MainActivity) requireActivity(),recyclerView);
+        recyclerView.setAdapter(adapter);
+        adapter.setItems(viewModel.getMentalWellbeingActivities());
+
     }
 }

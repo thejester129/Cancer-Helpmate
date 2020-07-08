@@ -2,8 +2,8 @@ package com.example.cancerhelpmate.database.daytracker;
 
 import androidx.room.TypeConverter;
 
-import com.example.cancerhelpmate.ui.daytracker.DayTrackerEmotionItem;
-import com.example.cancerhelpmate.ui.daytracker.DayTrackerEmotions;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotionItem;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotions;
 
 
 public class DayTrackerEmotionConverter {

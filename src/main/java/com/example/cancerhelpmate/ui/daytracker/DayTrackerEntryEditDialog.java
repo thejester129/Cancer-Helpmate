@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +17,8 @@ import androidx.fragment.app.DialogFragment;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
 import com.example.cancerhelpmate.databinding.DayTrackerEntryEditDialogBinding;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotionSpinnerAdapter;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotions;
 
 public  class DayTrackerEntryEditDialog extends DialogFragment {
     private DayTrackerViewModel viewModel;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/sleep_aid_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Spinner
+        android:id="@+id/sleep_aid_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="72dp"
+        android:paddingLeft="16dp"
+        android:background="@color/colorSecondary"
+        android:layout_alignParentBottom="true"
+        />
+
+    <Button
+        android:id="@+id/sleep_aid_start_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@style/AppTheme.Button1"
+        android:text="@string/start"/>
+
+    <Button
+        android:id="@+id/sleep_aid_stop_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@style/AppTheme.Button1"
+        android:visibility="invisible"
+        android:text="@string/stop"/>
+
+</RelativeLayout>

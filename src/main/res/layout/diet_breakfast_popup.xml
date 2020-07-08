@@ -27,7 +27,7 @@
             android:id="@+id/breakfast_popup_add_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_drink_default"
+            android:src="@drawable/ic_breakfast"
             android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.VISIBLE : View.GONE}"
             android:layout_centerInParent="true"
             />

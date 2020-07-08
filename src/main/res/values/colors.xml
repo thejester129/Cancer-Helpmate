@@ -15,4 +15,6 @@
     <color name="colorGrey">#a6a6a6</color>
     <color name="colorGreyLight">#e6e6e6</color>
     <color name="colorGreyDark">#595959</color>
+    <color name="colorBreathing">#1ac6ff</color>
+    <color name="colorRed">#e62e00</color>
 </resources>

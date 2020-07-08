@@ -17,7 +17,6 @@
         android:layout_marginLeft="16dp"
         android:textStyle="bold"
         style="@style/App.TextAppearance.Large"
-        android:layout_marginTop="8dp"
     />
 
     <TextView
@@ -45,6 +44,7 @@
         android:layout_height="48dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
         />
 
     <ImageView

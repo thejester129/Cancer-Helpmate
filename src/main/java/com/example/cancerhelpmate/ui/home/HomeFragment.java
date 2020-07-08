@@ -17,9 +17,9 @@ import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
+import com.example.cancerhelpmate.databinding.DayTrackerTodayPopupBinding;
 import com.example.cancerhelpmate.databinding.DietStatsPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentHomeBinding;
-import com.example.cancerhelpmate.databinding.HomeDayTrackerLayoutBinding;
 import com.example.cancerhelpmate.databinding.HomeWelcomeLayoutBinding;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerEntryEditDialog;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
@@ -79,21 +79,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupDayTrackerLayout(){
-        final HomeDayTrackerLayoutBinding homeDayTrackerLayoutBinding = binding.homeDayTrackerLayout;
+        final DayTrackerTodayPopupBinding homeDayTrackerLayoutBinding = binding.homeDayTrackerLayout;
         homeDayTrackerLayoutBinding.setViewModel(dayTrackerViewModel);
         homeDayTrackerLayoutBinding.setLifecycleOwner(getViewLifecycleOwner());
 
         homeDayTrackerLayoutBinding.dayTrackerPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(dayTrackerViewModel.getTodaysEntryFilled()){
-                    MainActivity activity = (MainActivity) requireActivity();
-                    activity.navigateToFrag(R.id.nav_day_tracker);
-                }
-                else{
-                    DialogFragment dialog = DayTrackerEntryEditDialog.newInstance(dayTrackerViewModel);
-                    dialog.show(getChildFragmentManager(), "tag");
-                }
+                MainActivity activity = (MainActivity) requireActivity();
+                activity.navigateToFrag(R.id.nav_day_tracker);
             }
         });
 

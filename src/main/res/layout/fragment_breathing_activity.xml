@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/gradient_breathing_background"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/breathing_exercise_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="64dp"/>
+
+    <TextView
+        android:id="@+id/breathing_exercise_timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/breathing_exercise_title"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/breathing_exercise_circle"
+        android:layout_marginTop="128dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_centerInParent="true"
+        android:src="@android:color/holo_red_light"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+    <Button
+        android:id="@+id/breathing_exercise_start_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentBottom="true"
+        style="@style/AppTheme.Button1"
+        android:text="@string/start"/>
+
+</RelativeLayout>

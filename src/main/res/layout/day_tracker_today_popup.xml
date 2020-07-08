@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="144dp">
+
+        <TextView
+            android:id="@+id/day_tracker_recycler_header_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/today"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/day_tracker_recycler_emotion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/App.TextAppearance.Medium"
+            android:text="@string/emotion"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@+id/day_tracker_recycler_header_text"
+            />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/day_tracker_recycler_emotion_text"
+            android:src="@{viewModel.todaysEntry.emotion.picture}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Pain level: ` + viewModel.todaysEntry.painLevel}"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/day_tracker_recycler_emotion_text"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:id="@+id/day_tracker_popup_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tap_day_enter"
+            android:gravity="bottom|center_horizontal"
+            android:background="@android:color/white"
+            android:paddingBottom="24dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.todaysEntryFilled ? View.GONE : View.VISIBLE}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_day_tracker"
+            android:visibility="@{viewModel.todaysEntryFilled ? View.GONE : View.VISIBLE}"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/day_tracker"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{viewModel.todaysEntryFilled ? View.GONE : View.VISIBLE}"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:id="@+id/day_tracker_popup_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+    </RelativeLayout>
+</layout>

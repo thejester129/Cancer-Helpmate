@@ -123,7 +123,7 @@
             android:layout_height="48dp"
             android:layout_below="@+id/diet_stats_popup_header"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_meal_default"
+            android:src="@drawable/ic_nutrition"
             android:visibility="@{viewModel.dayStatisticsVisible ? View.GONE : View.VISIBLE}"
             />
 
