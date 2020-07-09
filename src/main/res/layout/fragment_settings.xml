@@ -20,5 +20,6 @@
             style="@style/AppTheme.Button1"
             android:text="@string/reset_app"/>
 
+
     </LinearLayout>
 </layout>

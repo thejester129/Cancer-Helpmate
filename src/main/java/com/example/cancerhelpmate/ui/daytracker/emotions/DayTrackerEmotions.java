@@ -33,6 +33,10 @@ public class DayTrackerEmotions {
         public int getPicture() {
             return R.drawable.emotion_happy;
         }
+        @Override
+        public int getCode() {
+            return 0;
+        }
     }
 
     public static class DayTrackerEmotionSad extends DayTrackerEmotionItem{
@@ -43,6 +47,10 @@ public class DayTrackerEmotions {
         @Override
         public int getPicture() {
             return R.drawable.emotion_sad;
+        }
+        @Override
+        public int getCode() {
+            return 1;
         }
     }
 
@@ -55,6 +63,10 @@ public class DayTrackerEmotions {
         public int getPicture() {
             return R.drawable.emotion_calm;
         }
+        @Override
+        public int getCode() {
+            return 2;
+        }
     }
 
     public static class DayTrackerEmotionAnxious extends DayTrackerEmotionItem{
@@ -65,6 +77,10 @@ public class DayTrackerEmotions {
         @Override
         public int getPicture() {
             return R.drawable.emotion_anxious;
+        }
+        @Override
+        public int getCode() {
+            return 3;
         }
     }
 
@@ -77,6 +93,10 @@ public class DayTrackerEmotions {
         public int getPicture() {
             return R.drawable.emotion_energetic;
         }
+        @Override
+        public int getCode() {
+            return 4;
+        }
     }
 
     public static class DayTrackerEmotionTired extends DayTrackerEmotionItem{
@@ -87,6 +107,10 @@ public class DayTrackerEmotions {
         @Override
         public int getPicture() {
             return R.drawable.emotion_tired;
+        }
+        @Override
+        public int getCode() {
+            return 5;
         }
     }
 
@@ -99,6 +123,10 @@ public class DayTrackerEmotions {
         public int getPicture() {
             return R.drawable.emotion_emotional;
         }
+        @Override
+        public int getCode() {
+            return 6;
+        }
     }
 
     public static class DayTrackerEmotionNumb extends DayTrackerEmotionItem{
@@ -109,6 +137,10 @@ public class DayTrackerEmotions {
         @Override
         public int getPicture() {
             return R.drawable.emotion_numb;
+        }
+        @Override
+        public int getCode() {
+            return 7;
         }
     }
 }

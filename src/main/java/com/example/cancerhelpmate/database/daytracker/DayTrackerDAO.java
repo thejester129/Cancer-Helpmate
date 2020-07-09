@@ -23,6 +23,15 @@ public interface DayTrackerDAO {
     @Delete
     public void deleteEntry(DayTrackerEntry entry);
 
+    @Insert
+    public long addEntry(DayTrackerWeeklyEntry entry);
+
+    @Update
+    public void updateEntry(DayTrackerWeeklyEntry entry);
+
+    @Delete
+    public void deleteEntry(DayTrackerWeeklyEntry entry);
+
     @Query("select * from day_trackers where day_tracker_date == :date")
     public DayTrackerEntry getDayTracker(String date);
 
@@ -35,6 +44,18 @@ public interface DayTrackerDAO {
     @Query("select * from day_trackers")
     public LiveData<List<DayTrackerEntry>> getLiveDayTrackers();
 
+    @Query("select * from day_trackers_weekly")
+    public List<DayTrackerWeeklyEntry> getWeeklyDayTrackers();
+
+    @Query("select * from day_trackers_weekly where day_tracker_weekly_date == :date")
+    public DayTrackerWeeklyEntry getWeeklyDayTracker(String date);
+
+    @Query("select * from day_trackers_weekly")
+    public LiveData<List<DayTrackerWeeklyEntry>> getLiveWeeklyDayTrackers();
+
     @Query("DELETE FROM day_trackers")
-    public void deleteTable();
+    public void deleteDayTrackersTable();
+
+    @Query("DELETE FROM day_trackers_weekly")
+    public void deleteDayTrackersWeeklyTable();
 }

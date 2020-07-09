@@ -4,6 +4,9 @@ package com.example.cancerhelpmate;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+
+import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
+import com.example.cancerhelpmate.ui.daytracker.day_tracker_weekly.DayTrackerWeeklyEntryDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileEditDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private ProfileViewModel profileViewModel;
     private WellbeingViewModel wellbeingViewModel;
+    private DayTrackerViewModel dayTrackerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         getViewModels();
         setupOnboarding();
+        setupWeeklyDayTracker();
     }
 
     @Override
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private void getViewModels(){
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         wellbeingViewModel = new ViewModelProvider(this).get(WellbeingViewModel.class);
+        dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
     }
 
     private void setupOnboarding(){
@@ -100,6 +106,13 @@ public class MainActivity extends AppCompatActivity {
         //TODO finish onboarding
         DialogFragment dialog = ProfileEditDialog.newInstance(profileViewModel);
         dialog.show(getSupportFragmentManager(), "tag");
+    }
+
+    private void setupWeeklyDayTracker(){
+        if(profileViewModel.getProfile().isInitialised() && dayTrackerViewModel.weeklyDayTrackerReady()){
+            DialogFragment dialog = new DayTrackerWeeklyEntryDialog(dayTrackerViewModel);
+            dialog.show(getSupportFragmentManager(),"tag");
+        }
     }
 
 }

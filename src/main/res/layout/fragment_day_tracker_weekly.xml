@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
+
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/day_tracker_weekly_popup"
+            layout="@layout/day_tracker_weekly_popup"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/day_tracker_weekly_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+    </LinearLayout>
+</layout>

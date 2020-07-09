@@ -35,14 +35,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:textAlignment="center"
         style="@style/App.TextAppearance.White_Recycler_Shadow_Text"
-        android:layout_marginLeft="20dp"
         android:layout_alignLeft="@+id/day_tracker_recycler_item_pain_background"
+        android:layout_alignRight="@+id/day_tracker_recycler_item_pain_background"
         />
 
     <TextView
         android:id="@+id/day_tracker_recycler_item_date"
-        android:text="@{entry.date}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/App.TextAppearance.Large"

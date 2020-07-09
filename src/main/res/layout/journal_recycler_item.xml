@@ -31,7 +31,9 @@
             android:id="@+id/journal_recycler_item_date"
             android:text="@{entry.date}"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textStyle="italic"
             style="@style/App.TextAppearance.Large"
             android:layout_alignParentRight="true"
             android:layout_marginRight="72dp" />

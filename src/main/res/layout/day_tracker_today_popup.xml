@@ -38,7 +38,7 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="48dp"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/day_tracker_recycler_emotion_text"
             android:src="@{viewModel.todaysEntry.emotion.picture}"

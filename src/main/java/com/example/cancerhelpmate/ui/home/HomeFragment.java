@@ -20,6 +20,7 @@ import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
 import com.example.cancerhelpmate.databinding.DayTrackerTodayPopupBinding;
 import com.example.cancerhelpmate.databinding.DietStatsPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentHomeBinding;
+import com.example.cancerhelpmate.databinding.HomeActivitiesPopupBinding;
 import com.example.cancerhelpmate.databinding.HomeWelcomeLayoutBinding;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerEntryEditDialog;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment {
         setupWelcomeLayout();
         setupDayTrackerLayout();
         setupStatsLayout();
+        setupActivitiesPopup();
         setupObservers(binding);
         return view;
     }
@@ -114,6 +116,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(WellbeingEntry entry) {
                 statsPopupBinding.invalidateAll();
+            }
+        });
+    }
+
+    private void setupActivitiesPopup(){
+        final HomeActivitiesPopupBinding statsPopupBinding = binding.homeActivitiesPopup;
+        statsPopupBinding.setLifecycleOwner(getViewLifecycleOwner());
+        statsPopupBinding.activitiesPopupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) requireActivity();
+                activity.navigateToFrag(R.id.nav_activities);
             }
         });
     }

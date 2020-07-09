@@ -48,13 +48,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/diet_stats_popup_breakfast_image"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="-8dp"
+                android:layout_marginTop="-4dp"
                 android:layout_marginLeft="8dp"
-                android:scaleType="fitXY"
                 android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.GONE : View.VISIBLE}"
                 android:src="@{viewModel.todaysBreakfastRecipe.imageLink}"
                 />

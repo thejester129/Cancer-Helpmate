@@ -65,9 +65,20 @@
     <string name="emotion">Emotion:</string>
     <string name="breathing_exercise">Breathing Exercise</string>
     <string name="start">Start</string>
-    <string name="breathe_out">Breathe out ...</string>
-    <string name="breathe_in">Breathe in ...</string>
+    <string name="breathe_out">Breathe out …</string>
+    <string name="breathe_in">Breathe in …</string>
     <string name="stop">Stop</string>
     <string name="menu_activities">Activities</string>
     <string name="sleep_aid">SleepAid</string>
+    <string name="add_any_comments_about_your_day">Add any comments about your day :</string>
+    <string name="weekly_report">Weekly Report</string>
+    <string name="quality_of_life">Quality of Life</string>
+    <string name="how_would_you_rate_your_quality_of_life_in_the_last_week">How would you rate your quality of life in the last week?</string>
+    <string name="how_satisfied_are_you_with_your_health_in_the_last_week">How satisfied are you with your health in the last week?</string>
+    <string name="how_available_has_the_information_that_you_need_in_relation_to_your_cancer_experience_been_in_the_last_week">How available has the information that you need in relation to your cancer experience been in the last week?</string>
+    <string name="send">Send</string>
+    <string name="additional_comments">Additional Comments</string>
+    <string name="tap_day_tracker_weekly">Tap here to complete weekly report</string>
+    <string name="pain_level_category">Pain Level</string>
+    <string name="tap_here_to_check_out_some_activities">Tap here to check out some activities</string>
 </resources>

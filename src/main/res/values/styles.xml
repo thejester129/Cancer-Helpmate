@@ -71,4 +71,9 @@
         <item name="android:layout_marginRight">16dp</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/colorSecondaryLight</item>
+        <item name="colorControlNormal">@color/colorGreyLight</item>
+    </style>
+
 </resources>

@@ -22,7 +22,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="16dp"
             app:srcCompat="@drawable/ic_add_circle_48dp"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorSecondary"
             android:layout_marginRight="16dp"/>
 
     </RelativeLayout>

@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout >
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/day_tracker_graph_view"
+            android:layout_width="match_parent"
+            android:layout_height="288dp"
+            />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignTop="@+id/day_tracker_graph_pain_text"
+            android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
+            android:layout_alignRight="@+id/day_tracker_graph_pain_text"
+            android:src="@drawable/ic_square" />
+
+        <ImageView
+            android:id="@+id/day_tracker_pain_tick"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignTop="@+id/day_tracker_graph_pain_text"
+            android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
+            android:layout_alignRight="@+id/day_tracker_graph_pain_text"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_checkbox"
+        />
+
+
+        <TextView
+            android:id="@+id/day_tracker_graph_pain_text"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:paddingRight="48dp"
+            style="@style/App.TextAppearance.Medium"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/day_tracker_graph_view"
+            android:text="@string/pain_level_category"
+            />
+
+        <Spinner
+            android:id="@+id/day_tracker_time_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/day_tracker_graph_pain_text"
+            />
+
+    </RelativeLayout>
+</layout>

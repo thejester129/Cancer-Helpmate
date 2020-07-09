@@ -42,6 +42,11 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="64dp"
@@ -53,17 +58,17 @@
             android:text="@={entry.title}"
             />
 
-        <Button
-            android:id="@+id/checklist_dialog_save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-                />
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="48dp"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/checklist_dialog_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            style="@style/AppTheme.Button1"
+                />
 
+    </LinearLayout>
 </layout>

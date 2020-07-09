@@ -32,10 +32,10 @@
             android:layout_centerInParent="true"
             />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/breakfast_popup_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:visibility="@{viewModel.todaysBreakfastRecipe == null ? View.GONE : View.VISIBLE}"
             android:layout_centerInParent="true"
             android:src="@{viewModel.todaysBreakfastRecipe.imageLink}"

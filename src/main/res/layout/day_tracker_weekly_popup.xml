@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel"
+            />
+
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="144dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekly_report"
+            style="@style/App.TextAppearance.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            />
+
+        <ImageView
+            android:id="@+id/day_tracker_weekly_popup_add_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_day_tracker_weekly"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/day_tracker_weekly_popup_empty_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center_horizontal"
+            android:paddingBottom="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            style="@style/App.TextAppearance.Medium"
+            android:text="@string/tap_day_tracker_weekly"
+            />
+
+
+        <Button
+            android:id="@+id/day_tracker_weekly_popup_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+    </RelativeLayout>
+</layout>

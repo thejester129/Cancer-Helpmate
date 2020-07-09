@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 
 import com.example.cancerhelpmate.common.DateManager;
 import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotionItem;
+import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotions;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,10 +22,12 @@ public class DayTrackerEntry {
     private DayTrackerEmotionItem emotion;
     @ColumnInfo(name = "day_tracker_pain_level")
     private int painLevel;
-
+    @ColumnInfo(name = "day_tracker_description")
+    private String description;
 
     public DayTrackerEntry() {
         this.date = DateManager.getTodayAsString();
+        this.emotion = new DayTrackerEmotions.DayTrackerEmotionHappy();
     }
 
     @Ignore
@@ -32,6 +35,14 @@ public class DayTrackerEntry {
         this.date = date;
         this.painLevel = painLevel;
         this.emotion = emotion;
+    }
+
+    @Ignore
+    public DayTrackerEntry(@NotNull String date, int painLevel, DayTrackerEmotionItem emotion, String description) {
+        this.date = date;
+        this.painLevel = painLevel;
+        this.emotion = emotion;
+        this.description = description;
     }
 
     @NotNull
@@ -59,4 +70,11 @@ public class DayTrackerEntry {
         this.painLevel = painLevel;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

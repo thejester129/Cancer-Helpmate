@@ -7,11 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.example.cancerhelpmate.database.journal.JournalDAO;
-import com.example.cancerhelpmate.database.journal.JournalEntry;
-import com.example.cancerhelpmate.database.wellbeing.WellbeingRecipeConverter;
-
-@Database(entities = {DayTrackerEntry.class}, version = 1, exportSchema = false)
+@Database(entities = {DayTrackerEntry.class, DayTrackerWeeklyEntry.class}, version = 1, exportSchema = false)
 @TypeConverters({DayTrackerEmotionConverter.class})
 public abstract class DayTrackerDatabase extends RoomDatabase {
 
@@ -34,7 +30,8 @@ public abstract class DayTrackerDatabase extends RoomDatabase {
     }
 
     public static void resetDatabase() {
-        INSTANCE.getDAO().deleteTable();
+        INSTANCE.getDAO().deleteDayTrackersTable();
+        INSTANCE.getDAO().deleteDayTrackersWeeklyTable();
     }
 
 }

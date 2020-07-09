@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.common;
 
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.InverseBindingAdapter;
@@ -11,6 +13,11 @@ public class BindingUtils {
     @BindingAdapter({"android:src"})
     public static void setImageViewResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
+    }
+
+    @BindingAdapter({"android:rating"})
+    public static void setRating(RatingBar bar, int rating) {
+        bar.setRating(rating);
     }
 
     @BindingAdapter("android:text")
