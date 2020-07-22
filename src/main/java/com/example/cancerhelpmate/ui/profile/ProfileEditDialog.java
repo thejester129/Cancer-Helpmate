@@ -42,6 +42,7 @@ public class ProfileEditDialog extends DialogFragment {
     private Button saveButton;
     private ImageButton closeButton;
     private ProfileViewModel viewModel;
+    private Spinner genderSpinner;
 
     public ProfileEditDialog(ProfileViewModel viewModel) {
         this.viewModel = viewModel;
@@ -67,6 +68,7 @@ public class ProfileEditDialog extends DialogFragment {
                     dismiss();
                 }
                 else{
+
                 }
             }
         };
@@ -91,10 +93,12 @@ public class ProfileEditDialog extends DialogFragment {
         diagnosisSpinner = view.findViewById(R.id.profile_edit_dialog_diagnosis_spinner);
         saveButton = view.findViewById(R.id.profile_edit_dialog_save_button);
         closeButton = view.findViewById(R.id.toolbar_close_button);
+        //genderSpinner = view.findViewById(R.id.profile_edit_dialog_gender_spinner);
     }
 
     public void createBindings() {
         setupDiagnosisSpinner();
+        //setupGenderSpinner();
         setupDates();
 
         saveButton.setOnClickListener(saveButtonListener);
@@ -145,6 +149,50 @@ public class ProfileEditDialog extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 viewModel.setEditProfileDiagnosis(diagnosisSpinner.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void setupGenderSpinner(){
+        List<String> categories = new ArrayList<>();
+        categories.add("Male");
+        categories.add("Female");
+        categories.add("Other/Prefer not to say");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, categories);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(dataAdapter);
+        if(viewModel.getProfile().isInitialised()){
+            if (viewModel.getProfile().isMale()){
+               genderSpinner.setSelection(0);
+            }
+            else if (viewModel.getProfile().isFemale()){
+                genderSpinner.setSelection(1);
+            }
+            else if (viewModel.getProfile().isOther()){
+                genderSpinner.setSelection(2);
+            }
+
+        }
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        viewModel.setMale();
+                        break;
+                    case 1:
+                        viewModel.setFemale();
+                        break;
+                    case 2:
+                        viewModel.setOther();
+                        break;
+                }
             }
 
             @Override

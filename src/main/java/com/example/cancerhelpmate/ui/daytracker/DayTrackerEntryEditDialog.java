@@ -13,12 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cancerhelpmate.R;
+import com.example.cancerhelpmate.common.LinePagerIndicatorDecoration;
 import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
+import com.example.cancerhelpmate.database.journal.JournalEntry;
 import com.example.cancerhelpmate.databinding.DayTrackerEntryEditDialogBinding;
+import com.example.cancerhelpmate.ui.daytracker.day_tracker_today.word_tool.DayTrackerBodyWordsRecyclerAdapter;
+import com.example.cancerhelpmate.ui.daytracker.day_tracker_today.word_tool.DayTrackerHeaderWordsRecyclerAdapter;
 import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotionSpinnerAdapter;
 import com.example.cancerhelpmate.ui.daytracker.emotions.DayTrackerEmotions;
+import com.example.cancerhelpmate.ui.journal.JournalRecyclerAdapter;
+
+import java.util.List;
 
 public  class DayTrackerEntryEditDialog extends DialogFragment {
     private DayTrackerViewModel viewModel;
@@ -59,12 +68,14 @@ public  class DayTrackerEntryEditDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DayTrackerEntryEditDialogBinding binding = DataBindingUtil.inflate(inflater, R.layout.day_tracker_entry_edit_dialog,container,false);
+        View view = binding.getRoot();
         binding.setEntry(entry);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-        getReferences(binding.getRoot());
+        getReferences(view);
         createBindings();
-        return binding.getRoot();
+
+        return view;
     }
 
     private void getReferences(View view){
@@ -73,7 +84,6 @@ public  class DayTrackerEntryEditDialog extends DialogFragment {
         painSeekBar = view.findViewById(R.id.day_tracker_dialog_pain_seek_bar);
         emotionSpinner = view.findViewById(R.id.day_tracker_dialog_emotion_spinner);
     }
-
 
     public void createBindings() {
         if(!addingEntry){

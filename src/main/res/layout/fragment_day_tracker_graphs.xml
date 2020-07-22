@@ -8,57 +8,168 @@
             />
 
     </data>
-    <RelativeLayout
+    <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/day_tracker_graph_view"
+        <RelativeLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="288dp"
+            android:layout_height="match_parent">
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/day_tracker_graph_view"
+                android:layout_width="match_parent"
+                android:layout_height="272dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_pain_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
+                android:layout_alignRight="@+id/day_tracker_graph_fatigue_text"
+                android:src="@drawable/ic_square" />
+
+            <ImageView
+                android:id="@+id/day_tracker_pain_tick"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_pain_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
+                android:layout_alignRight="@+id/day_tracker_graph_fatigue_text"
+                android:tint="@color/colorRed"
+                android:src="@drawable/ic_checkbox"
             />
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignTop="@+id/day_tracker_graph_pain_text"
-            android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
-            android:layout_alignRight="@+id/day_tracker_graph_pain_text"
-            android:src="@drawable/ic_square" />
+            <TextView
+                android:id="@+id/day_tracker_graph_pain_text"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:paddingRight="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/day_tracker_graph_fatigue_text"
+                style="@style/App.TextAppearance.Large"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/day_tracker_graph_view"
+                android:text="@string/pain_level_category"
+                />
 
-        <ImageView
-            android:id="@+id/day_tracker_pain_tick"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignTop="@+id/day_tracker_graph_pain_text"
-            android:layout_alignBottom="@+id/day_tracker_graph_pain_text"
-            android:layout_alignRight="@+id/day_tracker_graph_pain_text"
-            android:tint="@color/colorPrimaryDark"
-            android:src="@drawable/ic_checkbox"
-        />
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_fatigue_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_fatigue_text"
+                android:layout_alignRight="@+id/day_tracker_graph_fatigue_text"
+                android:src="@drawable/ic_square" />
 
+            <ImageView
+                android:id="@+id/day_tracker_fatigue_tick"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_fatigue_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_fatigue_text"
+                android:layout_alignRight="@+id/day_tracker_graph_fatigue_text"
+                android:tint="@android:color/holo_blue_dark"
+                android:src="@drawable/ic_checkbox"
+                />
 
-        <TextView
-            android:id="@+id/day_tracker_graph_pain_text"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_margin="16dp"
-            android:paddingRight="48dp"
-            style="@style/App.TextAppearance.Medium"
-            android:gravity="center_vertical"
-            android:layout_below="@+id/day_tracker_graph_view"
-            android:text="@string/pain_level_category"
-            />
+            <TextView
+                android:id="@+id/day_tracker_graph_fatigue_text"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:paddingRight="48dp"
+                android:layout_alignParentLeft="true"
+                style="@style/App.TextAppearance.Large"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/day_tracker_graph_pain_text"
+                android:text="@string/fatigue_level_category"
+                />
 
-        <Spinner
-            android:id="@+id/day_tracker_time_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_margin="16dp"
-            android:layout_below="@+id/day_tracker_graph_pain_text"
-            />
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_appetite_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_appetite_text"
+                android:layout_alignRight="@+id/day_tracker_graph_appetite_text"
+                android:src="@drawable/ic_square" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/day_tracker_appetite_tick"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_appetite_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_appetite_text"
+                android:layout_alignRight="@+id/day_tracker_graph_appetite_text"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_checkbox"
+                />
+
+            <TextView
+                android:id="@+id/day_tracker_graph_appetite_text"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:paddingRight="48dp"
+                style="@style/App.TextAppearance.Large"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/day_tracker_graph_view"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:text="@string/appetite_level_category"
+                />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_treatment_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_treatment_text"
+                android:layout_alignRight="@+id/day_tracker_graph_appetite_text"
+                android:src="@drawable/ic_square" />
+
+            <ImageView
+                android:id="@+id/day_tracker_treatment_tick"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/day_tracker_graph_treatment_text"
+                android:layout_alignBottom="@+id/day_tracker_graph_treatment_text"
+                android:layout_alignRight="@+id/day_tracker_graph_appetite_text"
+                android:tint="@color/colorSecondary"
+                android:src="@drawable/ic_checkbox"
+                />
+
+            <TextView
+                android:id="@+id/day_tracker_graph_treatment_text"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:paddingRight="64dp"
+                android:layout_alignLeft="@+id/day_tracker_graph_appetite_text"
+                style="@style/App.TextAppearance.Large"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/day_tracker_graph_appetite_text"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:text="@string/treatment"
+                />
+
+            <Spinner
+                android:id="@+id/day_tracker_time_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/day_tracker_graph_fatigue_text"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
 </layout>

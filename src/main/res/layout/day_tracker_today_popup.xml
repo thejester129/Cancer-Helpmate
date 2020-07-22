@@ -45,13 +45,35 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/day_tracker_popup_pain_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{`Pain level: ` + viewModel.todaysEntry.painLevel}"
+            android:text="@{`Pain : ` + viewModel.todaysEntry.painLevel}"
             android:layout_marginStart="16dp"
             android:layout_below="@+id/day_tracker_recycler_emotion_text"
             style="@style/App.TextAppearance.Medium"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Fatigue : ` + viewModel.todaysEntry.fatigueLevel}"
+            android:layout_marginStart="16dp"
+            android:layout_below="@+id/day_tracker_recycler_emotion_text"
+            android:layout_centerHorizontal="true"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Appetite : ` + viewModel.todaysEntry.appetiteLevel}"
+            android:layout_below="@+id/day_tracker_recycler_emotion_text"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            style="@style/App.TextAppearance.Medium"
+            />
+
 
         <TextView
             android:id="@+id/day_tracker_popup_empty"

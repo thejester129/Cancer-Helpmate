@@ -34,14 +34,25 @@ public interface ProfileDAO {
     @Query("select profile_initialised from profile where profile_id == 0")
     public LiveData<Boolean> getLiveInitialised();
 
-    @Query("update profile set profile_name = :name where profile_id == 0")
-    public void setName(String name);
+    @Query("update profile set profile_first_name = :name where profile_id == 0")
+    public void setFirstName(String name);
 
-    @Query("update profile set profile_picture = :image where profile_id == 0")
-    public void setImage(byte[] image);
+    @Query("update profile set profile_second_name = :name where profile_id == 0")
+    public void setSecondName(String name);
+
 
     @Query("update profile set profile_initialised = :initialised where profile_id == 0")
     public void setInitialised(boolean initialised);
+
+    @Query("update profile set profile_male = :male where profile_id == 0")
+    public void setMale(boolean male);
+
+    @Query("update profile set profile_female = :female where profile_id == 0")
+    public void setFemale(boolean female);
+
+    @Query("update profile set profile_other = :other where profile_id == 0")
+    public void setOther(boolean other);
+
 
 
     @Query("DELETE FROM profile")

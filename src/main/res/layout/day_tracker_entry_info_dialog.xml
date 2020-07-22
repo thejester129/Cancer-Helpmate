@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="entry"
             type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry"
@@ -33,19 +34,19 @@
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@android:color/white"
+                android:text="@{entry.date}"
                 android:layout_gravity="center"/>
 
 
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{entry.date}"
-            style="@style/App.TextAppearance.Medium"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@{entry.emotion.picture}"
             />
 
         <TextView
@@ -59,12 +60,46 @@
             android:layout_marginBottom="16dp"
             />
 
+        <TextView
+            android:id="@+id/day_tracker_dialog_fatigue_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Fatigue level : ` + entry.fatigueLevel}"
+            style="@style/App.TextAppearance.Large"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            />
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+        <TextView
+            android:id="@+id/day_tracker_dialog_appetite_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`Appetite level : ` + entry.appetiteLevel}"
+            style="@style/App.TextAppearance.Large"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/treatment"
             android:layout_marginLeft="16dp"
-            android:src="@{entry.emotion.picture}"
+            android:layout_marginTop="8dp"
+            style="@style/App.TextAppearance.Medium"
+            android:visibility="@{entry.treatment? View.VISIBLE : View.GONE}"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_treatment"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            style="@style/App.TextAppearance.Medium"
+            android:visibility="@{entry.treatment? View.GONE : View.VISIBLE}"
             />
 
         <TextView
@@ -76,6 +111,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             />
+
 
     </LinearLayout>
 </layout>

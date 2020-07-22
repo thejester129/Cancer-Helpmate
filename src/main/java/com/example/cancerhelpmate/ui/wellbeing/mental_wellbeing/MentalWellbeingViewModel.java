@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.ui.activities.ActivityItem;
+import com.example.cancerhelpmate.ui.resources.ResourceItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,15 @@ public class MentalWellbeingViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public List<ActivityItem> getMentalWellbeingActivities(){
-        List<ActivityItem> activityItems = new ArrayList<>();
+    public List<ResourceItem> getMentalResources(){
+        List<ResourceItem> resourceItems = new ArrayList<>();
 
-        activityItems.add(new ActivityItem("Breathing Exercise",R.id.nav_breathing_exercise, R.drawable.gradient_breathing_background_menu, R.drawable.breathing_exercise_icon));
+        resourceItems.add(new ResourceItem("Managing Fatigue",R.drawable.emotion_tired,"https://www.cancerresearchuk.org/about-cancer/coping/physically/fatigue/managing-treating-cancer-fatigue",R.drawable.fatigue_level_gradient));
+        resourceItems.add(new ResourceItem("Managing Pain",R.drawable.emotion_sad,"https://www.macmillan.org.uk/cancer-information-and-support/impacts-of-cancer/pain",R.drawable.pain_slider_gradient_background));
+        resourceItems.add(new ResourceItem("Loss of Appetite",R.drawable.emotion_numb,"https://www.cancerresearchuk.org/about-cancer/coping/physically/diet-problems/types/taste-changes-and-loss-of-appetite",R.drawable.appetite_level_gradient));
+        resourceItems.add(new ResourceItem("Cancer and Corona Virus",R.drawable.ic_sick,"https://www.teenagecancertrust.org/advice/coronavirus-when-you-have-or-have-had-cancer",R.drawable.teenage_cancer_trust_gradient_background));
 
-        return activityItems;
+        return resourceItems;
     }
+
 }

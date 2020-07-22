@@ -40,7 +40,7 @@ public class ProfileViewModel extends AndroidViewModel {
     }
 
     public void refresh(){
-        name.setValue(getProfile().getName());
+        name.setValue(getProfile().getFirstName()+" "+getProfile().getSecondName());
         diagnosis.setValue(getProfile().getDiagnosis());
         currentDay.setValue(getCurrentDay());
         totalDays.setValue(getTotalDays());
@@ -59,13 +59,6 @@ public class ProfileViewModel extends AndroidViewModel {
         setInitialised();
     }
 
-    public void setProfilePicture(byte[] image){
-        dao.setImage(image);
-    }
-
-    public Bitmap getPictureBitmap(){
-        return ImageManager.byteArrayToBitmap(getProfile().getPicture());
-    }
 
     public LiveData<byte []> getLivePicture(){
         return dao.getLivePicture();
@@ -74,6 +67,24 @@ public class ProfileViewModel extends AndroidViewModel {
     public boolean editProfileComplete(){
         //TODO checks
         return true;
+    }
+
+    public void setMale(){
+        dao.setMale(true);
+        dao.setFemale(false);
+        dao.setOther(false);
+    }
+
+    public void setFemale(){
+        dao.setMale(false);
+        dao.setFemale(true);
+        dao.setOther(false);
+    }
+
+    public void setOther(){
+        dao.setMale(false);
+        dao.setFemale(false);
+        dao.setOther(true);
     }
 
     public LiveData<ProfileEntry> getLiveProfile() {
@@ -88,8 +99,12 @@ public class ProfileViewModel extends AndroidViewModel {
         return dao.getProfile();
     }
 
-    public void setName(String name) {
-        dao.setName(name);
+    public void setFirstName(String name) {
+        dao.setFirstName(name);
+    }
+
+    public void setSecondName(String name) {
+        dao.setSecondName(name);
     }
 
     public void setInitialised() {

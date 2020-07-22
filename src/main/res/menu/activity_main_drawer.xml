@@ -15,24 +15,20 @@
             android:title="@string/menu_wellbeing" />
 
         <item
+            android:id="@+id/nav_day_tracker"
+            android:icon="@drawable/ic_day_tracker_menu"
+            android:title="@string/menu_day_tracker" />
+
+
+        <item
             android:id="@+id/nav_activities"
             android:icon="@drawable/ic_activities"
             android:title="@string/menu_activities" />
 
         <item
-            android:id="@+id/nav_day_tracker"
-            android:icon="@drawable/ic_day_tracker_menu"
-            android:title="@string/menu_day_tracker" />
-
-        <item
             android:id="@+id/nav_checklist"
             android:icon="@drawable/ic_checkbox"
             android:title="@string/menu_checklist" />
-
-        <item
-            android:id="@+id/nav_journal"
-            android:icon="@drawable/ic_journal"
-            android:title="@string/menu_journal" />
 
         <item
             android:id="@+id/nav_resources"

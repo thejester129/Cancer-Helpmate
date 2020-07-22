@@ -6,6 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.cancerhelpmate.R;
+import com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietFilterRecipeType;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -40,25 +41,23 @@ public class RecipeEntry {
     private double carbohydrates;
     @ColumnInfo(name = "recipe_fibre")
     private double fibre;
-    @ColumnInfo(name = "recipe_instructions")
-    private String instructions;
     @ColumnInfo(name = "recipe_preparation_time")
     private int preparation_time;
     @ColumnInfo(name = "recipe_cooking_time")
     private int cooking_time;
     @ColumnInfo(name = "recipe_image_link")
     private int imageLink;
-    @ColumnInfo(name = "recipe_video_link")
-    private String videoLink;
-    @ColumnInfo(name = "recipe_vegetarian")
+    private boolean dryAndSoreMouth;
+    private boolean problemsChewing;
+    private boolean lossOfOfTasteOrSmell;
+    private boolean feelingSick;
+    private boolean healthyEating;
     private boolean vegetarian;
-    @ColumnInfo(name = "recipe_vegan")
-    private boolean vegan;
-
+    private DietFilterRecipeType dietFilterRecipeType;
 
     @Ignore
     public RecipeEntry( ){
-        this.imageLink = R.drawable.ic_meal_default;
+        this.imageLink = R.drawable.ic_dinner;
     }
 
     @Ignore
@@ -72,7 +71,7 @@ public class RecipeEntry {
         this.imageLink = imageLink;
     }
 
-    public RecipeEntry( String name,double calories, double protein, double fat,double saturates, double carbohydrates, double fibre,  int preparation_time, int cooking_time, int imageLink, String videoLink,String instructions) {
+    public RecipeEntry(String name, double calories, double protein, double fat, double saturates, double carbohydrates, double fibre, int preparation_time, int cooking_time, int imageLink, boolean dryAndSoreMouth,boolean feelingSick, boolean problemsChewing, boolean lossOfOfTasteOrSmell,  boolean healthyEating, boolean vegetarian, DietFilterRecipeType dietFilterRecipeType) {
         this.name = name;
         this.calories = calories;
         this.protein = protein;
@@ -80,11 +79,16 @@ public class RecipeEntry {
         this.saturates = saturates;
         this.carbohydrates = carbohydrates;
         this.fibre = fibre;
-        this.instructions = instructions;
         this.preparation_time = preparation_time;
         this.cooking_time = cooking_time;
         this.imageLink = imageLink;
-        this.videoLink = videoLink;
+        this.dryAndSoreMouth = dryAndSoreMouth;
+        this.problemsChewing = problemsChewing;
+        this.lossOfOfTasteOrSmell = lossOfOfTasteOrSmell;
+        this.feelingSick = feelingSick;
+        this.healthyEating = healthyEating;
+        this.vegetarian = vegetarian;
+        this.dietFilterRecipeType = dietFilterRecipeType;
     }
 
     public int getId() {
@@ -151,14 +155,6 @@ public class RecipeEntry {
         this.fibre = fibre;
     }
 
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
     public int getPreparation_time() {
         return preparation_time;
     }
@@ -181,14 +177,6 @@ public class RecipeEntry {
 
     public void setImageLink(int imageLink) {
         this.imageLink = imageLink;
-    }
-
-    public String getVideoLink() {
-        return videoLink;
-    }
-
-    public void setVideoLink(String videoLink) {
-        this.videoLink = videoLink;
     }
 
     public boolean isBreakfastType() {
@@ -239,11 +227,51 @@ public class RecipeEntry {
         this.vegetarian = vegetarian;
     }
 
-    public boolean isVegan() {
-        return vegan;
+    public boolean isDryAndSoreMouth() {
+        return dryAndSoreMouth;
     }
 
-    public void setVegan(boolean vegan) {
-        this.vegan = vegan;
+    public void setDryAndSoreMouth(boolean dryAndSoreMouth) {
+        this.dryAndSoreMouth = dryAndSoreMouth;
+    }
+
+    public boolean isProblemsChewing() {
+        return problemsChewing;
+    }
+
+    public void setProblemsChewing(boolean problemsChewing) {
+        this.problemsChewing = problemsChewing;
+    }
+
+    public boolean isLossOfOfTasteOrSmell() {
+        return lossOfOfTasteOrSmell;
+    }
+
+    public void setLossOfOfTasteOrSmell(boolean lossOfOfTasteOrSmell) {
+        this.lossOfOfTasteOrSmell = lossOfOfTasteOrSmell;
+    }
+
+    public boolean isFeelingSick() {
+        return feelingSick;
+    }
+
+    public void setFeelingSick(boolean feelingSick) {
+        this.feelingSick = feelingSick;
+    }
+
+    public boolean isHealthyEating() {
+        return healthyEating;
+    }
+
+    public void setHealthyEating(boolean healthyEating) {
+        this.healthyEating = healthyEating;
+    }
+
+    public DietFilterRecipeType getDietFilterRecipeType() {
+        return dietFilterRecipeType;
+    }
+
+    public void setDietFilterRecipeType(DietFilterRecipeType dietFilterRecipeType) {
+        this.dietFilterRecipeType = dietFilterRecipeType;
     }
 }

@@ -14,7 +14,11 @@ import com.example.cancerhelpmate.database.recipes.RecipeEntry;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingDAO;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingDatabase;
 import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
+import com.example.cancerhelpmate.ui.daytracker.day_tracker_graphs.DayTrackerGraphSettings;
+import com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietBrowserFilterSettings;
+import com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietFilterRecipeType;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,8 +28,8 @@ public class DietViewModel extends AndroidViewModel {
     private RecipeDAO dao;
     private WellbeingDAO wellbeingDAO;
     public MutableLiveData<Boolean>exitRecipeBrowser = new MutableLiveData<>(false);
-    public MutableLiveData<RecipeType>browsingRecipeType = new MutableLiveData<>();
-    public MutableLiveData<DietFilterItem> browserFilter = new MutableLiveData<>(new DietFilterItem());
+    public MutableLiveData<DietRecipeType>browsingRecipeType = new MutableLiveData<>();
+    public MutableLiveData<DietBrowserFilterSettings>browserFilterSettings = new MutableLiveData<>(new DietBrowserFilterSettings());
 
 
     public DietViewModel(@NonNull Application application) {
@@ -68,17 +72,100 @@ public class DietViewModel extends AndroidViewModel {
     }
 
     public void resetBrowserFilter(){
-        browserFilter.setValue(new DietFilterItem());
+        browserFilterSettings.setValue(new DietBrowserFilterSettings());
     }
 
-
     public List<RecipeEntry> getFilteredRecipes(){
-        List<RecipeEntry> filteredRecipes = new ArrayList<>();
-        filteredRecipes.add(getRecipes().get(0));
+
+        List<RecipeEntry>recipes = new ArrayList<>();
+
+        switch (browserFilterSettings.getValue().getDietFilterRecipeType()){
+            case ANY:
+                recipes = getRecipes();
+                break;
+            case MAIN:
+                recipes = getMainRecipes();
+                break;
+            case DRINKS:
+                recipes = getDrinkRecipes();
+                break;
+            case DESSERTS:
+                recipes = getDessertRecipes();
+                break;
+            case STARTERS:
+                recipes = getStarterRecipes();
+                break;
+        }
+
+        List<RecipeEntry> filteredRecipes = new ArrayList<>(recipes);
+
+        for(RecipeEntry recipe : recipes){
+            if(browserFilterSettings.getValue().isDryAndSoreMouth() && !recipe.isDryAndSoreMouth()){
+                filteredRecipes.remove(recipe);
+            }
+            if(browserFilterSettings.getValue().isProblemsChewing() && !recipe.isProblemsChewing()){
+                filteredRecipes.remove(recipe);
+            }
+            if(browserFilterSettings.getValue().isLossOfOfTasteOrSmell() && !recipe.isLossOfOfTasteOrSmell()){
+                filteredRecipes.remove(recipe);
+            }
+            if(browserFilterSettings.getValue().isFeelingSick() && !recipe.isFeelingSick()){
+                filteredRecipes.remove(recipe);
+            }
+            if(browserFilterSettings.getValue().isHealthyEating() && !recipe.isHealthyEating()){
+                filteredRecipes.remove(recipe);
+            }
+            if(browserFilterSettings.getValue().isVegetarian() && !recipe.isVegetarian()){
+                filteredRecipes.remove(recipe);
+            }
+        }
 
         return filteredRecipes;
     }
 
+    private List<RecipeEntry> getMainRecipes(){
+        List<RecipeEntry>recipes = new ArrayList<>();
+
+        for(RecipeEntry recipe : getRecipes()){
+            if(recipe.getDietFilterRecipeType() == DietFilterRecipeType.MAIN){
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
+    }
+
+    private List<RecipeEntry> getDrinkRecipes(){
+        List<RecipeEntry>recipes = new ArrayList<>();
+
+        for(RecipeEntry recipe : getRecipes()){
+            if(recipe.getDietFilterRecipeType() == DietFilterRecipeType.DRINKS){
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
+    }
+
+    private List<RecipeEntry> getDessertRecipes(){
+        List<RecipeEntry>recipes = new ArrayList<>();
+
+        for(RecipeEntry recipe : getRecipes()){
+            if(recipe.getDietFilterRecipeType() == DietFilterRecipeType.DESSERTS){
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
+    }
+
+    private List<RecipeEntry> getStarterRecipes(){
+        List<RecipeEntry>recipes = new ArrayList<>();
+
+        for(RecipeEntry recipe : getRecipes()){
+            if(recipe.getDietFilterRecipeType() == DietFilterRecipeType.STARTERS){
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
+    }
 
     public RecipeEntry getTodaysBreakfastRecipe(){
         return wellbeingDAO.getItem(DateManager.getTodayAsString()).getBreakfast_recipe();
@@ -151,7 +238,7 @@ public class DietViewModel extends AndroidViewModel {
             calories += getTodaysExtraRecipe().getCalories();
         }
 
-        return calories;
+        return round(calories);
     }
 
     public double getTodaysProtein(){
@@ -172,7 +259,78 @@ public class DietViewModel extends AndroidViewModel {
             protein += getTodaysExtraRecipe().getProtein();
         }
 
-        return protein;
+        return round(protein);
+    }
+
+    public double getTodaysFat(){
+        double total = 0;
+        if(getTodaysBreakfastRecipe()!=null){
+            total += getTodaysBreakfastRecipe().getFat();
+        }
+        if(getTodaysLunchRecipe()!=null){
+            total += getTodaysLunchRecipe().getFat();
+        }
+        if(getTodaysDinnerRecipe()!=null){
+            total += getTodaysDinnerRecipe().getFat();
+        }
+        if(getTodaysSupperRecipe()!=null){
+            total += getTodaysSupperRecipe().getFat();
+        }
+        if(getTodaysExtraRecipe()!=null){
+            total += getTodaysExtraRecipe().getFat();
+        }
+
+        return round(total);
+    }
+    public double getTodaysCarbohydrates(){
+        double total = 0;
+        if(getTodaysBreakfastRecipe()!=null){
+            total += getTodaysBreakfastRecipe().getCarbohydrates();
+        }
+        if(getTodaysLunchRecipe()!=null){
+            total += getTodaysLunchRecipe().getCarbohydrates();
+        }
+        if(getTodaysDinnerRecipe()!=null){
+            total += getTodaysDinnerRecipe().getCarbohydrates();
+        }
+        if(getTodaysSupperRecipe()!=null){
+            total += getTodaysSupperRecipe().getCarbohydrates();
+        }
+        if(getTodaysExtraRecipe()!=null){
+            total += getTodaysExtraRecipe().getCarbohydrates();
+        }
+
+        return round(total);
+    }
+
+    public double getTodaysFibre(){
+        double total = 0;
+        if(getTodaysBreakfastRecipe()!=null){
+            total += getTodaysBreakfastRecipe().getFibre();
+        }
+        if(getTodaysLunchRecipe()!=null){
+            total += getTodaysLunchRecipe().getFibre();
+        }
+        if(getTodaysDinnerRecipe()!=null){
+            total += getTodaysDinnerRecipe().getFibre();
+        }
+        if(getTodaysSupperRecipe()!=null){
+            total += getTodaysSupperRecipe().getFibre();
+        }
+        if(getTodaysExtraRecipe()!=null){
+            total += getTodaysExtraRecipe().getFibre();
+        }
+
+        return round(total);
+    }
+
+    public static double round(double value) {
+        int places = 1;
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public double getRecommendedCalories(){
@@ -183,6 +341,27 @@ public class DietViewModel extends AndroidViewModel {
     public double getRecommendedProtein(){
         //TODO recommended
         return 50;
+    }
+
+    public double getRecommendedFat(){
+        //TODO recommended
+        return 70;
+    }
+
+    public double getRecommendedCarbohydrates(){
+        //TODO recommended
+        return 260;
+    }
+
+    public double getRecommendedFibre(){
+        //TODO recommended
+        return 25;
+    }
+
+    public void setFilterCategory(DietFilterRecipeType type){
+        DietBrowserFilterSettings settings = browserFilterSettings.getValue();
+        settings.setDietFilterRecipeType(type);
+        browserFilterSettings.setValue(settings);
     }
 
 }

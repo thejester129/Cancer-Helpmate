@@ -72,7 +72,7 @@
             android:id="@+id/profile_diagnosis"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="@{profileViewModel.diagnosis}"
+            android:text="@{`Diagnosis: ` + profileViewModel.diagnosis}"
             style="@style/App.TextAppearance.Medium"
             android:layout_below="@id/profile_progress_text"
             android:layout_marginLeft="16dp"

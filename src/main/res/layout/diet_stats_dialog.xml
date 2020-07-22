@@ -33,18 +33,65 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 style="@style/App.TextAppearance.Title_Toolbar"
+                android:text="@string/nutrition"
                 />
 
         </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:layout_margin="16dp"
-                android:text="@{`Calories : ` + viewModel.todaysCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
-                style="@style/App.TextAppearance.Medium"
-                />
+        <ImageView
+            android:id="@+id/diet_recipe_information_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_nutrition"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_margin="16dp"
+            android:text="@{`Calories : ` + viewModel.todaysCalories + `kcal / ` + viewModel.recommendedCalories + `kcal`}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_margin="16dp"
+            android:text="@{`Protein : ` + viewModel.todaysProtein + `g / ` + viewModel.recommendedProtein + `g`}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_margin="16dp"
+            android:text="@{`Total Fat : ` + viewModel.todaysFat + `g / ` + viewModel.recommendedFat + `g`}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_margin="16dp"
+            android:text="@{`Total Carbohydrates : ` + viewModel.todaysCarbohydrates + `g / ` + viewModel.recommendedCarbohydrates + `g`}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_margin="16dp"
+            android:text="@{`Total Fibre : ` + viewModel.todaysFibre + `g / ` + viewModel.recommendedFibre + `g`}"
+            style="@style/App.TextAppearance.Medium"
+            />
+
 
     </LinearLayout>
 </layout>

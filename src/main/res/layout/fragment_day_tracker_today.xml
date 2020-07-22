@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="entry"
             type="com.example.cancerhelpmate.database.daytracker.DayTrackerEntry"
@@ -17,16 +19,18 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
+
+            <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/day_tracker_dialog_emotion_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginBottom="8dp"
                     style="@style/App.TextAppearance.Large"
                     android:text="@string/emotion"
@@ -34,9 +38,13 @@
 
                 <Spinner
                     android:id="@+id/day_tracker_dialog_emotion_spinner"
-                    android:layout_width="196dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@+id/day_tracker_dialog_emotion_text"
                     />
 
                 <TextView
@@ -44,8 +52,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/App.TextAppearance.Large"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_below="@+id/day_tracker_dialog_emotion_text"
                     android:text="@{`Pain Level : ` + viewModel.sliderPainLevel}"
                     />
 
@@ -55,30 +64,194 @@
                     android:layout_height="48dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
                     android:min="0"
                     android:max="10"
                     android:thumbTint="@android:color/white"
+                    android:layout_below="@+id/day_tracker_dialog_pain_text"
                     android:progressDrawable="@drawable/pain_slider_gradient_background"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_pain_seek_bar"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/no_pain"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_pain_seek_bar"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="32dp"
+                    android:text="@string/lots_of_pain"
+                    />
+
+                <TextView
+                    android:id="@+id/day_tracker_dialog_fatigue_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     style="@style/App.TextAppearance.Large"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_below="@+id/day_tracker_dialog_pain_seek_bar"
+                    android:text="@{`Fatigue Level : ` + viewModel.sliderFatigueLevel}"
+                    />
+
+                <SeekBar
+                    android:id="@+id/day_tracker_dialog_fatigue_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:layout_marginLeft="16dp"
-                    android:text="@string/add_any_comments_about_your_day"
+                    android:layout_marginRight="16dp"
+                    android:min="0"
+                    android:max="10"
+                    android:thumbTint="@android:color/white"
+                    android:layout_below="@+id/day_tracker_dialog_fatigue_text"
+                    android:progressDrawable="@drawable/fatigue_level_gradient"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_fatigue_seek_bar"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/not_tired"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_fatigue_seek_bar"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="32dp"
+                    android:text="@string/very_tired"
+                    />
+
+                <TextView
+                    android:id="@+id/day_tracker_dialog_appetite_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/App.TextAppearance.Large"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_below="@+id/day_tracker_dialog_fatigue_seek_bar"
+                    android:text="@{`Appetite Level : ` + viewModel.sliderAppetiteLevel}"
+                    />
+
+                <SeekBar
+                    android:id="@+id/day_tracker_dialog_appetite_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:min="0"
+                    android:max="10"
+                    android:thumbTint="@android:color/white"
+                    android:layout_below="@+id/day_tracker_dialog_appetite_text"
+                    android:progressDrawable="@drawable/appetite_level_gradient"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_appetite_seek_bar"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/no_appetite"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/day_tracker_dialog_appetite_seek_bar"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="32dp"
+                    android:text="@string/lot_of_appetite"
+                    />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignTop="@+id/day_tracker_dialog_treatment_text"
+                    android:layout_alignBottom="@+id/day_tracker_dialog_treatment_text"
+                    android:layout_alignRight="@+id/day_tracker_dialog_treatment_text"
+                    android:src="@drawable/ic_square" />
+
+                <ImageView
+                    android:id="@+id/day_tracker_dialog_pain_tick"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignTop="@+id/day_tracker_dialog_treatment_text"
+                    android:layout_alignBottom="@+id/day_tracker_dialog_treatment_text"
+                    android:layout_alignRight="@+id/day_tracker_dialog_treatment_text"
+                    android:tint="@color/colorPrimaryDark"
+                    android:src="@drawable/ic_checkbox"
+                    android:visibility="@{entry.treatment ? View.VISIBLE : View.GONE}"
+                    />
+
+                <TextView
+                    android:id="@+id/day_tracker_dialog_treatment_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_below="@+id/day_tracker_dialog_appetite_seek_bar"
+                    android:layout_marginLeft="32dp"
+                    android:paddingRight="64dp"
+                    style="@style/App.TextAppearance.Large"
+                    android:text="Treatment"
                     />
 
                 <EditText
+                    android:id="@+id/day_tracker_edit_text"
                     android:layout_width="match_parent"
                     android:inputType="textMultiLine"
-                    android:layout_height="156dp"
-                    android:layout_margin="16dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_below="@+id/day_tracker_dialog_treatment_text"
+                    android:hint="@string/additional_comments"
                     android:text="@={entry.description}"
                     />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/day_tracker_dialog_word_tool_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:text="Word tool :"
+                    android:layout_marginLeft="32dp"
+                    android:layout_below="@+id/day_tracker_edit_text"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/day_tracker_header_word_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:layout_below="@+id/day_tracker_dialog_word_tool_header"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/day_tracker_body_word_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_below="@+id/day_tracker_header_word_recycler"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_below="@+id/day_tracker_body_word_recycler"
+                    />
+
+            </RelativeLayout>
         </ScrollView>
 
         <Button

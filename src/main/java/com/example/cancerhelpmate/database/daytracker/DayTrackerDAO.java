@@ -53,6 +53,9 @@ public interface DayTrackerDAO {
     @Query("select * from day_trackers_weekly")
     public LiveData<List<DayTrackerWeeklyEntry>> getLiveWeeklyDayTrackers();
 
+    @Query("update day_trackers set day_tracker_treatment =:treatment")
+    public void setTreatment(boolean treatment);
+
     @Query("DELETE FROM day_trackers")
     public void deleteDayTrackersTable();
 

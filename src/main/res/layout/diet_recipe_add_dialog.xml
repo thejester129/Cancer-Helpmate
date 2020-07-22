@@ -55,7 +55,7 @@
                     android:layout_height="96dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_meal_default"
+                    android:src="@drawable/ic_dinner"
                     />
 
                 <EditText
@@ -157,13 +157,68 @@
                     android:text="@={recipe.cooking_time + 0}"
                     />
 
-            <Button
-                android:id="@+id/diet_recipe_add_dialog_add_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add"
-                android:backgroundTint="@color/colorPrimary"
-                />
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/dry_and_sore_mouth"
+                    android:checked="@={recipe.dryAndSoreMouth}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/problems_chewing"
+                    android:checked="@={recipe.problemsChewing}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/loss_of_taste_or_smell"
+                    android:checked="@={recipe.lossOfOfTasteOrSmell}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/feeling_sick"
+                    android:checked="@={recipe.feelingSick}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/vegetarian"
+                    android:checked="@={recipe.vegetarian}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/healthy_eating"
+                    android:checked="@={recipe.healthyEating}"
+                    />
+
+
+                <Button
+                    android:id="@+id/diet_recipe_add_dialog_add_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add"
+                    android:backgroundTint="@color/colorPrimary"
+                    />
 
             </LinearLayout>
         </ScrollView>

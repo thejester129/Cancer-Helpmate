@@ -16,10 +16,12 @@ public class ProfileEntry {
     @NotNull
     @ColumnInfo(name="profile_id")
     private int id;
-    @ColumnInfo(name="profile_name")
-    private String name;
-    @ColumnInfo(name="profile_picture", typeAffinity = ColumnInfo.BLOB)
-    private byte[] picture;
+    @ColumnInfo(name="profile_first_name")
+    private String firstName;
+    @ColumnInfo(name="profile_second_name")
+    private String secondName;
+    @ColumnInfo(name="profile_picture")
+    private int picture;
     @ColumnInfo(name="profile_start_date")
     private String start_date;
     @ColumnInfo(name="profile_end_date")
@@ -36,8 +38,16 @@ public class ProfileEntry {
     private boolean treatment_bone_marrow;
     @ColumnInfo(name="profile_treatment_other")
     private boolean treatment_other;
+    @ColumnInfo(name="profile_male")
+    private boolean male;
+    @ColumnInfo(name="profile_female")
+    private boolean female;
+    @ColumnInfo(name="profile_other")
+    private boolean other;
     @ColumnInfo(name="profile_initialised")
     private boolean initialised;
+    @ColumnInfo(name="profile_hcp_email")
+    private String hcpEMail;
 
     @Ignore
     public ProfileEntry(){
@@ -46,17 +56,17 @@ public class ProfileEntry {
 
     public ProfileEntry(@NotNull int id) {
         this.id = id;
-        this.name = "";
+        this.firstName = "";
         this.initialised = false;
         this.start_date = DateManager.getTodayAsString();
         this.end_date = DateManager.getTodayAsString();
     }
 
-    public byte[] getPicture() {
+    public int getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 
@@ -68,12 +78,20 @@ public class ProfileEntry {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getStart_date() {
@@ -146,5 +164,37 @@ public class ProfileEntry {
 
     public void setTreatment_other(boolean treatment_other) {
         this.treatment_other = treatment_other;
+    }
+
+    public boolean isMale() {
+        return male;
+    }
+
+    public void setMale(boolean male) {
+        this.male = male;
+    }
+
+    public boolean isFemale() {
+        return female;
+    }
+
+    public void setFemale(boolean female) {
+        this.female = female;
+    }
+
+    public boolean isOther() {
+        return other;
+    }
+
+    public void setOther(boolean other) {
+        this.other = other;
+    }
+
+    public String getHcpEMail() {
+        return hcpEMail;
+    }
+
+    public void setHcpEMail(String hcpEMail) {
+        this.hcpEMail = hcpEMail;
     }
 }

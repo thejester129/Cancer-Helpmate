@@ -9,8 +9,9 @@ public class WellbeingRecipeConverter {
     public static String recipeToString(RecipeEntry recipeEntry) {
         if(recipeEntry != null){
             return recipeEntry.getId() + "/" + recipeEntry.getName() + "/" + recipeEntry.getCalories() + "/" + recipeEntry.getProtein() + "/" + recipeEntry.getFat() + "/" +
-                    recipeEntry.getSaturates() + "/" + recipeEntry.getCarbohydrates() + "/" + recipeEntry.getFibre() + "/" + recipeEntry.getInstructions() + "/" + recipeEntry.getPreparation_time() + "/" +
-                    recipeEntry.getCooking_time() + "/" + recipeEntry.getImageLink() + "/" + recipeEntry.getVideoLink();
+                    recipeEntry.getSaturates() + "/" + recipeEntry.getCarbohydrates() + "/" + recipeEntry.getFibre() + "/" + recipeEntry.getPreparation_time() + "/" +
+                    recipeEntry.getCooking_time() + "/" + recipeEntry.getImageLink() + "/" + recipeEntry.isDryAndSoreMouth() + "/" + recipeEntry.isFeelingSick() + "/"
+                    + recipeEntry.isProblemsChewing() + "/" + recipeEntry.isLossOfOfTasteOrSmell() + "/" +recipeEntry.isHealthyEating() + "/" + recipeEntry.isVegetarian();
         }
         return "";
 
@@ -23,11 +24,9 @@ public class WellbeingRecipeConverter {
         }
         RecipeEntry recipe = new RecipeEntry();
         String[] params = string.split("/");
-        System.out.println("print 1" + string);
         if(params.length == 0){
             return new RecipeEntry();
         }
-        System.out.println("print2" + params[0]);
 
         recipe.setId(Integer.parseInt(params[0]));
         recipe.setName(params[1]);
@@ -37,11 +36,15 @@ public class WellbeingRecipeConverter {
         recipe.setSaturates(Double.parseDouble(params[5]));
         recipe.setCarbohydrates(Double.parseDouble(params[6]));
         recipe.setFibre(Double.parseDouble(params[7]));
-        recipe.setInstructions(params[8]);
-        recipe.setPreparation_time(Integer.parseInt(params[9]));
-        recipe.setCooking_time(Integer.parseInt(params[10]));
-        recipe.setImageLink(Integer.parseInt(params[11]));
-        recipe.setVideoLink(params[12]);
+        recipe.setPreparation_time(Integer.parseInt(params[8]));
+        recipe.setCooking_time(Integer.parseInt(params[9]));
+        recipe.setImageLink(Integer.parseInt(params[10]));
+        recipe.setDryAndSoreMouth(Boolean.parseBoolean(params[11]));
+        recipe.setFeelingSick(Boolean.parseBoolean(params[12]));
+        recipe.setProblemsChewing(Boolean.parseBoolean(params[13]));
+        recipe.setLossOfOfTasteOrSmell(Boolean.parseBoolean(params[14]));
+        recipe.setHealthyEating(Boolean.parseBoolean(params[15]));
+        recipe.setVegetarian(Boolean.parseBoolean(params[16]));
 
         return recipe;
 

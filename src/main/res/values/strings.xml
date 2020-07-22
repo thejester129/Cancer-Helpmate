@@ -81,4 +81,24 @@
     <string name="tap_day_tracker_weekly">Tap here to complete weekly report</string>
     <string name="pain_level_category">Pain Level</string>
     <string name="tap_here_to_check_out_some_activities">Tap here to check out some activities</string>
+    <string name="second_name">Second name(s)</string>
+    <string name="first_name">First name</string>
+    <string name="fatigue_level_category">Fatigue Level</string>
+    <string name="appetite_level_category">Appetite Level</string>
+    <string name="no_treatment">No Treatment</string>
+    <string name="very_tired">Very Tired</string>
+    <string name="not_tired">Not Tired</string>
+    <string name="lots_of_pain">Lots of Pain</string>
+    <string name="no_pain">No Pain</string>
+    <string name="no_appetite">No Appetite</string>
+    <string name="lot_of_appetite">Lots of Appetite</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="gender">Gender</string>
+    <string name="dry_and_sore_mouth">Dry and Sore mouth</string>
+    <string name="problems_chewing">Problems Chewing</string>
+    <string name="loss_of_taste_or_smell">Loss of Taste or Smell</string>
+    <string name="feeling_sick">Feeling Sick</string>
+    <string name="healthy_eating">Healthy Eating</string>
+    <string name="full_recipe_list">Full Recipe List</string>
+    <string name="hcp_email">Health Care Supervisor Email</string>
 </resources>

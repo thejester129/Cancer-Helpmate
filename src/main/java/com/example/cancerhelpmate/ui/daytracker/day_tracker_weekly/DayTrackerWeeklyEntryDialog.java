@@ -101,20 +101,21 @@ public class DayTrackerWeeklyEntryDialog extends DialogFragment {
 
                 try {
                     GMailSender sender = new GMailSender(
-                            "gripexfufuu123@gmail.com",
-                            "Cheesetoast01");
+                            "cancerhelpmate@gmail.com",
+                            //TODO encrypt
+                            "cancerhelpmatetestpassword");
 
                     sender.sendMail("CancerHelpmate Patient Weekly Report",
-                            "Name : " + profileViewModel.getProfile().getName()
+                            "Name : " + profileViewModel.getProfile().getFirstName() + " " + profileViewModel.getProfile().getSecondName()
                                     + "\n\nHow would you rate your quality of life in the last week?\n\nPatient response : " + entry.getQuality_of_life()
                                     + "\n\nHow satisfied are you with your health in the last week? \n\nPatient response : " + entry.getHealth()
                                     + "\n\nHow available has the information that you need in relation to your cancer experience been in the last week?  \n\nPatient response : " + entry.getInformation()
                                     + "\n\nAdditional comments : " + entry.getComment(),
 
 
-                            "gripexfufuu123@gmail.com",
+                            "cancerhelpmate@gmail.com",
 
-                            "thejester129@gmail.com");
+                            profileViewModel.getProfile().getHcpEMail());
 
 
                 } catch (Exception e) {

@@ -31,7 +31,7 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     public String getWelcomeText(){
-        return getWelcomePrefix() + ", " + profileViewModel.getProfile().getName();
+        return getWelcomePrefix() + ", " + profileViewModel.getProfile().getFirstName();
     }
 
     private String getWelcomePrefix(){
@@ -54,7 +54,7 @@ public class HomeViewModel extends AndroidViewModel {
         calendar.setTime(date);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
-        if(hour < 12){
+        if(3 < hour && hour < 12){
             return TimePeriod.MORNING;
         }
         else if(hour < 15){

@@ -7,6 +7,11 @@
             name="viewModel"
             type="com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel"
             />
+
+        <variable
+            name="filterSettings"
+            type="com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietBrowserFilterSettings"
+            />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,9 +64,8 @@
                 android:layout_height="64dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/vegetarian"
-                android:checked="@={viewModel.browserFilter.vegetarian}"
+                android:text="@string/dry_and_sore_mouth"
+                android:checked="@={filterSettings.dryAndSoreMouth}"
                 />
 
             <CheckBox
@@ -69,10 +73,46 @@
                 android:layout_height="64dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/vegan"
-                android:checked="@={viewModel.browserFilter.vegan}"
+                android:text="@string/problems_chewing"
+                android:checked="@={filterSettings.problemsChewing}"
                 />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/loss_of_taste_or_smell"
+                android:checked="@={filterSettings.lossOfOfTasteOrSmell}"
+                />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/feeling_sick"
+                android:checked="@={filterSettings.feelingSick}"
+                />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/vegetarian"
+                android:checked="@={filterSettings.vegetarian}"
+                />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/healthy_eating"
+                android:checked="@={filterSettings.healthyEating}"
+                />
+
 
         </LinearLayout>
 

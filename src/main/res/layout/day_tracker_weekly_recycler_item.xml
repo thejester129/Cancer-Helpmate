@@ -25,7 +25,7 @@
             android:layout_marginLeft="16dp"
             style="@style/App.TextAppearance.Medium"
             android:textStyle="italic"
-            android:text="@{entry.date}"
+            android:text="@{entry.dayMonthYearDate}"
         />
 
     </RelativeLayout>

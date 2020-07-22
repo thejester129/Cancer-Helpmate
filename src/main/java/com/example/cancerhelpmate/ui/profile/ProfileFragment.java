@@ -92,7 +92,7 @@ public class ProfileFragment extends Fragment {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), selectedImage);
                 byte[] image = ImageManager.bitmapToByteArray(bitmap);
-                viewModel.setProfilePicture(image);
+                //viewModel.setProfilePicture(image);
 
             } catch (IOException e) {
                 e.printStackTrace();

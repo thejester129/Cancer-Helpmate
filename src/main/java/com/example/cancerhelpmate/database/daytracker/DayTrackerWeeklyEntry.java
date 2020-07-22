@@ -44,6 +44,10 @@ public class DayTrackerWeeklyEntry {
         return date;
     }
 
+    public String getDayMonthYearDate() {
+        return DateManager.dateToDayMonthYearString(date);
+    }
+
     public void setDate(@NotNull String date) {
         this.date = date;
     }

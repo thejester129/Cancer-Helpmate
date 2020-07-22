@@ -2,9 +2,6 @@ package com.example.cancerhelpmate.ui.wellbeing.diet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,9 +22,6 @@ import com.example.cancerhelpmate.databinding.DietLunchPopupBinding;
 import com.example.cancerhelpmate.databinding.DietStatsPopupBinding;
 import com.example.cancerhelpmate.databinding.DietSupperPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentDietBinding;
-import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
-
-import java.util.List;
 
 public class DietFragment extends Fragment {
     private FragmentDietBinding binding;
@@ -161,7 +155,7 @@ public class DietFragment extends Fragment {
             else{
                 openRecipeBrowserDialog();
             }
-            viewModel.browsingRecipeType.setValue(RecipeType.BREAKFAST);
+            viewModel.browsingRecipeType.setValue(DietRecipeType.BREAKFAST);
         }
     };
 
@@ -175,7 +169,7 @@ public class DietFragment extends Fragment {
             else{
                 openRecipeBrowserDialog();
             }
-            viewModel.browsingRecipeType.setValue(RecipeType.LUNCH);
+            viewModel.browsingRecipeType.setValue(DietRecipeType.LUNCH);
         }
     };
 
@@ -189,7 +183,7 @@ public class DietFragment extends Fragment {
             else{
                 openRecipeBrowserDialog();
             }
-            viewModel.browsingRecipeType.setValue(RecipeType.DINNER);
+            viewModel.browsingRecipeType.setValue(DietRecipeType.DINNER);
         }
     };
 
@@ -203,7 +197,7 @@ public class DietFragment extends Fragment {
             else{
                 openRecipeBrowserDialog();
             }
-            viewModel.browsingRecipeType.setValue(RecipeType.SUPPER);
+            viewModel.browsingRecipeType.setValue(DietRecipeType.SUPPER);
         }
     };
 
@@ -217,7 +211,7 @@ public class DietFragment extends Fragment {
             else{
                 openRecipeBrowserDialog();
             }
-            viewModel.browsingRecipeType.setValue(RecipeType.EXTRA);
+            viewModel.browsingRecipeType.setValue(DietRecipeType.EXTRA);
         }
     };
 

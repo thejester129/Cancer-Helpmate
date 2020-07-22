@@ -22,25 +22,37 @@ public class DayTrackerEntry {
     private DayTrackerEmotionItem emotion;
     @ColumnInfo(name = "day_tracker_pain_level")
     private int painLevel;
+    @ColumnInfo(name = "day_tracker_fatigue_level")
+    private int fatigueLevel;
+    @ColumnInfo(name = "day_tracker_appetite_level")
+    private int appetiteLevel;
+    @ColumnInfo(name = "day_tracker_treatment")
+    private boolean treatment;
     @ColumnInfo(name = "day_tracker_description")
     private String description;
 
     public DayTrackerEntry() {
         this.date = DateManager.getTodayAsString();
         this.emotion = new DayTrackerEmotions.DayTrackerEmotionHappy();
+        this.treatment = true;
     }
 
     @Ignore
-    public DayTrackerEntry(@NotNull String date, int painLevel, DayTrackerEmotionItem emotion) {
+    public DayTrackerEntry(@NotNull String date, int painLevel,int fatigueLevel, int appetiteLevel, DayTrackerEmotionItem emotion,boolean treatment) {
         this.date = date;
         this.painLevel = painLevel;
+        this.fatigueLevel = fatigueLevel;
+        this.appetiteLevel = appetiteLevel;
         this.emotion = emotion;
+        this.treatment = treatment;
     }
 
     @Ignore
-    public DayTrackerEntry(@NotNull String date, int painLevel, DayTrackerEmotionItem emotion, String description) {
+    public DayTrackerEntry(@NotNull String date, int painLevel,int fatigueLevel,int appetiteLevel, DayTrackerEmotionItem emotion, String description) {
         this.date = date;
         this.painLevel = painLevel;
+        this.fatigueLevel = fatigueLevel;
+        this.appetiteLevel = appetiteLevel;
         this.emotion = emotion;
         this.description = description;
     }
@@ -76,5 +88,33 @@ public class DayTrackerEntry {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getFatigueLevel() {
+        return fatigueLevel;
+    }
+
+    public void setFatigueLevel(int fatigueLevel) {
+        this.fatigueLevel = fatigueLevel;
+    }
+
+    public int getAppetiteLevel() {
+        return appetiteLevel;
+    }
+
+    public void setAppetiteLevel(int appetiteLevel) {
+        this.appetiteLevel = appetiteLevel;
+    }
+
+    public boolean isTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(boolean treatment) {
+        this.treatment = treatment;
+    }
+
+    public void toggleTreatment(){
+        this.treatment = !treatment;
     }
 }

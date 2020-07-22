@@ -2,6 +2,9 @@ package com.example.cancerhelpmate.ui.daytracker.day_tracker_graphs;
 
 public class DayTrackerGraphSettings {
     private boolean graphPainChecked = true;
+    private boolean graphFatigueChecked = true;
+    private boolean graphAppetiteChecked = true;
+    private boolean graphTreatmentChecked = true;
     private boolean graphModeLastWeek = true;
     private boolean graphModeLastMonth;
 
@@ -15,6 +18,30 @@ public class DayTrackerGraphSettings {
 
     public void setGraphPainChecked(boolean graphPainChecked) {
         this.graphPainChecked = graphPainChecked;
+    }
+
+    public boolean isGraphFatigueChecked() {
+        return graphFatigueChecked;
+    }
+
+    public void setGraphFatigueChecked(boolean graphFatigueChecked) {
+        this.graphFatigueChecked = graphFatigueChecked;
+    }
+
+    public boolean isGraphAppetiteChecked() {
+        return graphAppetiteChecked;
+    }
+
+    public void setGraphAppetiteChecked(boolean graphAppetiteChecked) {
+        this.graphAppetiteChecked = graphAppetiteChecked;
+    }
+
+    public boolean isGraphTreatmentChecked() {
+        return graphTreatmentChecked;
+    }
+
+    public void setGraphTreatmentChecked(boolean graphTreatmentChecked) {
+        this.graphTreatmentChecked = graphTreatmentChecked;
     }
 
     public boolean isGraphModeLastWeek() {
@@ -41,5 +68,17 @@ public class DayTrackerGraphSettings {
 
     public void togglePainChecked(){
         this.graphPainChecked = !graphPainChecked;
+    }
+
+    public void toggleFatigueChecked(){
+        this.graphFatigueChecked = !graphFatigueChecked;
+    }
+
+    public void toggleAppetiteChecked(){
+        this.graphAppetiteChecked = !graphAppetiteChecked;
+    }
+
+    public void toggleTreatmentChecked(){
+        this.graphTreatmentChecked = !graphTreatmentChecked;
     }
 }

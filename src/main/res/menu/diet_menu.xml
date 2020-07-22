@@ -8,4 +8,10 @@
         android:title="@string/filter"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_full_list"
+        android:orderInCategory="200"
+        android:title="@string/full_recipe_list"
+        app:showAsAction="never" />
+
 </menu>

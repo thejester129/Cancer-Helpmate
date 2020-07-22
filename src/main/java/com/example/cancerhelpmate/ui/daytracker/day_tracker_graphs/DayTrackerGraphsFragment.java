@@ -1,5 +1,6 @@
 package com.example.cancerhelpmate.ui.daytracker.day_tracker_graphs;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.cancerhelpmate.databinding.FragmentDayTrackerGraphsBinding;
 import com.example.cancerhelpmate.databinding.FragmentJournalBinding;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -28,7 +30,6 @@ import java.util.List;
 public class DayTrackerGraphsFragment extends Fragment {
     private DayTrackerViewModel viewModel;
     private GraphView graph;
-    private LineGraphSeries<DataPoint> painSeries;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentDayTrackerGraphsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_day_tracker_graphs,container,false);
@@ -53,6 +54,27 @@ public class DayTrackerGraphsFragment extends Fragment {
                 else{
                     binding.dayTrackerPainTick.setVisibility(View.GONE);
                 }
+                if(graphSettings.isGraphFatigueChecked()){
+                    addFatigueGraph();
+                    binding.dayTrackerFatigueTick.setVisibility(View.VISIBLE);
+                }
+                else{
+                    binding.dayTrackerFatigueTick.setVisibility(View.GONE);
+                }
+                if(graphSettings.isGraphAppetiteChecked()){
+                    addAppetiteGraph();
+                    binding.dayTrackerAppetiteTick.setVisibility(View.VISIBLE);
+                }
+                else{
+                    binding.dayTrackerAppetiteTick.setVisibility(View.GONE);
+                }
+                if(graphSettings.isGraphTreatmentChecked()){
+                    addTreatmentGraph();
+                    binding.dayTrackerTreatmentTick.setVisibility(View.VISIBLE);
+                }
+                else{
+                    binding.dayTrackerTreatmentTick.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -62,6 +84,26 @@ public class DayTrackerGraphsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.toggleGraphPainChecked();
+            }
+        });
+        binding.dayTrackerGraphFatigueText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.toggleGraphFatigueChecked();
+            }
+        });
+
+        binding.dayTrackerGraphAppetiteText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.toggleGraphAppetiteChecked();
+            }
+        });
+
+        binding.dayTrackerGraphTreatmentText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.toggleGraphTreatmentChecked();
             }
         });
     }
@@ -75,7 +117,11 @@ public class DayTrackerGraphsFragment extends Fragment {
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(10);
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         addPainGraph();
+        addFatigueGraph();
+        addAppetiteGraph();
     }
 
     private void resetGraph(){
@@ -85,11 +131,46 @@ public class DayTrackerGraphsFragment extends Fragment {
     private void addPainGraph(){
         graph.getViewport().setMaxX(viewModel.getGraphTotalDays());
 
-        painSeries = new LineGraphSeries<>(viewModel.getGraphPainValues());
+        LineGraphSeries<DataPoint> painSeries = new LineGraphSeries<>(viewModel.getGraphPainValues());
 
-        painSeries.setTitle("Pain Level");
+        painSeries.setTitle("Pain");
         painSeries.setDrawDataPoints(true);
+        painSeries.setColor(Color.RED);
         graph.addSeries(painSeries);
+    }
+
+    private void addFatigueGraph(){
+        graph.getViewport().setMaxX(viewModel.getGraphTotalDays());
+
+        LineGraphSeries<DataPoint> fatigueSeries = new LineGraphSeries<>(viewModel.getGraphFatigueValues());
+
+        fatigueSeries.setTitle("Fatigue");
+        fatigueSeries.setDrawDataPoints(true);
+        fatigueSeries.setColor(Color.BLUE);
+        graph.addSeries(fatigueSeries);
+    }
+
+    private void addAppetiteGraph(){
+        graph.getViewport().setMaxX(viewModel.getGraphTotalDays());
+
+        LineGraphSeries<DataPoint> appetiteSeries = new LineGraphSeries<>(viewModel.getGraphAppetiteValues());
+
+        appetiteSeries.setTitle("Appetite");
+        appetiteSeries.setDrawDataPoints(true);
+        appetiteSeries.setColor(Color.GREEN);
+        graph.addSeries(appetiteSeries);
+    }
+
+    private void addTreatmentGraph(){
+        graph.getViewport().setMaxX(viewModel.getGraphTotalDays());
+
+        LineGraphSeries<DataPoint> treatmentSeries = new LineGraphSeries<>(viewModel.getGraphTreatmentValues());
+
+        treatmentSeries.setTitle("Treatment");
+        treatmentSeries.setColor(Color.argb(255,255,153,0));
+        treatmentSeries.setDrawBackground(true);
+        treatmentSeries.setBackgroundColor(Color.argb(128,255,153,0));
+        graph.addSeries(treatmentSeries);
     }
 
     private void setupSpinner(FragmentDayTrackerGraphsBinding binding){

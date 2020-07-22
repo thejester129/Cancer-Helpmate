@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cancerhelpmate.MainActivity;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.ui.activities.ActivityRecyclerAdapter;
+import com.example.cancerhelpmate.ui.resources.ResourcesAdapter;
 
 public class MentalWellbeingFragment extends Fragment {
     private MentalWellbeingViewModel viewModel;
@@ -26,9 +27,7 @@ public class MentalWellbeingFragment extends Fragment {
 
     private void setupRecycler(View view){
         RecyclerView recyclerView = view.findViewById(R.id.mental_wellbeing_activities_recycler_view);
-        final ActivityRecyclerAdapter adapter = new ActivityRecyclerAdapter((MainActivity) requireActivity(),recyclerView);
+        final ResourcesAdapter adapter = new ResourcesAdapter(getParentFragmentManager(),recyclerView,viewModel.getMentalResources());
         recyclerView.setAdapter(adapter);
-        adapter.setItems(viewModel.getMentalWellbeingActivities());
-
     }
 }

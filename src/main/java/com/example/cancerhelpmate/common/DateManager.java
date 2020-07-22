@@ -15,11 +15,26 @@ public class DateManager {
         return parseDateToString(cal);
     }
 
-    public static String getYesterdayAsString(){
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
+    public static String dateToDayMonthString(String stringDate){
+        Date date = null;
+        try {
+            date=new SimpleDateFormat(DATE_FORMAT_NOW).parse(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd MMMM");
+        return fullDateFormat.format(date);
+    }
 
-        return parseDateToString(cal);
+    public static String dateToDayMonthYearString(String stringDate){
+        Date date = null;
+        try {
+            date=new SimpleDateFormat(DATE_FORMAT_NOW).parse(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        return fullDateFormat.format(date);
     }
 
     public static int noOfDaysBetween(String date1, String date2){

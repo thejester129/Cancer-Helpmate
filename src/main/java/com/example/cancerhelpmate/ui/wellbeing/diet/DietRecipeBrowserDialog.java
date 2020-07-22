@@ -2,14 +2,10 @@ package com.example.cancerhelpmate.ui.wellbeing.diet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,12 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cancerhelpmate.R;
-import com.example.cancerhelpmate.database.profile.ProfileEntry;
+import com.example.cancerhelpmate.common.WebDialog;
 import com.example.cancerhelpmate.database.recipes.RecipeEntry;
-import com.example.cancerhelpmate.database.wellbeing.WellbeingEntry;
 import com.example.cancerhelpmate.databinding.DietRecipeBrowserDialogBinding;
-
-import org.jetbrains.annotations.NotNull;
+import com.example.cancerhelpmate.ui.resources.ResourceWebDialog;
+import com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietBrowserFilterSettings;
+import com.example.cancerhelpmate.ui.wellbeing.diet.filter.DietBrowserSortDialog;
 
 import java.util.List;
 
@@ -90,7 +86,7 @@ public class DietRecipeBrowserDialog extends DialogFragment implements PopupMenu
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapter = new DietRecipeBrowserRecyclerAdapter(recyclerView, viewModel, getChildFragmentManager());
         recyclerView.setAdapter(adapter);
-        adapter.setItems(viewModel.getRecipes());
+        adapter.setItems(viewModel.getFilteredRecipes());
         viewModel.getLiveRecipes().observe(getViewLifecycleOwner(), new Observer<List<RecipeEntry>>() {
             @Override
             public void onChanged(@Nullable final List<RecipeEntry> recipes) {
@@ -109,9 +105,9 @@ public class DietRecipeBrowserDialog extends DialogFragment implements PopupMenu
                 }
             }
         });
-        viewModel.browserFilter.observe(getViewLifecycleOwner(), new Observer<DietFilterItem>() {
+        viewModel.browserFilterSettings.observe(getViewLifecycleOwner(), new Observer<DietBrowserFilterSettings>() {
             @Override
-            public void onChanged(DietFilterItem filterItem) {
+            public void onChanged(DietBrowserFilterSettings filterItem) {
                 adapter.setItems(viewModel.getFilteredRecipes());
             }
         });
@@ -122,9 +118,12 @@ public class DietRecipeBrowserDialog extends DialogFragment implements PopupMenu
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter:
-                //TODO dialog
                 DialogFragment dialogFragment = new DietBrowserSortDialog(viewModel);
                 dialogFragment.show(getParentFragmentManager(),"tag");
+                return true;
+            case R.id.action_full_list:
+                DialogFragment dialog = WebDialog.newInstance("https://be.macmillan.org.uk/Downloads/CancerInformation/LivingWithAndAfterCancer/MAC17345RecipesLowresPDF20181220.pdf");
+                dialog.show(getParentFragmentManager(), "tag");
                 return true;
 
             default:

@@ -7,21 +7,20 @@
     android:layout_height="72dp"
     android:elevation="4dp"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp"
     android:background="@android:color/white"
     android:layout_margin="4dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/day_tracker_recycler_item_emotion"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_centerVertical="true"
         app:civ_border_width="2dp"
         app:civ_border_color="#FF000000"
         android:layout_marginLeft="16dp"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/day_tracker_recycler_item_pain_background"
+        android:id="@+id/day_tracker_recycler_item_pain_circle"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerVertical="true"
@@ -30,16 +29,6 @@
         android:layout_toRightOf="@+id/day_tracker_recycler_item_emotion"
         android:layout_marginLeft="16dp"/>
 
-    <TextView
-        android:id="@+id/day_tracker_recycler_item_pain_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:textAlignment="center"
-        style="@style/App.TextAppearance.White_Recycler_Shadow_Text"
-        android:layout_alignLeft="@+id/day_tracker_recycler_item_pain_background"
-        android:layout_alignRight="@+id/day_tracker_recycler_item_pain_background"
-        />
 
     <TextView
         android:id="@+id/day_tracker_recycler_item_date"
@@ -50,5 +39,12 @@
         android:textStyle="italic"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp" />
+
+    <ImageView
+        android:id="@+id/day_tracker_recycler_item_pain_background"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>
