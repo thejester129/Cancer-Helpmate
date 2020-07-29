@@ -40,6 +40,10 @@ public class ChecklistViewModel extends AndroidViewModel {
         return dao.getLiveCount();
     }
 
+    public ChecklistEntry getItem(String title){
+        return dao.getItem(title);
+    }
+
     public List<ChecklistEntry> getItems(){
         return dao.getAllItems();
     }

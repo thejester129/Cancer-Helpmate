@@ -7,6 +7,7 @@ import android.view.Menu;
 
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
 import com.example.cancerhelpmate.ui.daytracker.day_tracker_weekly.DayTrackerWeeklyEntryDialog;
+import com.example.cancerhelpmate.ui.home.WelcomeDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileEditDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
@@ -103,9 +104,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showWelcomeDialog(){
-        //TODO finish onboarding
         DialogFragment dialog = ProfileEditDialog.newInstance(profileViewModel);
         dialog.show(getSupportFragmentManager(), "tag");
+
+        DialogFragment welcomeDialog = WelcomeDialog.newInstance();
+        welcomeDialog.show(getSupportFragmentManager(), "tag");
     }
 
     private void setupWeeklyDayTracker(){

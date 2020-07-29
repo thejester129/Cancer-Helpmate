@@ -35,5 +35,10 @@ public class WellbeingViewModel extends AndroidViewModel {
         return dao.getLiveItem(DateManager.getTodayAsString());
     }
 
+    public void resetDatabase(){
+        recipeDAO.deleteTable();
+        dao.deleteTable();
+    }
+
 
 }

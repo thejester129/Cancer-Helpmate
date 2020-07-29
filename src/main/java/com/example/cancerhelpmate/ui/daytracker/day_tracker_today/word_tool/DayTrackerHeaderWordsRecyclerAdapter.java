@@ -32,7 +32,6 @@ public class DayTrackerHeaderWordsRecyclerAdapter extends RecyclerView.Adapter<D
             public void onClick(View v) {
                 int pos = recyclerView.getChildAdapterPosition(v);
                 DayTrackerHeaderWord word = items.get(pos);
-                //TODO highlight and show body
                 bodyWordsRecyclerAdapter.setItems(word.getWords());
                 unselectWords();
                 word.setSelected(true);

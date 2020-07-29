@@ -9,6 +9,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <TextView
+        android:id="@+id/sleep_aid_timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        style="@style/App.TextAppearance.White_Recycler_Shadow_Text"
+        />
+
+    <Spinner
+        android:id="@+id/sleep_aid_timer_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="16dp"
+        android:background="@color/colorSecondary"
+        android:layout_above="@+id/sleep_aid_spinner"
+        />
+
+
     <Spinner
         android:id="@+id/sleep_aid_spinner"
         android:layout_width="match_parent"
@@ -21,6 +43,7 @@
         android:layout_alignParentBottom="true"
         />
 
+
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -29,6 +52,16 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_arrow_down_black"
+        android:layout_alignTop="@+id/sleep_aid_timer_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        />
+
 
     <Button
         android:id="@+id/sleep_aid_start_button"

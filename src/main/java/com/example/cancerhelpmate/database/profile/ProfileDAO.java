@@ -29,7 +29,7 @@ public interface ProfileDAO {
     public LiveData<ProfileEntry> getLiveProfile();
 
     @Query("select profile_picture from profile where profile_id == 0")
-    public LiveData<byte []> getLivePicture();
+    public LiveData<Integer> getLivePicture();
 
     @Query("select profile_initialised from profile where profile_id == 0")
     public LiveData<Boolean> getLiveInitialised();
@@ -53,7 +53,8 @@ public interface ProfileDAO {
     @Query("update profile set profile_other = :other where profile_id == 0")
     public void setOther(boolean other);
 
-
+    @Query("update profile set profile_picture = :picture where profile_id == 0")
+    public void setPicture(int picture);
 
     @Query("DELETE FROM profile")
     public void deleteTable();

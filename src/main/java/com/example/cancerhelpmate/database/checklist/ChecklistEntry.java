@@ -2,6 +2,7 @@ package com.example.cancerhelpmate.database.checklist;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,9 +21,13 @@ public class ChecklistEntry {
     @ColumnInfo(name = "checklist_item_checked")
     private boolean checked;
 
-
+    @Ignore
     public ChecklistEntry() {
 
+    }
+
+    public ChecklistEntry(String title) {
+        this.title = title;
     }
 
     public int getId() {

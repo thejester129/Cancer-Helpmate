@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/profile_gradient_background"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/profile_edit_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorAccent">
+
+
+        <TextView
+            android:id="@+id/toolbar_close_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            style="@style/App.TextAppearance.Title_Toolbar"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/welcome_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/App.TextAppearance.Title_Large"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp"
+        android:text="@string/Welcome"
+        />
+
+    <ImageView
+        android:id="@+id/welcome_logo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/welcome_title"
+        android:src="@drawable/cancer_helpmate_icon"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/App.TextAppearance.Large"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/welcome_logo"
+        android:layout_margin="32dp"
+        android:textAlignment="center"
+        android:text="This application is designed to help you manage your wellbeing and cope with your diagnosis through day-to-day engagement and various activities"
+        />
+
+    <Button
+        android:id="@+id/welcome_dialog_next_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/next"
+        style="@style/AppTheme.Button1"
+        />
+
+
+</RelativeLayout>

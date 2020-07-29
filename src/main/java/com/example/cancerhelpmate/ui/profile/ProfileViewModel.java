@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.common.DateManager;
 import com.example.cancerhelpmate.common.ImageManager;
 import com.example.cancerhelpmate.database.profile.ProfileDAO;
@@ -16,14 +17,17 @@ import com.example.cancerhelpmate.database.profile.ProfileEntry;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class ProfileViewModel extends AndroidViewModel {
     private ProfileDAO dao;
     private ProfileEntry editProfile;
     public MutableLiveData<String> name = new MutableLiveData<>();
+    public MutableLiveData<Integer> editPicture = new MutableLiveData<>();
     public MutableLiveData<String> diagnosis = new MutableLiveData<>();
     public MutableLiveData<Integer> currentDay = new MutableLiveData<>();
     public MutableLiveData<Integer> totalDays = new MutableLiveData<>();
@@ -60,13 +64,14 @@ public class ProfileViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<byte []> getLivePicture(){
-        return dao.getLivePicture();
-    }
-
     public boolean editProfileComplete(){
         //TODO checks
         return true;
+    }
+
+    public void setEditProfilePicture(int picture){
+        editProfile.setPicture(picture);
+        editPicture.setValue(picture);
     }
 
     public void setMale(){
@@ -89,6 +94,10 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public LiveData<ProfileEntry> getLiveProfile() {
         return dao.getLiveProfile();
+    }
+
+    public LiveData<Integer> getLivePicture() {
+        return dao.getLivePicture();
     }
 
     public LiveData<Boolean>getLiveIsInitialised(){
@@ -151,6 +160,18 @@ public class ProfileViewModel extends AndroidViewModel {
                 return ((getDaysLeft() * -1) + 1) + " day in recovery";
             }
         }
+    }
+
+    public List<Integer> getProfilePictures(){
+        List<Integer>pictures = new ArrayList<>();
+        pictures.add(R.drawable.profile_pic_1);
+        pictures.add(R.drawable.profile_pic_3);
+        pictures.add(R.drawable.profile_pic_2);
+        pictures.add(R.drawable.profile_pic_4);
+        pictures.add(R.drawable.profile_pic_5);
+        pictures.add(R.drawable.profile_pic_6);
+
+        return pictures;
     }
 
     public void resetDatabase() {

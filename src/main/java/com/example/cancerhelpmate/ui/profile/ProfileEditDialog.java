@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cancerhelpmate.R;
@@ -34,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileEditDialog extends DialogFragment {
 
     private Button startDateButton;
@@ -43,6 +46,7 @@ public class ProfileEditDialog extends DialogFragment {
     private ImageButton closeButton;
     private ProfileViewModel viewModel;
     private Spinner genderSpinner;
+    private CircleImageView profilePicture;
 
     public ProfileEditDialog(ProfileViewModel viewModel) {
         this.viewModel = viewModel;
@@ -93,6 +97,7 @@ public class ProfileEditDialog extends DialogFragment {
         diagnosisSpinner = view.findViewById(R.id.profile_edit_dialog_diagnosis_spinner);
         saveButton = view.findViewById(R.id.profile_edit_dialog_save_button);
         closeButton = view.findViewById(R.id.toolbar_close_button);
+        profilePicture = view.findViewById(R.id.profile_edit_dialog_picture);
         //genderSpinner = view.findViewById(R.id.profile_edit_dialog_gender_spinner);
     }
 
@@ -106,6 +111,19 @@ public class ProfileEditDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+        profilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment =  ProfilePictureDialog.newInstance(viewModel);
+                dialogFragment.show(getParentFragmentManager(),"tag");
+            }
+        });
+        viewModel.editPicture.observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer s) {
+                profilePicture.setImageResource(s);
             }
         });
     }

@@ -18,12 +18,14 @@ import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.profile.ProfileEntry;
 import com.example.cancerhelpmate.databinding.FragmentProfileBinding;
 import com.example.cancerhelpmate.databinding.FragmentSettingsBinding;
+import com.example.cancerhelpmate.ui.activities.ActivitiesViewModel;
 import com.example.cancerhelpmate.ui.checklist.ChecklistViewModel;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
 import com.example.cancerhelpmate.ui.home.HomeViewModel;
 import com.example.cancerhelpmate.ui.journal.JournalViewModel;
 import com.example.cancerhelpmate.ui.profile.ProfileEditDialog;
 import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
+import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,11 +62,11 @@ public class SettingsFragment extends Fragment {
         DayTrackerViewModel dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
         dayTrackerViewModel.resetDatabase();
 
-        JournalViewModel journalViewModel = new ViewModelProvider(this).get(JournalViewModel.class);
-        journalViewModel.resetDatabase();
-
         ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.resetDatabase();
+
+        WellbeingViewModel wellbeingViewModel = new ViewModelProvider(this).get(WellbeingViewModel.class);
+        wellbeingViewModel.resetDatabase();
 
         viewModel.resetDatabase();
 

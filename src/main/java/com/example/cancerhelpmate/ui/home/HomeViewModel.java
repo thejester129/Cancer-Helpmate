@@ -54,7 +54,10 @@ public class HomeViewModel extends AndroidViewModel {
         calendar.setTime(date);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
-        if(3 < hour && hour < 12){
+        if(hour <= 3){
+            return TimePeriod.EVENING;
+        }
+        else if(hour < 11){
             return TimePeriod.MORNING;
         }
         else if(hour < 15){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
         <variable
@@ -71,6 +72,16 @@
                     android:inputType="textCapWords"
                     android:text="@={viewModel.editProfile.secondName}"
                     android:hint="@string/second_name"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_edit_dialog_picture"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:civ_circle_background_color="@color/colorAccent"
+                    android:src="@{viewModel.editProfile.picture}"
+                    />
 
                 <EditText
                     android:layout_marginTop="16dp"

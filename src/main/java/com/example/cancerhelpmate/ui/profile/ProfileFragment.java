@@ -29,8 +29,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileFragment extends Fragment {
     private ProfileViewModel viewModel;
+    private CircleImageView profilePicture;
     public static final int GET_FROM_GALLERY = 3;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +59,9 @@ public class ProfileFragment extends Fragment {
         binding.profileUserImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
+                DialogFragment dialog = ProfileEditDialog.newInstance(viewModel);
+                dialog.show(getParentFragmentManager(), "tag");
+                //startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
 
             }
         });
@@ -70,11 +75,12 @@ public class ProfileFragment extends Fragment {
                 binding.invalidateAll();
             }
         });
-        viewModel.getLivePicture().observe(getViewLifecycleOwner(), new Observer<byte []>() {
+        viewModel.getLivePicture().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
-            public void onChanged(@NotNull byte [] picture) {
+            public void onChanged(@NotNull Integer picture) {
                 if(picture != null){
                     //TODO set image
+                    binding.profileUserImage.setImageResource(picture);
                 }
             }
         });

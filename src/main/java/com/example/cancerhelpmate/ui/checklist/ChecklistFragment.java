@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.checklist.ChecklistEntry;
 import com.example.cancerhelpmate.databinding.FragmentChecklistBinding;
+import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
+import com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +34,7 @@ public class ChecklistFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ChecklistViewModel.class);
         View view = binding.getRoot();
         binding.setLifecycleOwner(getViewLifecycleOwner());
+        setupDefaultItems();
         setupRecycler(view);
         createBindings(binding);
         return view;
@@ -63,5 +66,21 @@ public class ChecklistFragment extends Fragment {
                 dialog.show(getParentFragmentManager(), "tag");
             }
         });
+    }
+
+    private void setupDefaultItems(){
+        ChecklistEntry entry1 = viewModel.getItem("Complete today's Day Tracker");
+        if(entry1 !=null){
+            DayTrackerViewModel dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
+            entry1.setChecked(dayTrackerViewModel.getTodaysEntryFilled());
+            viewModel.updateEntry(entry1);
+        }
+
+        ChecklistEntry entry2 = viewModel.getItem("Enter a meal in Diet section");
+        if(entry2 !=null){
+            DietViewModel dietViewModel = new ViewModelProvider(this).get(DietViewModel.class);
+            entry2.setChecked(dietViewModel.getDayStatisticsVisible());
+            viewModel.updateEntry(entry2);
+        }
     }
 }

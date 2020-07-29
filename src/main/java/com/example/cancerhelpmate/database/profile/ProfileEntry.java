@@ -1,10 +1,15 @@
 package com.example.cancerhelpmate.database.profile;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.common.DateManager;
 
 import org.jetbrains.annotations.NotNull;
@@ -60,6 +65,7 @@ public class ProfileEntry {
         this.initialised = false;
         this.start_date = DateManager.getTodayAsString();
         this.end_date = DateManager.getTodayAsString();
+        this.picture = R.drawable.ic_profile_color;
     }
 
     public int getPicture() {
@@ -197,4 +203,5 @@ public class ProfileEntry {
     public void setHcpEMail(String hcpEMail) {
         this.hcpEMail = hcpEMail;
     }
+
 }

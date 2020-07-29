@@ -23,6 +23,9 @@ public interface ChecklistDAO {
     @Delete
     public void deleteEntry(ChecklistEntry entry);
 
+    @Query("select * from checklist where checklist_item_title =:title")
+    public ChecklistEntry getItem(String title);
+
     @Query("select * from checklist")
     public List<ChecklistEntry> getAllItems();
 

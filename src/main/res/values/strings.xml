@@ -101,4 +101,7 @@
     <string name="healthy_eating">Healthy Eating</string>
     <string name="full_recipe_list">Full Recipe List</string>
     <string name="hcp_email">Health Care Supervisor Email</string>
+    <string name="choose_a_profile_picture">Choose a profile picture :</string>
+    <string name="welcome">Welcome</string>
+    <string name="next">Next</string>
 </resources>

@@ -34,7 +34,6 @@ public class DayTrackerViewModel extends AndroidViewModel {
         dao = DayTrackerDatabase.getDatabase(application).getDAO();
         dao.getDayTrackers();
         initTodaysValues();
-        addTestData();
     }
 
     private void initTodaysValues(){
