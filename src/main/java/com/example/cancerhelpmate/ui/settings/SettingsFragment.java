@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.ui.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,7 +40,8 @@ public class SettingsFragment extends Fragment {
         binding.setSettingsViewModel(viewModel);
         binding.setLifecycleOwner(this);
         setupBindings(binding);
-        setupObserver();
+        setupObserver(binding);
+        setHasOptionsMenu(true);
         return binding.getRoot();
     }
 
@@ -49,10 +52,28 @@ public class SettingsFragment extends Fragment {
                 resetApp();
             }
         });
+        binding.settingsAcknowledgementsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.toggleAcknowledgements();
+            }
+        });
     }
 
-    private void setupObserver( ){
-        //TODO observer
+    private void setupObserver(final FragmentSettingsBinding binding){
+        viewModel.acknowledgementsVisible.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean visible) {
+                if(visible){
+                    binding.settingsAcknowledgementsDropdown.setImageResource(R.drawable.ic_arrow_up_black);
+                    binding.settingsAcknowledgementsDescription.setVisibility(View.VISIBLE);
+                }
+                else{
+                    binding.settingsAcknowledgementsDropdown.setImageResource(R.drawable.ic_arrow_down_black);
+                    binding.settingsAcknowledgementsDescription.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     private void resetApp(){
@@ -73,4 +94,11 @@ public class SettingsFragment extends Fragment {
         Toast toast = Toast.makeText(getContext(),"App Reset", Toast.LENGTH_SHORT);
         toast.show();
     }
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        menu.findItem(R.id.action_profile).setIcon(profileViewModel.getProfile().getPicture());
+    }
+
 }

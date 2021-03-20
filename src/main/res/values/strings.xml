@@ -104,4 +104,18 @@
     <string name="choose_a_profile_picture">Choose a profile picture :</string>
     <string name="welcome">Welcome</string>
     <string name="next">Next</string>
+    <string name="quiz">Quiz</string>
+    <string name="finish">Finish</string>
+    <string name="my_hospital">My Hospital</string>
+    <string name="hospital_website"><u>Hospital Website</u></string>
+    <string name="quiz_start_text">Test your knowledge and improve your high score! \n\n Click below to begin</string>
+    <string name="submit">Submit</string>
+    <string name="acknowledgements">Acknowledgements</string>
+    <string name="acknowledgement_description">Some of the icons in this application were sourced from the following artists from flaticon.com \n\n
+                                                • Freepik\n
+                                                • DinosoftLabs\n
+                                                • Vectors Market\n
+                                                • ultimatearm\n
+                                                • dDara\n
+                                                • Smashicons\n</string>
 </resources>

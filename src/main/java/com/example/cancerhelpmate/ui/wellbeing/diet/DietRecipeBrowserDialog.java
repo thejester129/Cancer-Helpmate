@@ -122,7 +122,7 @@ public class DietRecipeBrowserDialog extends DialogFragment implements PopupMenu
                 dialogFragment.show(getParentFragmentManager(),"tag");
                 return true;
             case R.id.action_full_list:
-                DialogFragment dialog = WebDialog.newInstance("https://be.macmillan.org.uk/Downloads/CancerInformation/LivingWithAndAfterCancer/MAC17345RecipesLowresPDF20181220.pdf");
+                DialogFragment dialog = WebDialog.newInstance("https://be.macmillan.org.uk/be/p-22480-recipes-for-people-affected-by-cancer.aspx");
                 dialog.show(getParentFragmentManager(), "tag");
                 return true;
 

@@ -3,12 +3,12 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:layout_height="96dp">
+    android:layout_height="64dp">
 
     <ImageView
         android:id="@+id/day_tracker_emotion_spinner_item_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="8dp"
         android:layout_gravity="center_vertical"/>
 

@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.ui.daytracker;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,6 +22,7 @@ import com.example.cancerhelpmate.database.daytracker.DayTrackerEntry;
 import com.example.cancerhelpmate.databinding.DayTrackerTodayPopupBinding;
 import com.example.cancerhelpmate.databinding.FragmentDaytrackerBinding;
 import com.example.cancerhelpmate.ui.daytracker.day_tracker_records.DayTrackerRecordsRecyclerAdapter;
+import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 import com.example.cancerhelpmate.ui.wellbeing.WellbeingViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -35,6 +38,7 @@ public class DayTrackerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_daytracker, container, false);
         setupViewPager(view);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -45,6 +49,13 @@ public class DayTrackerFragment extends Fragment {
 
         TabLayout tabLayout = view.findViewById(R.id.day_tracker_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        menu.findItem(R.id.action_profile).setIcon(profileViewModel.getProfile().getPicture());
     }
 
 }

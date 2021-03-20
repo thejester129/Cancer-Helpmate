@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.cancerhelpmate.ui.activities.quiz.QuizViewModel" />
+
+        <variable
+            name="highScore"
+            type="Integer" />
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/gradient_breathing_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/quiz_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_below="@+id/quiz_high_score"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/white"
+            style="@style/App.TextAppearance.Medium"
+            android:textStyle="bold"
+            android:text="@{`Score : ` + viewModel.currentScore + `/` + viewModel.totalScore}"
+            android:visibility="@{viewModel.showStartText ? View.GONE : View.VISIBLE}"
+            />
+
+        <TextView
+            android:id="@+id/quiz_high_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            style="@style/App.TextAppearance.Medium"
+            android:textStyle="bold"
+            android:text="@{`High Score : ` + highScore + `/` + viewModel.totalScore}"
+            android:visibility="@{viewModel.quizStarted ? View.GONE : View.VISIBLE}"
+            />
+
+        <TextView
+            android:id="@+id/quiz_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="144dp"
+            android:layout_alignParentTop="true"
+            style="@style/App.TextAppearance.Medium"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="@{viewModel.currentQuestion.question}"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            />
+
+        <TextView
+            android:id="@+id/quiz_start_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="144dp"
+            android:layout_alignParentTop="true"
+            style="@style/App.TextAppearance.Medium"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="@string/quiz_start_text"
+            android:visibility="@{viewModel.showStartText ? View.VISIBLE : View.GONE}"
+            />
+
+        <Button
+            android:id="@+id/quiz_answer_1"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@android:color/white"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            android:text="@{viewModel.answer1.text}"
+            android:layout_above="@+id/quiz_answer_2"
+            />
+
+        <Button
+            android:id="@+id/quiz_answer_2"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:textAlignment="center"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/black"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            android:text="@{viewModel.answer2.text}"
+            android:layout_above="@+id/quiz_answer_3"
+            />
+
+        <Button
+            android:id="@+id/quiz_answer_3"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:backgroundTint="@android:color/white"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            android:text="@{viewModel.answer3.text}"
+            android:layout_above="@+id/quiz_answer_4"
+            />
+
+        <Button
+            android:id="@+id/quiz_answer_4"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:backgroundTint="@android:color/white"
+            android:textAlignment="center"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            android:text="@{viewModel.answer4.text}"
+            android:textColor="@android:color/black"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="96dp"
+            />
+
+        <Button
+            android:id="@+id/quiz_start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Button1"
+            android:layout_alignParentBottom="true"
+            android:text="@string/start"
+            android:visibility="@{viewModel.quizStarted ? View.GONE : View.VISIBLE}"
+            />
+
+        <Button
+            android:id="@+id/quiz_next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Button1"
+            android:layout_alignParentBottom="true"
+            android:text="@string/next"
+            android:visibility="@{viewModel.quizStarted ? View.VISIBLE : View.GONE}"
+            />
+
+        <Button
+            android:id="@+id/quiz_finish_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Button1"
+            android:layout_alignParentBottom="true"
+            android:text="@string/submit"
+            android:visibility="@{viewModel.quizFinished ? View.VISIBLE : View.GONE}"
+            />
+
+    </RelativeLayout>
+</layout>

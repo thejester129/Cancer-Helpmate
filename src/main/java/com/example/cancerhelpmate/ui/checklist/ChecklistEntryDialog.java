@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public  class ChecklistEntryDialog extends DialogFragment {
     private ChecklistViewModel viewModel;
-    private CircleImageView closeButton;
+    private ImageView closeButton;
     private Button saveButton;
 
     public ChecklistEntryDialog(ChecklistViewModel viewModel) {

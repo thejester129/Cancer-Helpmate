@@ -83,4 +83,18 @@
         tools:layout="@layout/fragment_sleep_aid">
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_quiz"
+        android:name="com.example.cancerhelpmate.ui.activities.quiz.QuizFragment"
+        android:label="@string/quiz"
+        tools:layout="@layout/fragment_activities_quiz">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_my_hospital"
+        android:name="com.example.cancerhelpmate.ui.my_hospital.MyHospitalFragment"
+        android:label="@string/my_hospital"
+        tools:layout="@layout/fragment_my_hospital">
+    </fragment>
+
 </navigation>

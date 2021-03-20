@@ -24,8 +24,7 @@
                 android:id="@+id/day_tracker_dialog_toolbar_back_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
+
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_arrow_back"/>
 

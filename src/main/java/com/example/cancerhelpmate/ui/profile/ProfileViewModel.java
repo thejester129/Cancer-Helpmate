@@ -63,10 +63,13 @@ public class ProfileViewModel extends AndroidViewModel {
         setInitialised();
     }
 
-
     public boolean editProfileComplete(){
         //TODO checks
         return true;
+    }
+
+    public void setPhoto(byte[] photo){
+        dao.setPhoto(photo);
     }
 
     public void setEditProfilePicture(int picture){
@@ -90,6 +93,10 @@ public class ProfileViewModel extends AndroidViewModel {
         dao.setMale(false);
         dao.setFemale(false);
         dao.setOther(true);
+    }
+
+    public void setHospital(String hospital){
+        dao.setHospital(hospital);
     }
 
     public LiveData<ProfileEntry> getLiveProfile() {
@@ -126,6 +133,10 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public void updateProfile(ProfileEntry entry){
         dao.updateEntry(entry);
+    }
+
+    public void setQuizHighScore(int score){
+        dao.setQuizHighScore(score);
     }
 
 

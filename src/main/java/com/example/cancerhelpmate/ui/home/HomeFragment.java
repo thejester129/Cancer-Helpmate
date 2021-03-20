@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment {
         setupStatsLayout();
         setupActivitiesPopup();
         setupObservers(binding);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -138,6 +141,12 @@ public class HomeFragment extends Fragment {
         dayTrackerViewModel = new ViewModelProvider(this).get(DayTrackerViewModel.class);
         dietViewModel = new ViewModelProvider(this).get(DietViewModel.class);
         exerciseViewModel = new ViewModelProvider(this).get(ExerciseViewModel.class);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        menu.findItem(R.id.action_profile).setIcon(profileViewModel.getProfile().getPicture());
     }
 
 }

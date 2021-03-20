@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.ui.journal;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.journal.JournalEntry;
 import com.example.cancerhelpmate.databinding.FragmentJournalBinding;
+import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +37,7 @@ public class JournalFragment extends Fragment {
         setupObserver();
         setupRecycler(view);
         createBindings(binding);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -67,5 +71,12 @@ public class JournalFragment extends Fragment {
                 dialog.show(getParentFragmentManager(), "tag");
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        menu.findItem(R.id.action_profile).setIcon(profileViewModel.getProfile().getPicture());
     }
 }

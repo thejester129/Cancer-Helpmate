@@ -56,7 +56,13 @@ public class DayTrackerRecordsRecyclerAdapter extends RecyclerView.Adapter<DayTr
     @Override
     public void onBindViewHolder(@NonNull DayTrackerRecordsRecyclerAdapter.ViewHolder holder, int position) {
         DayTrackerEntry entry = items.get(position);
-        holder.date.setText(DateManager.dateToDayMonthYearString(entry.getDate()));
+        String painString = "Pain : " + entry.getPainLevel();
+        holder.painLevel.setText(painString);
+        String fatigueString = "Fatigue : " + entry.getFatigueLevel();
+        holder.fatigueLevel.setText(fatigueString);
+        String appetiteString = "Appetite : " + entry.getAppetiteLevel();
+        holder.appetiteLevel.setText(appetiteString);
+        holder.date.setText(DateManager.dateToDayMonthString(entry.getDate()));
         holder.emotion.setImageResource(entry.getEmotion().getPicture());
         int painLevel = entry.getPainLevel();
         if(painLevel < 4){
@@ -85,6 +91,8 @@ public class DayTrackerRecordsRecyclerAdapter extends RecyclerView.Adapter<DayTr
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView date;
         private TextView painLevel;
+        private TextView fatigueLevel;
+        private TextView appetiteLevel;
         private ImageView painBackground;
         private CircleImageView emotion;
 
@@ -93,6 +101,9 @@ public class DayTrackerRecordsRecyclerAdapter extends RecyclerView.Adapter<DayTr
             date = itemView.findViewById(R.id.day_tracker_recycler_item_date);
             painBackground = itemView.findViewById(R.id.day_tracker_recycler_item_pain_background);
             emotion = itemView.findViewById(R.id.day_tracker_recycler_item_emotion);
+            painLevel = itemView.findViewById(R.id.day_tracker_recycler_item_pain);
+            fatigueLevel = itemView.findViewById(R.id.day_tracker_recycler_item_fatigue);
+            appetiteLevel = itemView.findViewById(R.id.day_tracker_recycler_item_appetite);
         }
     }
 

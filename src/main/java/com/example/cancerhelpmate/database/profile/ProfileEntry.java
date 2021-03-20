@@ -53,6 +53,13 @@ public class ProfileEntry {
     private boolean initialised;
     @ColumnInfo(name="profile_hcp_email")
     private String hcpEMail;
+    @ColumnInfo(name="profile_hospital")
+    private String hospital;
+    @ColumnInfo(name="profile_quiz_high_score")
+    private int quizHighScore;
+    @ColumnInfo(name="profile_photo", typeAffinity = ColumnInfo.BLOB)
+    private byte[] photo;
+
 
     @Ignore
     public ProfileEntry(){
@@ -66,6 +73,7 @@ public class ProfileEntry {
         this.start_date = DateManager.getTodayAsString();
         this.end_date = DateManager.getTodayAsString();
         this.picture = R.drawable.ic_profile_color;
+        this.quizHighScore = 0;
     }
 
     public int getPicture() {
@@ -204,4 +212,27 @@ public class ProfileEntry {
         this.hcpEMail = hcpEMail;
     }
 
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public int getQuizHighScore() {
+        return quizHighScore;
+    }
+
+    public void setQuizHighScore(int quizHighScore) {
+        this.quizHighScore = quizHighScore;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 }

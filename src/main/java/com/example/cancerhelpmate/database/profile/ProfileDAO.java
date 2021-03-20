@@ -40,6 +40,8 @@ public interface ProfileDAO {
     @Query("update profile set profile_second_name = :name where profile_id == 0")
     public void setSecondName(String name);
 
+    @Query("update profile set profile_hospital = :hospital where profile_id == 0")
+    public void setHospital(String hospital);
 
     @Query("update profile set profile_initialised = :initialised where profile_id == 0")
     public void setInitialised(boolean initialised);
@@ -55,6 +57,12 @@ public interface ProfileDAO {
 
     @Query("update profile set profile_picture = :picture where profile_id == 0")
     public void setPicture(int picture);
+
+    @Query("update profile set profile_quiz_high_score = :score where profile_id == 0")
+    public void setQuizHighScore(int score);
+
+    @Query("update profile set profile_photo = :photo where profile_id == 0")
+    public void setPhoto(byte [] photo);
 
     @Query("DELETE FROM profile")
     public void deleteTable();

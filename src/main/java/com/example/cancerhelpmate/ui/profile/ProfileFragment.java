@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 DialogFragment dialog = ProfileEditDialog.newInstance(viewModel);
                 dialog.show(getParentFragmentManager(), "tag");
-                //startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
+//                startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);
 
             }
         });
@@ -98,7 +98,7 @@ public class ProfileFragment extends Fragment {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), selectedImage);
                 byte[] image = ImageManager.bitmapToByteArray(bitmap);
-                //viewModel.setProfilePicture(image);
+                viewModel.setPhoto(image);
 
             } catch (IOException e) {
                 e.printStackTrace();

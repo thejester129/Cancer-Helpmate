@@ -22,7 +22,7 @@ public class DateManager {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd MMMM");
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEE dd MMMM");
         return fullDateFormat.format(date);
     }
 

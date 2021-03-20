@@ -29,7 +29,7 @@
                 android:text="@string/menu_checklist"
                 style="@style/App.TextAppearance.Title_Toolbar"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/checklist_dialog_close_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

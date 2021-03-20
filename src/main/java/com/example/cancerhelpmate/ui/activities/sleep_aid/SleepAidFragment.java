@@ -187,8 +187,9 @@ public class SleepAidFragment extends Fragment {
 
     private void stopTimer(){
         startButton.setText(R.string.start);
-        timer.cancel();
-
+        if(timer !=null){
+            timer.cancel();
+        }
     }
 
     private String formatTime(int totalSeconds){

@@ -2,6 +2,8 @@ package com.example.cancerhelpmate.ui.checklist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +20,7 @@ import com.example.cancerhelpmate.R;
 import com.example.cancerhelpmate.database.checklist.ChecklistEntry;
 import com.example.cancerhelpmate.databinding.FragmentChecklistBinding;
 import com.example.cancerhelpmate.ui.daytracker.DayTrackerViewModel;
+import com.example.cancerhelpmate.ui.profile.ProfileViewModel;
 import com.example.cancerhelpmate.ui.wellbeing.diet.DietViewModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,6 +40,7 @@ public class ChecklistFragment extends Fragment {
         setupDefaultItems();
         setupRecycler(view);
         createBindings(binding);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -82,5 +86,12 @@ public class ChecklistFragment extends Fragment {
             entry2.setChecked(dietViewModel.getDayStatisticsVisible());
             viewModel.updateEntry(entry2);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        ProfileViewModel profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        menu.findItem(R.id.action_profile).setIcon(profileViewModel.getProfile().getPicture());
     }
 }
