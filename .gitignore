@@ -2,6 +2,7 @@
 # Gradle files
 .gradle/
 grade/
+gradle*
 build/
 release/
 app.iml
