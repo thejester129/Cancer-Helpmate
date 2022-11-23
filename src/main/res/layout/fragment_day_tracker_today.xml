@@ -258,8 +258,8 @@
             android:id="@+id/day_tracker_dialog_save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/AppTheme.Button1"
             android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/save"
             />
     </RelativeLayout>

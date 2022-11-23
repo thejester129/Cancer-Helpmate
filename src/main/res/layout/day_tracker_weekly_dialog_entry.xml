@@ -123,9 +123,8 @@
             android:id="@+id/day_tracker_weekly_dialog_send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/AppTheme.Button1"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/send"
             />
     </RelativeLayout>

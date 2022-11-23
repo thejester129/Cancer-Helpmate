@@ -61,7 +61,7 @@
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"
         android:text="@string/next"
-        style="@style/AppTheme.Button1"
+        android:backgroundTint="@color/colorAccent"
         />
 
 

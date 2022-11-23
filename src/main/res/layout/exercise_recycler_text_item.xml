@@ -8,7 +8,8 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:background="@android:color/white"
-    android:layout_margin="4dp">
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
 
     <TextView
         android:id="@+id/exercise_recycler_text_item_title"

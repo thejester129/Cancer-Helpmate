@@ -110,7 +110,6 @@
                     android:layout_marginRight="16dp"
                     android:backgroundTint="@color/colorSecondary"
                     android:text="@{viewModel.editProfile.start_date}"
-                    style="@style/AppTheme.Button1"
                     />
 
                 <TextView
@@ -130,7 +129,6 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@{viewModel.editProfile.end_date}"
-                    style="@style/AppTheme.Button1"
                     />
 
                 <TextView
@@ -209,7 +207,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:backgroundTint="@color/colorAccent"
-                    style="@style/AppTheme.Button1"
                     android:text="@string/save"/>
 
             </LinearLayout>

@@ -34,6 +34,7 @@ public class DayTrackerViewModel extends AndroidViewModel {
         dao = DayTrackerDatabase.getDatabase(application).getDAO();
         dao.getDayTrackers();
         initTodaysValues();
+        checkEmpty();
     }
 
     private void initTodaysValues(){
@@ -41,6 +42,17 @@ public class DayTrackerViewModel extends AndroidViewModel {
            sliderPainLevel.setValue(getTodaysEntry().getPainLevel() + "");
            sliderFatigueLevel.setValue(getTodaysEntry().getFatigueLevel() + "");
            sliderAppetiteLevel.setValue(getTodaysEntry().getAppetiteLevel() + "");
+        }
+    }
+
+    private void checkEmpty(){
+        if(dao.getDayTrackers().size() == 0){
+            //TODO remove, just for demo purposes
+            dao.addEntry(new DayTrackerEntry("19/02/2021",3,4,5,new DayTrackerEmotions.DayTrackerEmotionEnergetic(),false));
+            dao.addEntry(new DayTrackerEntry("15/03/2021",3,5,6,new DayTrackerEmotions.DayTrackerEmotionTired(),true));
+            dao.addEntry(new DayTrackerEntry("17/03/2021",4,7,1,new DayTrackerEmotions.DayTrackerEmotionTired(),true));
+            dao.addEntry(new DayTrackerEntry("19/03/2021",6,8,2,new DayTrackerEmotions.DayTrackerEmotionSad(),false));
+            dao.addEntry(new DayTrackerEntry("20/03/2021",3,4,5,new DayTrackerEmotions.DayTrackerEmotionHappy(),true));
         }
     }
 
