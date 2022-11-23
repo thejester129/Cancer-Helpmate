@@ -1,5 +1,4 @@
 # Cancer-Helpmate
-EPSRC Internship Project
 
 <div width="100%">
 <img src="https://user-images.githubusercontent.com/51316224/203553141-0f8ca3ec-79af-4432-b885-2c5d120fe838.jpg" alt="drawing" width="200" margin:"20" />
